@@ -19,7 +19,13 @@ class Home extends Component {
 				<Nav />
 
 				{/* Search bar */}
-				<input type="search" name="search" id="search" />
+				<input
+					type="search"
+					name="search"
+					id="search"
+					onChange={this.props.userSearch}
+				/>
+
 				<div className="toggle-switch">
 					<input
 						type="checkbox"
