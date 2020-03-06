@@ -2,9 +2,10 @@
 /*** IMPORTS ***/
 /***************/
 
-
-
-@import url("https://fonts.googleapis.com/css?family=Maitree:400,500,600,700&display=swap");
+/* prettier-ignore */
+@import url(
+	'https://fonts.googleapis.com/css?family=Maitree:400,500,600,700&display=swap'
+);
 
 /*************/
 /*** SETUP ***/
@@ -277,6 +278,6 @@ p {
 }
 
 button {
-  height: 50px;
-  font-size: 2rem;
+	height: 50px;
+	font-size: 2rem;
 }
