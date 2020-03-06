@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FoodCard from './FoodCard';
 
-class FoodContainer extends Component {
+class FoodResults extends Component {
 	state = {
 		food: [],
 		type: []
@@ -13,16 +13,13 @@ class FoodContainer extends Component {
 		return (
 			<div className="foodContainer">
 				<div className="wrapper">
-					<FoodCard />
-					<FoodCard />
-					<FoodCard />
-					<FoodCard />
-					<FoodCard />
-					<FoodCard />
+					{this.props.foodItems.map((foodItem, index) => (
+						<FoodCard key={index} foodItem={foodItem} />
+					))}
 				</div>
 			</div>
 		);
 	}
 }
 
-export default FoodContainer;
+export default FoodResults;
