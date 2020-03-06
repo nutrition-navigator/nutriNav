@@ -12,6 +12,29 @@ code {
     monospace;
 }
 
+/* NAVIGATION STYLES */
+
 .nav-icon {
-  color: black;
+  color: slategray;
+  font-size: 1.5rem;
+}
+
+.logo-icon {
+  color: #b20061;
+  font-size: 2rem;
+}
+
+.navigation {
+  background: lightgray;
+}
+
+.nav {
+  list-style: none;
+}
+
+.nav-bar {
+  padding: 30px 15px;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
 }
