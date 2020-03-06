@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Favourites from './pages/Favourites';
+import FoodDetail from './pages/FoodDetail';
+import Compare from './pages/Compare';
 import Home from './pages/Home';
 import './App.css';
-import TestApp from './components/TestApp';
+
 
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<h1>WOHOO</h1>
-					<Home />
-					<TestApp />
-				</header>
-			</div>
-		);
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <h1>WOHOO</h1>
+            <Route path="/" exact component={Home} />
+            <Route path="/favourites" component={Favourites} />
+            <Route path="/compare" component={Compare} />
+            <Route path="/food/:id" component={FoodDetail} />
+          </header>
+        </div>
+      </Router>
+    );
 	}
 }
 
