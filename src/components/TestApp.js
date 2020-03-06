@@ -7,111 +7,121 @@ class TestApp extends Component {
     super();
     this.state = {
       targetNutrients: [
-        {name: "Vitamin A", unit: "IU"},
-        {name: "Vitamin D", unit: "IU"},
-        {name: "Vitamin B-6", unit: "mg"},
-        {name: "Vitamin C", unit: "mg"},
-        {name: "Vitamin E", unit: "mg"},
-        {name: "Magnesium", unit: "mg"},
-        {name: "Zinc", unit: "mg"},
-        {name:"Iron", unit: "mg"},
-        {name: "Fiber", unit: "g"}
+        { name: "Vitamin A", unit: "IU" },
+        { name: "Vitamin D", unit: "IU" },
+        { name: "Vitamin B-6", unit: "mg" },
+        { name: "Vitamin C", unit: "mg" },
+        { name: "Vitamin E", unit: "mg" },
+        { name: "Magnesium", unit: "mg" },
+        { name: "Zinc", unit: "mg" },
+        { name: "Iron", unit: "mg" },
+        { name: "Fiber", unit: "g" }
       ],
-      showIDs: false,
       type: "common",
-      search: "cheese", // from input
+      search: "cheese",
       food: {},
-      showValues: false,
-      nutrientsValues: [],
-      nutrients: [
-        { name: 'Vitamin A', id: 318 },
-        { name: 'Vitamin D', id: 324 },
-        { name: 'Vitamin B-6', id: 415 },
-        { name: 'Vitamin C', id: 401 },
-        { name: 'Vitamin E', id: 323},
-        { name: 'Magnesium', id: 304},
-        { name: 'Zinc', id: 309 },
-        { name: 'Iron', id: 303 },
-        { name: 'Fiber', id: 291 }
-      ]
+      nutrients: []
     };
   }
 
-  // getNutrients = () => {
-  //   let nutrientsAPI = [];
-  //   axios({
-  //     url: "https://trackapi.nutritionix.com/v2/utils/nutrients",
-  //     method: "GET",
-  //     responseType: "json",
-  //     headers: {
-  //       "x-app-id": "f55663ad",
-  //       "x-app-key": "8a4711b9498f267927ad120c76ab8808",
-  //       "x-remote-user-id": "0"
-  //     }
-  //   }).then(response => {
-  //     nutrientsAPI = response.data;
-  //     const tempNutrients = this.state.targetNutrients.map(nutrientName => {
-  //       return {
-  //         name: nutrientName,
-  //         id: this.getNutrientID(nutrientName, nutrientsAPI)
-  //       };
-  //     });
-  //     this.setState(
-  //       {
-  //         nutrients: tempNutrients
-  //       },
-  //       () => {
-  //       }
-  //     );
-  //   });
-  // };
-
-  // getNutrientID = (name, nutrientsAPI) => {
-  //   const tempNutrient = nutrientsAPI.filter(nutrient => {
-  //     return nutrient.usda_nutr_desc.includes(name);
-  //   });
-  //   return tempNutrient[0].attr_id;
-  // };
-
-  getValue = (id, foodNutrients) => {
-    console.log('GETVALUE ID PASSED', id);
-    const tempNutrient = foodNutrients.filter(nutrient => {
-      return nutrient.attr_id === id;
-    });
-    console.log('NUTRIENT[0]VALUE', tempNutrient);
-    return (tempNutrient.length > 0 )? (tempNutrient[0].value) : 0;
-  };
-
-  getDetails = (id, type) => {
-    const urlEndpoint = type === "common" ? "natural/nutrients" : "search/item";
-    const method = type === "common" ? "POST" : "GET";
-    const params = type === "common" ? {} : {nix_item_id: id};
-    const data = type === "common" ? {query: id} : {};
-    return axios({
-      url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
-      method: method,
+  getNutrients = () => {
+    let nutrientsAPI = [];
+    axios({
+      url: "https://trackapi.nutritionix.com/v2/utils/nutrients",
+      method: "GET",
+      responseType: "json",
       headers: {
         "x-app-id": "f55663ad",
         "x-app-key": "8a4711b9498f267927ad120c76ab8808",
-        "x-remote-user-id": "0",
-        "content-type": "application/json"
-      },
-      data: data,
-      params: params
-    })
-  }
-     
-  
-        
+        "x-remote-user-id": "0"
+      }
+    }).then(response => {
+      nutrientsAPI = response.data;
+      const tempNutrients = this.state.targetNutrients.map(nutrient => {
+        return {
+          name: nutrient.name,
+          id: this.getNutrientID(nutrient.name, nutrientsAPI),
+          unit: nutrient.unit
+        };
+      });
+      this.setState(
+        {
+          nutrients: tempNutrients
+        },
+        () => {
+          console.log(this.state.nutrients);
+        }
+      );
+    });
+  };
+
+  getNutrientID = (name, nutrientsAPI) => {
+    const tempNutrient = nutrientsAPI.filter(nutrient => {
+      return nutrient.usda_nutr_desc.includes(name);
+    });
+    return tempNutrient[0].attr_id;
+  };
+
+  getValue = (id, foodNutrients) => {
+    const tempNutrient = foodNutrients.filter(nutrient => {
+      return nutrient.attr_id === id;
+    });
+    return tempNutrient.length > 0 ? tempNutrient[0].value : 0;
+  };
+
+  getDetails = (id, givenType) => {
+    console.log(givenType);
+    let setting = {};
+    if (givenType === "common") {
+      setting = {
+        url: `https://trackapi.nutritionix.com/v2/natural/nutrients`,
+        method: "POST",
+        headers: {
+          "x-app-id": "88ae7cda",
+          "x-app-key": "cdddd74c181520e189039715e81472db",
+          "x-remote-user-id": "0",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {
+          query: id
+        }
+      };
+    } else {
+      setting = {
+        url: `https://trackapi.nutritionix.com/v2/search/item`,
+        method: "GET",
+        headers: {
+          "x-app-id": "88ae7cda",
+          "x-app-key": "cdddd74c181520e189039715e81472db",
+          "x-remote-user-id": "0"
+        },
+        params: {
+          nix_item_id: id
+        }
+      };
+    } 
+    return axios(setting);
+  };
 
   componentDidMount() {
-    this.getDetails(this.state.search, this.state.type);
+    this.getNutrients();
   }
 
   render() {
+    console.log("render 1");
     return (
       <div>
-        <FoodDetail getDetails={this.getDetails} getValue={this.getValue}></FoodDetail>
+        {this.state.nutrients.length > 0 ? (
+          <FoodDetail
+            nutrients={this.state.nutrients}
+            foodType={this.state.type}
+            getDetails={this.getDetails}
+            getValue={this.getValue}
+            id={this.state.search}
+          ></FoodDetail>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
