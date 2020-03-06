@@ -30,8 +30,8 @@ class Home extends Component {
 							</div>
 
 							<div className="toggleBtns">
-								<button className="btn">Common</button>
-								<button className="btn">Branded</button>
+								<button className="btn" id="common" onClick={this.props.foodTypeButtonClick}>Common</button>
+								<button className="btn" id="branded" onClick={this.props.foodTypeButtonClick}>Branded</button>
 							</div>
 						</div>
 
