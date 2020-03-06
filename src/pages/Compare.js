@@ -6,6 +6,7 @@ class Compare extends Component {
 	constructor() {
 		super();
 		this.state = {
+			// this is random data, will be replaced by array in App.js
 			compared: [
 				{
 					key: 'fbKey1',
@@ -29,30 +30,18 @@ class Compare extends Component {
 		}
 	}
 
-// I am going to get an array:
-// compare: {
-// 	{
-// 		name: 'cheese',
-// 		type: 'common',
-// 	}
-// }
-// if type is common, run one API call
-// else run other API call
-//
-// pass the nutrient details from compared array to ComparisonCard.js 
-
-
 	render() {
 		return (
 			<div>
 				<Nav />
 				<h1>Compare Items</h1>
-				{this.state.compared.map((food) => {
-					console.log(food);
-					return(
-						<ComparisonCard key={food.key} food={food} />
-					)
-				})}
+				<div className="comparisonContainer">
+					{this.state.compared.map((food) => {
+						return(
+							<ComparisonCard key={food.key} food={food} />
+						)
+					})}
+				</div>
 			</div>
 		);
 	}
