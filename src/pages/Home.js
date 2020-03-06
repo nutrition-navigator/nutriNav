@@ -15,34 +15,32 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="home-page">
-				{/* Nav */}
 				<Nav />
 
-				{/* Search bar */}
-				<input
-					type="search"
-					name="search"
-					id="search"
-					onChange={this.props.userSearch}
-				/>
+				<div className="pageContainer">
+					<div className="wrapper">
+						<div className="searchBar">
+							<div className="input">
+								<input
+									type="search"
+									name="search"
+									id="search"
+									onChange={this.props.userSearch}
+								/>
+							</div>
 
-				<div className="toggle-switch">
-					<input
-						type="checkbox"
-						className="toggle-switch-checkbox"
-						name="toggleSwitch"
-						id="toggleSwitch"
-					/>
+							<div className="toggleBtns">
+								<button className="btn">Common</button>
+								<button className="btn">Branded</button>
+							</div>
+						</div>
 
-					<label className="toggle-switch-label" htmlFor="toggleSwitch">
-						<span className="toggle-switch-inner" />
-						<span className="toggle-switch-switch" />
-					</label>
+						<FoodResults
+							foodItems={this.props.foodItems}
+							type={this.props.type}
+						/>
+					</div>
 				</div>
-
-				{/* Food Results */}
-
-				<FoodResults foodItems={this.props.foodItems} type={this.props.type} />
 			</div>
 		);
 	}

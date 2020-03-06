@@ -12,11 +12,9 @@ class FoodResults extends Component {
 	render() {
 		return (
 			<div className="foodContainer">
-				<div className="wrapper">
-					{this.props.foodItems.map((foodItem, index) => (
-						<FoodCard key={index} foodItem={foodItem}/>
-					))}
-				</div>
+				{this.props.foodItems.map((foodItem, index) => (
+					<FoodCard key={index} foodItem={foodItem} />
+				))}
 			</div>
 		);
 	}
