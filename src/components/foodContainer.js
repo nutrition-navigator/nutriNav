@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
+import FoodCard from './FoodCard';
 
-class foodContainer extends Component {
-	state = {};
+class FoodContainer extends Component {
+	state = {
+		food: [],
+		type: []
+	};
+
+	componentDidMount() {}
+
 	render() {
-		return <h1>foodContainer</h1>;
+		return (
+			<div className="foodContainer">
+				<div className="wrapper">
+					<FoodCard />
+					<button className="btn">Load More</button>
+				</div>
+			</div>
+		);
 	}
 }
 
-export default foodContainer;
+export default FoodContainer;
