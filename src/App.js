@@ -13,7 +13,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1>WOHOO</h1>
             <Route path="/" exact component={Home} />
             <Route path="/favourites" component={Favourites} />
             <Route path="/compare" component={Compare} />
