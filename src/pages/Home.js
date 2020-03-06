@@ -3,6 +3,15 @@ import Nav from '../components/Nav';
 import TestApp from "../components/TestApp";
 
 class Home extends Component {
+  constructor() {
+    super();
+    this.state={
+      randomFoodItems:["corn","cheese","spinach","sausage mcmuffin"],
+    }
+  }
+
+  
+
 	render() {
 		return (
       <div className="home-page">
@@ -20,7 +29,7 @@ class Home extends Component {
             <span className="toggle-switch-switch" />
           </label>
         </div>
-        <TestApp />
+        {/* <TestApp /> */}
       </div>
     );
 	}

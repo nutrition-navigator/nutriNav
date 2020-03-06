@@ -18,7 +18,7 @@ class TestApp extends Component {
       ],
       showIDs: false,
       nutrients: [], // [ {name: "Vitamin A", id: 21}, {...}]
-      search: "cheese", // from input
+      search: "pizza pops", // from input
       food: {},
       showValues: false,
       nutrientsValues: []

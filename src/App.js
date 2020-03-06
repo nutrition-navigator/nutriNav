@@ -8,6 +8,16 @@ import './App.css';
 
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      commonFood:[],
+      brandedFood:[],
+      fullNutrients:[],
+      userFavourites:[],
+      type:null
+    }
+  }
 	render() {
 		return (
       <Router>
