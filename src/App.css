@@ -202,6 +202,7 @@ html {
 
 body {
 	font-family: 'Maitree', serif;
+	color: #4a4a4a;
 }
 
 h1 {
@@ -234,10 +235,46 @@ p {
 	border-radius: 25px;
 }
 
+/**********************/
+/*** FOOD CONTAINER ***/
+/**********************/
+
+.foodContainer .wrapper {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
 /****************/
-/*** FOODCARD ***/
+/*** FOOD CARD ***/
 /****************/
 
 .foodCard {
-	max-width: ;
+	max-width: 33.7rem;
+	margin-bottom: 3.8rem;
+}
+
+.foodCard img {
+	object-fit: cover;
+	display: block;
+	width: 100%;
+	height: 21.2rem;
+	border-radius: 15px;
+}
+
+.cardContent {
+	background: #f4f2f9;
+	border-radius: 0 0 15px 15px;
+	padding: 3.5rem 2rem 3rem 2rem;
+	margin-top: -1rem;
+}
+
+.cardTitle {
+	font-size: 1.6rem;
+	font-weight: 500;
+}
+
+.cardSubtitle {
+	font-size: 1.2rem;
+	font-weight: 400;
 }

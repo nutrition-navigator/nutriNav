@@ -14,7 +14,11 @@ class FoodContainer extends Component {
 			<div className="foodContainer">
 				<div className="wrapper">
 					<FoodCard />
-					<button className="btn">Load More</button>
+					<FoodCard />
+					<FoodCard />
+					<FoodCard />
+					<FoodCard />
+					<FoodCard />
 				</div>
 			</div>
 		);

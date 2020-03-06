@@ -11,7 +11,7 @@ class foodCard extends Component {
 				/>
 				<div className="cardContent">
 					<h2 className="cardTitle">Mixed Berry Melody</h2>
-					<h3 className="cardSubTitle">
+					<h3 className="cardSubtitle">
 						Ut enim ad minim veniam, quis nostrud.
 					</h3>
 				</div>
