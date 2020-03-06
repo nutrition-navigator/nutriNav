@@ -40,19 +40,6 @@ class TestApp extends Component {
       nutrientsAPI = response.data;
       const tempNutrients = this.state.targetNutrients.map(nutrientName => {
         return {
-<<<<<<< HEAD
-          name: nutrient.name,
-          id: this.getNutrientID(nutrient.name, nutrientsAPI),
-        };
-      });
-      this.setState(
-        {
-          nutrients: tempNutrients
-        },
-        () => {
-        }
-      );
-=======
           name: nutrientName,
           id: this.getNutrientID(nutrientName, nutrientsAPI)
         };
@@ -60,7 +47,6 @@ class TestApp extends Component {
       this.setState({
         nutrients: tempNutrients
       });
->>>>>>> parent of e0e4f8b... details from parent
     });
   };
 
@@ -76,19 +62,6 @@ class TestApp extends Component {
     const tempNutrient = foodNutrients.filter(nutrient => {
       return nutrient.attr_id === id;
     });
-<<<<<<< HEAD
-    return (tempNutrient.length > 0 )? (tempNutrient[0].value) : 0;
-  };
-
-  getDetails = (id, type) => {
-    const urlEndpoint = type === "common" ? "natural/nutrients" : "search/item";
-    const method = type === "common" ? "POST" : "GET";
-    const params = type === "common" ? {} : {nix_item_id: id};
-    const data = type === "common" ? {query: id} : {};
-    return axios({
-      url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
-      method: method,
-=======
     return tempNutrient[0].value;
   }
 
@@ -99,26 +72,12 @@ class TestApp extends Component {
     axios({
       url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
       method: "POST",
->>>>>>> parent of e0e4f8b... details from parent
       headers: {
         "x-app-id": "f55663ad",
         "x-app-key": "8a4711b9498f267927ad120c76ab8808",
         "x-remote-user-id": "0",
         "content-type": "application/json"
       },
-<<<<<<< HEAD
-      data: data,
-      params: params
-    })
-  }
-     
-  
-        
-
-  componentDidMount() {
-    
-    // this.getDetails(this.state.search, this.state.type);
-=======
       data: {
         query: this.state.search,
       }
@@ -154,15 +113,11 @@ class TestApp extends Component {
 
   componentDidMount() {
     this.getNutrients();
->>>>>>> parent of e0e4f8b... details from parent
   }
 
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        <FoodDetail getDetails={this.getDetails} getValue={this.getValue}></FoodDetail>
-=======
         <button
           id="ids"
           type="button"
@@ -206,7 +161,6 @@ class TestApp extends Component {
         ) : (
           ""
         )}
->>>>>>> parent of e0e4f8b... details from parent
       </div>
     );
   }
