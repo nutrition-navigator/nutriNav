@@ -1,5 +1,5 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Home from './Home';
 import './App.css';
 import TestApp from './components/TestApp';
 
@@ -9,8 +9,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>WOHOO</h1>
-        <TestApp />
-       
+        <Home />
+        <TestApp />       
       </header>
     </div>
   );
