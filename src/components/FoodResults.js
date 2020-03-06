@@ -14,7 +14,7 @@ class FoodResults extends Component {
 			<div className="foodContainer">
 				<div className="wrapper">
 					{this.props.foodItems.map((foodItem, index) => (
-						<FoodCard key={index} foodItem={foodItem} />
+						<FoodCard key={index} foodItem={foodItem}/>
 					))}
 				</div>
 			</div>

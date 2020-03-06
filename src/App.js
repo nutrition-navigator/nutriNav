@@ -10,32 +10,65 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			commonFood: [
-				{
-					tag_name: '',
-					food_name: '',
-					photo: {
-						thumb: ''
-					},
-					serving_qty: ''
-				}
-			],
-			brandedFood: [
-				{
-					tag_name: '',
-					food_name: '',
-					nix_item_id: '',
-					brand_name: '',
-					photo: {
-						thumb: ''
-					},
-					serving_qty: ''
-				}
-			],
-			fullNutrients: [],
-			userFavourites: [],
-			type: 'branded'
-		};
+      commonFood: [
+        {
+          tag_name: "chicken",
+          food_name: "chicken",
+          photo: {
+            thumb: "https://d2xdmhkmkbyw75.cloudfront.net/9_thumb.jpg"
+          },
+          serving_qty: "3"
+        },
+        {
+          tag_name: "chicken",
+          food_name: "chicken",
+          photo: {
+            thumb: "https://d2xdmhkmkbyw75.cloudfront.net/9_thumb.jpg"
+          },
+          serving_qty: "3"
+        },
+        {
+          tag_name: "chicken",
+          food_name: "chicken",
+          photo: {
+            thumb: "https://d2xdmhkmkbyw75.cloudfront.net/9_thumb.jpg"
+          },
+          serving_qty: "3"
+        }
+      ],
+      brandedFood: [
+        {
+          food_name: "Chunk Light Tuna in Water",
+          nix_item_id: "51db37b6176fe9790a898901",
+          brand_name: "Chicken Of The Sea",
+          photo: {
+            thumb: "https://d1r9wva3zcpswd.cloudfront.net/5cc40421892ab9da1dbd647a.jpeg"
+          },
+          serving_qty: "0.25"
+        },
+        {
+          food_name: "Chunk Light Tuna in Water",
+          nix_item_id: "51db37b6176fe9790a898901",
+          brand_name: "Chicken Of The Sea",
+          photo: {
+            thumb: "https://d1r9wva3zcpswd.cloudfront.net/5cc40421892ab9da1dbd647a.jpeg"
+          },
+          serving_qty: "0.25"
+        },
+        {
+          food_name: "Chunk Light Tuna in Water",
+          nix_item_id: "51db37b6176fe9790a898901",
+          brand_name: "Chicken Of The Sea",
+          photo: {
+            thumb: "https://d1r9wva3zcpswd.cloudfront.net/5cc40421892ab9da1dbd647a.jpeg"
+          },
+          serving_qty: "0.25"
+        }
+      ],
+      fullNutrients: [],
+      userFavourites: [],
+      type: "branded"
+    };
 	}
 
 	render() {
@@ -53,7 +86,7 @@ class App extends Component {
 										this.state.type === 'branded'
 											? this.state.brandedFood
 											: this.state.commonFood
-									}
+                  }
 								/>
 							)}
 						/>
