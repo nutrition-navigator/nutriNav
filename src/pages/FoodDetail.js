@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
-import Nav from "../components/Nav";
+import React, { Component } from 'react';
 
 class FoodDetail extends Component {
+<<<<<<< HEAD
   constructor() {
     super();
     this.state = {
@@ -79,6 +79,12 @@ class FoodDetail extends Component {
     );
 		
   }
+=======
+	state = {};
+	render() {
+		return <h1>FoodDetail</h1>;
+	}
+>>>>>>> parent of e0e4f8b... details from parent
 }
 
 export default FoodDetail;

@@ -1,39 +1,27 @@
 import React, { Component } from "react";
 import axios from "axios";
-import FoodDetail from "../pages/FoodDetail";
 
 class TestApp extends Component {
   constructor() {
     super();
     this.state = {
       targetNutrients: [
-        {name: "Vitamin A", unit: "IU"},
-        {name: "Vitamin D", unit: "IU"},
-        {name: "Vitamin B-6", unit: "mg"},
-        {name: "Vitamin C", unit: "mg"},
-        {name: "Vitamin E", unit: "mg"},
-        {name: "Magnesium", unit: "mg"},
-        {name: "Zinc", unit: "mg"},
-        {name:"Iron", unit: "mg"},
-        {name: "Fiber", unit: "g"}
+        "Vitamin A",
+        "Vitamin D",
+        "Vitamin B-6",
+        "Vitamin C",
+        "Vitamin E",
+        "Magnesium",
+        "Zinc",
+        "Iron",
+        "Fiber"
       ],
       showIDs: false,
-      type: "common",
+      nutrients: [], // [ {name: "Vitamin A", id: 21}, {...}]
       search: "cheese", // from input
       food: {},
       showValues: false,
-      nutrientsValues: [],
-      nutrients: [
-        { name: 'Vitamin A', id: 318 },
-        { name: 'Vitamin D', id: 324 },
-        { name: 'Vitamin B-6', id: 415 },
-        { name: 'Vitamin C', id: 401 },
-        { name: 'Vitamin E', id: 323},
-        { name: 'Magnesium', id: 304},
-        { name: 'Zinc', id: 309 },
-        { name: 'Iron', id: 303 },
-        { name: 'Fiber', id: 291 }
-      ]
+      nutrientsValues: []
     };
   }
 
@@ -50,8 +38,9 @@ class TestApp extends Component {
       }
     }).then(response => {
       nutrientsAPI = response.data;
-      const tempNutrients = this.state.targetNutrients.map(nutrient => {
+      const tempNutrients = this.state.targetNutrients.map(nutrientName => {
         return {
+<<<<<<< HEAD
           name: nutrient.name,
           id: this.getNutrientID(nutrient.name, nutrientsAPI),
         };
@@ -63,6 +52,15 @@ class TestApp extends Component {
         () => {
         }
       );
+=======
+          name: nutrientName,
+          id: this.getNutrientID(nutrientName, nutrientsAPI)
+        };
+      });
+      this.setState({
+        nutrients: tempNutrients
+      });
+>>>>>>> parent of e0e4f8b... details from parent
     });
   };
 
@@ -73,10 +71,12 @@ class TestApp extends Component {
     return tempNutrient[0].attr_id;
   };
 
-  getValue = (id, foodNutrients) => {
+
+  getNutrientValue = (id, foodNutrients) => {
     const tempNutrient = foodNutrients.filter(nutrient => {
       return nutrient.attr_id === id;
     });
+<<<<<<< HEAD
     return (tempNutrient.length > 0 )? (tempNutrient[0].value) : 0;
   };
 
@@ -88,12 +88,25 @@ class TestApp extends Component {
     return axios({
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,
+=======
+    return tempNutrient[0].value;
+  }
+
+
+
+  getNutrientsValues = () => {
+    let values = [];
+    axios({
+      url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+      method: "POST",
+>>>>>>> parent of e0e4f8b... details from parent
       headers: {
         "x-app-id": "f55663ad",
         "x-app-key": "8a4711b9498f267927ad120c76ab8808",
         "x-remote-user-id": "0",
         "content-type": "application/json"
       },
+<<<<<<< HEAD
       data: data,
       params: params
     })
@@ -105,12 +118,95 @@ class TestApp extends Component {
   componentDidMount() {
     
     // this.getDetails(this.state.search, this.state.type);
+=======
+      data: {
+        query: this.state.search,
+      }
+    })
+      .then(response => {
+        const food = response.data.foods[0];
+        this.setState(
+          {
+            food
+          },
+          () => {
+            // console.log(this.state.food);
+          }
+        );
+
+        values = this.state.nutrients.map(nutrient => {
+          return {
+            name: nutrient.name,
+            id: nutrient.id,
+            value: this.getNutrientValue(nutrient.id, food.full_nutrients)
+          };
+        });
+        this.setState({
+          nutrientsValues: values,
+        }, () => {
+          this.setState({ showValues: !this.state.showValues });
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  componentDidMount() {
+    this.getNutrients();
+>>>>>>> parent of e0e4f8b... details from parent
   }
 
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <FoodDetail getDetails={this.getDetails} getValue={this.getValue}></FoodDetail>
+=======
+        <button
+          id="ids"
+          type="button"
+          onClick={() => {
+            this.setState({ showIDs: !this.state.showIDs });
+          }}
+        >
+          {" "}
+          Get Nutrients and their IDs
+        </button>
+
+        {this.state.showIDs ? (
+          <ul>
+            <h2> NUTRIENT NAMES AND IDS</h2>
+            {this.state.nutrients.map(nutrient => (
+              <li key={nutrient.id}>
+                {" "}
+                NAME: {nutrient.name} | ID: {nutrient.id}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          ""
+        )}
+
+        <button id="values" type="button" onClick={this.getNutrientsValues}>
+          {" "}
+          Get Nutrients and Their Values
+        </button>
+
+        {this.state.showValues ? (
+          <ul>
+            <h2> NUTRIENT AND VALUES FOR "{this.state.search}" </h2>
+            {this.state.nutrientsValues.map(nutrient => (
+              <li key={nutrient.id}>
+                {" "}
+                NAME: {nutrient.name} |  ID: {nutrient.id} | VALUE: {" "}{nutrient.value}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          ""
+        )}
+>>>>>>> parent of e0e4f8b... details from parent
       </div>
     );
   }
