@@ -5,13 +5,6 @@ import TestApp from '../components/TestApp';
 import FoodResults from '../components/FoodResults';
 
 class Home extends Component {
-	constructor() {
-		super();
-		this.state = {
-			randomFoodItems: ['corn', 'cheese', 'spinach', 'sausage mcmuffin']
-		};
-	}
-
 	render() {
 		return (
 			<div className="home-page">
@@ -30,15 +23,24 @@ class Home extends Component {
 							</div>
 
 							<div className="toggleBtns">
-								<button className="btn" id="common" onClick={this.props.foodTypeButtonClick}>Common</button>
-								<button className="btn" id="branded" onClick={this.props.foodTypeButtonClick}>Branded</button>
+								<button
+									className="btn"
+									id="common"
+									onClick={this.props.foodTypeButtonClick}
+								>
+									Common
+								</button>
+								<button
+									className="btn"
+									id="branded"
+									onClick={this.props.foodTypeButtonClick}
+								>
+									Branded
+								</button>
 							</div>
 						</div>
 
-						<FoodResults
-							foodItems={this.props.foodItems}
-							type={this.props.type}
-						/>
+						<FoodResults foodItems={this.props.foodItems} />
 					</div>
 				</div>
 			</div>

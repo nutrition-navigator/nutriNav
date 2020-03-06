@@ -19,47 +19,48 @@ class App extends Component {
 			userFavourites: [],
 			type: 'branded'
 		};
-  }
-  
-  componentDidMount() {
-    this.randomSearch();
-  }
+	}
 
-  fetchFood=(query)=>{
-    axios({
-      url: "https://trackapi.nutritionix.com/v2/search/instant",
-      method: "get",
-      headers: {
-        "x-app-key": "cdddd74c181520e189039715e81472db",
-        "x-app-id": "88ae7cda"
-      },
-      params: {
-        query
-      }
-    }).then(res => {
-      this.setState({
-        brandedFood: res.data.branded,
-        commonFood: res.data.common
-      });
-    });
-  }
+	componentDidMount() {
+		this.randomSearch();
+	}
 
-  randomSearch = () => {
-    const randomArray = ["corn", "cheese", "spinach", "big mac"];
-    const randomInteger = Math.floor(Math.random()*4);
-    this.fetchFood(randomArray[randomInteger])
-  }
+	fetchFood = query => {
+		axios({
+			url: 'https://trackapi.nutritionix.com/v2/search/instant',
+			method: 'get',
+			headers: {
+				'x-app-key': 'cdddd74c181520e189039715e81472db',
+				'x-app-id': '88ae7cda'
+			},
+			params: {
+				query
+			}
+		}).then(res => {
+			this.setState({
+				brandedFood: res.data.branded,
+				commonFood: res.data.common,
+				userFavourites: res.data.common
+			});
+		});
+	};
+
+	randomSearch = () => {
+		const randomArray = ['corn', 'cheese', 'spinach', 'big mac'];
+		const randomInteger = Math.floor(Math.random() * 4);
+		this.fetchFood(randomArray[randomInteger]);
+	};
 
 	userSearch = e => {
 		const query = e.target.value;
-		this.fetchFood(query)
-  };
-  
-  foodTypeButtonClick = (e) => {
-    this.setState({
-      type:e.target.id
-    })
-  }
+		this.fetchFood(query);
+	};
+
+	foodTypeButtonClick = e => {
+		this.setState({
+			type: e.target.id
+		});
+	};
 
 	render() {
 		return (
@@ -77,12 +78,17 @@ class App extends Component {
 											? this.state.brandedFood
 											: this.state.commonFood
 									}
-                  userSearch={this.userSearch}
-                  foodTypeButtonClick={this.foodTypeButtonClick}
+									userSearch={this.userSearch}
+									foodTypeButtonClick={this.foodTypeButtonClick}
 								/>
 							)}
 						/>
-						<Route path="/favourites" component={Favourites} />
+						<Route
+							path="/favourites"
+							render={() => (
+								<Favourites savedFoods={this.state.userFavourites} />
+							)}
+						/>
 						<Route path="/compare" component={Compare} />
 						<Route path="/food/:id" component={FoodDetail} />
 					</header>

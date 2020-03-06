@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import FoodCard from './FoodCard';
 
 class FoodResults extends Component {
-	state = {
-		food: [],
-		type: []
-	};
-
 	componentDidMount() {}
 
 	render() {
