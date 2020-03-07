@@ -285,4 +285,11 @@ button {
 
 li {
 	font-size: 2rem;
+	list-style: none;
+}
+
+.detail {
+	border: 2px solid grey;
+	height: auto;
+	padding: 5%;
 }

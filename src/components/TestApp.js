@@ -62,6 +62,7 @@ class TestApp extends Component {
     return tempNutrient[0].attr_id;
   };
 
+  // 
   getValue = (id, foodNutrients) => {
     const tempNutrient = foodNutrients.filter(nutrient => {
       return nutrient.attr_id === id;
@@ -69,6 +70,13 @@ class TestApp extends Component {
     return tempNutrient.length > 0 ? tempNutrient[0].value : 0;
   };
 
+  // receives a food and completes its nutrients list
+  completeFoodNutrients = () => {
+
+  }
+
+  // gets the details about a food item from the API based on the id and type (common vs branded)
+  // caller must resolve the promise on their own
   getDetails = (id, type) => {
     const urlEndpoint = type === "common" ? "natural/nutrients" : "search/item";
     const method = type === "common" ? "POST" : "GET";
@@ -100,6 +108,7 @@ class TestApp extends Component {
           id={this.state.id}
           getDetails={this.getDetails}
           getValue={this.getValue}
+          completeFoodNutrients={this.completeFoodNutrients}
           nutrients={this.state.nutrients}
         ></FoodDetail>
       </div>
