@@ -6,6 +6,7 @@ class TestApp extends Component {
   constructor() {
     super();
     this.state = {
+      // target nutrients from the Client Brief (initially without ids)
       targetNutrients: [
         { name: "Vitamin A", unit: "IU" },
         { name: "Vitamin D", unit: "IU" },
@@ -17,12 +18,13 @@ class TestApp extends Component {
         { name: "Iron", unit: "mg" },
         { name: "Fiber", unit: "g" }
       ],
-      type: "common",
-      id: "burger",
-      nutrients: []
+      type: "branded",
+      id: "54836a2305e256f87e091b04",
+      nutrients: [] // target nutrients with ids
     };
   }
 
+  // retrieves the most up to date nutrients from API and their ids, maps the ids to the target nutrient list
   getNutrients = () => {
     let nutrientsAPI = [];
     axios({
@@ -36,6 +38,8 @@ class TestApp extends Component {
       }
     }).then(response => {
       nutrientsAPI = response.data;
+      // transforms each target nutrient into an object which includes the nutrient's id
+      // stores these objects in a temporary array
       const tempNutrients = this.state.targetNutrients.map(nutrient => {
         return {
           name: nutrient.name,
@@ -43,21 +47,22 @@ class TestApp extends Component {
           unit: nutrient.unit
         };
       });
+      // updates the nutrients state with the temporary array
       this.setState({
         nutrients: tempNutrients
       });
     });
   };
 
-  // retrieves the id of a nutrient from a given nutrient list, based on name
+  // retrieves the id of a nutrient from a given nutrient list, using the name
   getNutrientID = (name, nutrientsAPI) => {
     const tempNutrient = nutrientsAPI.filter(nutrient => {
       return nutrient.usda_nutr_desc.includes(name);
     });
-    return tempNutrient[0].attr_id;
+    return tempNutrient.length > 0 ? tempNutrient[0].attr_id : "";
   };
 
-  // retrieves the amount/value of a nutrient from a given nutrient list, based on id
+  // retrieves the amount/value of a nutrient from a given nutrient list, using the id
   getValue = (id, foodNutrients) => {
     const tempNutrient = foodNutrients.filter(nutrient => {
       return nutrient.attr_id === id;
@@ -66,10 +71,8 @@ class TestApp extends Component {
   };
 
   othersToArray = (others) => {
-    console.log('we are in othersToArray() with: ', others);
     const otherNutrients = [];
     for (let key in others) {
-      console.log('key: ', key, 'value: ', others[key]);
       otherNutrients.push({
         name: key,
         value: others[key].value,
@@ -80,12 +83,12 @@ class TestApp extends Component {
   };
 
   completeFood = (food, nutrients) => {
-    console.log('we are in completeFood() with: ', food);
+    console.log(food);
     const completedFood = {
       name: food.food_name,
       brand: food.brand_name,
-      url: food.photo.highres,
-      isRaw: food.metadata.is_raw_food,
+      url: food.photo.highres? food.photo.highres : food.photo.thumb,
+      isRaw: food.metadata.is_raw_food? "Yes" : "No",
       serving: food.serving_qty,
       servingUnit: food.serving_unit,
       servingWeight: food.serving_weight_grams,
@@ -118,7 +121,7 @@ class TestApp extends Component {
     return completedFood;
   };
 
-  // receives a food item and returns itsc completed main nutrient list with name, value, id, unit
+  // receives a food item and returns its completed main nutrient list with name, value, id, and measure unit
   completeFoodNutrients = food => {
     const completeNutrients = this.state.nutrients.map(nutrient => {
       // calls a function from props that maps this nutrient to its value using another axios call
@@ -134,7 +137,7 @@ class TestApp extends Component {
     return completeNutrients;
   };
 
-  // gets the details about a food item from the API based on the id and type(common vs branded)
+  // gets the details about a food item from the API based on the id(nix or food_name) and type(common vs branded)
   // caller must resolve the promise on their own
   getDetails = (id, type) => {
     const urlEndpoint = type === "common" ? "natural/nutrients" : "search/item";
@@ -168,7 +171,6 @@ class TestApp extends Component {
           getDetails={this.getDetails}
           completeFoodNutrients={this.completeFoodNutrients}
           completeFood={this.completeFood}
-          nutrients={this.state.nutrients}
         ></FoodDetail>
       </div>
     );
