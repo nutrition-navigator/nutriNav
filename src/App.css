@@ -277,7 +277,12 @@ p {
 	font-weight: 400;
 }
 
+/* Ania's */
 button {
 	height: 50px;
+	font-size: 2rem;
+}
+
+li {
 	font-size: 2rem;
 }

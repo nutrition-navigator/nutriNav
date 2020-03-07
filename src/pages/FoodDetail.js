@@ -1,83 +1,86 @@
 import React, { Component, Fragment } from "react";
-import Nav from "../components/Nav";
 
 class FoodDetail extends Component {
   constructor() {
     super();
     this.state = {
       food: {},
-      nutrientValues: [],
-      props: {
-        type: "brand",
-        nutrients: [
-          { name: "Vitamin A", id: 318, unit: "IU" },
-          { name: "Vitamin D", id: 324, unit: "IU" },
-          { name: "Vitamin B-6", id: 415, unit: "mg" },
-          { name: "Vitamin C", id: 401, unit: "mg" },
-          { name: "Vitamin E", id: 323, unit: "mg" },
-          { name: "Magnesium", id: 304, unit: "mg" },
-          { name: "Zinc", id: 309, unit: "mg" },
-					{ name: "Iron", id: 303, unit: "mg" },
-					{ name: "Fiber", id: 303, unit: "g" }
-        ],
-        match: { params: { id: "54836a2305e256f87e091b04" } }
-      }
+      foodNutrients: []
     };
-	}
-	
-	// 54836a2305e256f87e091b04
+  }
 
+  // 54836a2305e256f87e091b04
 
   componentDidMount() {
-		this.props
-      .getDetails(this.state.props.match.params.id, this.state.props.type)
+    this.props
+      .getDetails(this.props.id, this.props.type)
       .then(response => {
-				let values = [];
         const food = response.data.foods[0];
-        this.setState(
-          {
-            food
-          },
-          () => {
-						console.log('FOOD', this.state.food);
-						console.log('FOOD FULL NUTRIENTS', this.state.food.full_nutrients);
-          }
-        );
-        values = this.state.props.nutrients.map(nutrient => {
-					console.log('NUTRIENT ID', nutrient.id);
-					const value = this.props.getValue(nutrient.id, food.full_nutrients);
-					console.log('RETURNING VALUE', value);
+
+        const values = this.props.nutrients.map(nutrient => {
+          const value = this.props.getValue(nutrient.id, food.full_nutrients);
           return {
             name: nutrient.name,
             id: nutrient.id,
-            value: value
+            value: value,
+            unit: nutrient.unit
           };
         });
-				console.log('VALUES ARRAY', values);
         this.setState(
           {
-            nutrientValues: values
+            foodNutrients: values
           },
           () => {
-            console.log('STATE VALUES ARRAY', this.state.nutrientValues);
+            console.log(this.state.foodNutrients);
+          }
+        );
+
+        this.setState(
+          {
+            food: {
+              name: food.food_name,
+              brand: food.brand_name,
+              url: food.photo.highres,
+              isRaw: food.metadata.is_raw_food,
+              serving: food.serving_qty,
+              servingUnit: food.serving_unit,
+              servingWeight: food.serving_weight_grams,
+              calories: food.nf_calories,
+              carbs: food.nf_total_carbohydrate,
+              sodium: food.nf_sodium,
+              sugar: food.nf_sugars,
+              fat: food.nf_total_fat,
+              saturatedFat: food.nf_saturated_fat
+            }
+          },
+          () => {
+            console.log(this.state.food);
           }
         );
       })
       .catch(err => {
         console.log(err);
       });
-
   }
 
   render() {
-		return (
+    return (
       <Fragment>
-        <Nav />
-				<h1> Food Details </h1>
-				<button>Add To Favorites</button>
+        <h1> Food Details </h1>
+        <h2> Food Name: {this.state.food.name}</h2>
+        <ul>
+          {this.state.foodNutrients.map(nutrient => {
+            return (
+              <li key={nutrient.id}>
+                {nutrient.name} - {nutrient.value} {nutrient.unit}
+              </li>
+            );
+          })}
+        </ul>
+        <button>Add To Favorites</button>
+        <button>Add To Compare</button>
       </Fragment>
     );
-		
   }
 }
 
