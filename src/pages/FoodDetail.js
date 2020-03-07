@@ -62,6 +62,7 @@ class FoodDetail extends Component {
               <li>Raw State: {this.state.food.isRaw} </li>
             </ul>
           </div>
+          
         </div>
 
         <div className="detailIngredients">
