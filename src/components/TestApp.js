@@ -19,8 +19,7 @@ class TestApp extends Component {
       ],
       type: "common",
       id: "burger",
-      nutrientsValues: [],
-      nutrients: [],
+      nutrients: []
     };
   }
 
@@ -44,17 +43,13 @@ class TestApp extends Component {
           unit: nutrient.unit
         };
       });
-      this.setState(
-        {
-          nutrients: tempNutrients
-        },
-        () => {
-          // console.log(this.state.nutrients);
-        }
-      );
+      this.setState({
+        nutrients: tempNutrients
+      });
     });
   };
 
+  // retrieves the id of a nutrient from a given nutrient list, based on name
   getNutrientID = (name, nutrientsAPI) => {
     const tempNutrient = nutrientsAPI.filter(nutrient => {
       return nutrient.usda_nutr_desc.includes(name);
@@ -62,7 +57,7 @@ class TestApp extends Component {
     return tempNutrient[0].attr_id;
   };
 
-  // 
+  // retrieves the amount/value of a nutrient from a given nutrient list, based on id
   getValue = (id, foodNutrients) => {
     const tempNutrient = foodNutrients.filter(nutrient => {
       return nutrient.attr_id === id;
@@ -70,12 +65,76 @@ class TestApp extends Component {
     return tempNutrient.length > 0 ? tempNutrient[0].value : 0;
   };
 
-  // receives a food and completes its nutrients list
-  completeFoodNutrients = () => {
+  othersToArray = (others) => {
+    console.log('we are in othersToArray() with: ', others);
+    const otherNutrients = [];
+    for (let key in others) {
+      console.log('key: ', key, 'value: ', others[key]);
+      otherNutrients.push({
+        name: key,
+        value: others[key].value,
+        unit: others[key].unit
+      });
+    }
+    return otherNutrients;
+  };
 
-  }
+  completeFood = (food, nutrients) => {
+    console.log('we are in completeFood() with: ', food);
+    const completedFood = {
+      name: food.food_name,
+      brand: food.brand_name,
+      url: food.photo.highres,
+      isRaw: food.metadata.is_raw_food,
+      serving: food.serving_qty,
+      servingUnit: food.serving_unit,
+      servingWeight: food.serving_weight_grams,
+      // other non-critical nutrients mentioned in the Client Brief
+      others: {
+        Calories: { value: Math.round(food.nf_calories), unit: "kcal" },
+        Carbs: {
+          value: Math.round(food.nf_total_carbohydrate),
+          unit: "g"
+        },
+        Sodium: { value: Math.round(food.nf_sodium), unit: "mg" },
+        Sugar: { value: Math.round(food.nf_sugars), unit: "g" },
+        Fat: { value: Math.round(food.nf_total_fat), unit: "g" },
+        "Saturated Fat": {
+          value: Math.round(food.nf_saturated_fat),
+          unit: "g"
+        },
+        Fiber: {
+          value: Math.round(
+            // uses the fiber from the main nutrients
+            nutrients.filter(n => n.name === "Fiber")[0].value
+          ),
+          unit: "g"
+        }
+      }
+    };
+    const others = completedFood.others;
+    completedFood.others = this.othersToArray(others);
+    console.log(completedFood);
+    return completedFood;
+  };
 
-  // gets the details about a food item from the API based on the id and type (common vs branded)
+  // receives a food item and returns itsc completed main nutrient list with name, value, id, unit
+  completeFoodNutrients = food => {
+    const completeNutrients = this.state.nutrients.map(nutrient => {
+      // calls a function from props that maps this nutrient to its value using another axios call
+      const value = this.getValue(nutrient.id, food.full_nutrients);
+      // returns the completed nutrient profile as an object to exist in the completedNutrients array
+      return {
+        name: nutrient.name,
+        id: nutrient.id,
+        value: Math.round(value),
+        unit: nutrient.unit
+      };
+    });
+    return completeNutrients;
+  };
+
+  // gets the details about a food item from the API based on the id and type(common vs branded)
   // caller must resolve the promise on their own
   getDetails = (id, type) => {
     const urlEndpoint = type === "common" ? "natural/nutrients" : "search/item";
@@ -107,8 +166,8 @@ class TestApp extends Component {
           type={this.state.type}
           id={this.state.id}
           getDetails={this.getDetails}
-          getValue={this.getValue}
           completeFoodNutrients={this.completeFoodNutrients}
+          completeFood={this.completeFood}
           nutrients={this.state.nutrients}
         ></FoodDetail>
       </div>

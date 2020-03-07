@@ -293,3 +293,12 @@ li {
 	height: auto;
 	padding: 5%;
 }
+
+.col1, .col2, .col3, .row {
+	display: inline-block;
+}
+
+.row {
+	width: 60%;
+	background-color: #ff0;
+}
