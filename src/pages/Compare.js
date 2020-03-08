@@ -30,6 +30,27 @@ class Compare extends Component {
 		}
 	}
 
+	handleFilter = (id) => {
+		const selectedFood = this.state.compared.filter((foodItem) => {
+			if(foodItem.key !== id) {
+				return true
+			} else {
+				return false
+			}
+		})
+		this.setState({
+			compared: selectedFood,
+		})
+	}
+
+	deleteItem = (e, id) => {
+		e.preventDefault();
+		console.log("ive been clicked");
+		this.handleFilter(id);
+	}
+
+	
+
 	render() {
 		return (
 			<div className="comparisonPage">
@@ -38,7 +59,7 @@ class Compare extends Component {
 				<div className="comparisonContainer">
 					{this.state.compared.map((food) => {
 						return(
-							<ComparisonCard key={food.key} food={food} />
+							<ComparisonCard key={food.key} itemId={food.key} food={food} deleteItem={this.deleteItem}/>
 						)
 					})}
 				</div>
