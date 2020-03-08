@@ -4,6 +4,7 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Nav from '../components/Nav';
 
 class FoodDetail extends Component {
   constructor() {
@@ -16,9 +17,12 @@ class FoodDetail extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     this.props
       // calls the a function from props that makes an axios call based on the passed id and type
-      .getDetails(this.props.id)
+      .getDetails(
+        "cheese"
+      )
       .then(response => {
         const food = response.data.foods[0];
         // saves this food's completed nutrients to state
@@ -53,74 +57,76 @@ class FoodDetail extends Component {
 
   render() {
     return this.state.isReady ? (
-      <div className="wrapper">
-        <div className="detail">
-          <div className="detailInfoContainer">
-            <div className="detailTitle">
-              <h1> {this.state.food.name}</h1>
-            </div>
+      <div className="detailPage">
+        <Nav />
+        <div className="wrapper">
+          <div className="detail">
+            <div className="detailInfoContainer">
+              <div className="detailTitle">
+                <h1> {this.state.food.name}</h1>
+              </div>
 
-            <div className="detailDescription">
-              <h2>Description</h2>
-              <ul>
-                <li>
-                  Serving: {this.state.food.serving}{" "}
-                  {this.state.food.servingUnit} ({this.state.food.servingWeight}
-                  g){" "}
-                </li>
-                <li>Raw State: {this.state.food.isRaw} </li>
-                {this.state.food.brand ? (
-                  <li> Brand: {this.state.food.brand} </li>
-                ) : (
-                  ""
-                )}
-              </ul>
-            </div>
-
-            <div className="detailIngredients">
-              <div className="detailMainIngredients">
-                <h2>Main Nutrients</h2>
+              <div className="detailDescription">
+                <h2>Description</h2>
                 <ul>
-                  {this.state.foodNutrients.map(nutrient => {
-                    return (
-                      <li key={nutrient.id}>
-                        <span className={nutrient.value ? "row" : "row null"}>
-                          <span className="col1">{nutrient.name}</span>
-                          <span className="col2">{nutrient.value}</span>
-                          <span className="col3">{nutrient.unit} </span>
-                        </span>
-                      </li>
-                    );
-                  })}
+                  <li>
+                    Serving: {this.state.food.serving}{" "}
+                    {this.state.food.servingUnit} (
+                    {this.state.food.servingWeight}
+                    g){" "}
+                  </li>
+                  <li>Raw State: {this.state.food.isRaw} </li>
+                  {this.state.food.brand ? (
+                    <li> Brand: {this.state.food.brand} </li>
+                  ) : (
+                    ""
+                  )}
                 </ul>
               </div>
-              <div className="detailOtherIngredients">
-                <h2>Secondary Nutrients</h2>
-                <ul>
-                  {this.state.food.others.map(other => {
-                    return (
-                      <li key={other.name}>
-                        <span className={other.value ? "row" : "row null"}>
-                          <span className="col1">{other.name}</span>
-                          <span className="col2">{other.value}</span>
-                          <span className="col3">{other.unit} </span>
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
+
+              <div className="detailIngredients">
+                <div className="detailMainIngredients">
+                  <h2>Main Nutrients</h2>
+                  <ul>
+                    {this.state.foodNutrients.map(nutrient => {
+                      return (
+                        <li key={nutrient.id}>
+                          <span className={nutrient.value ? "row" : "row null"}>
+                            <span className="col1">{nutrient.name}</span>
+                            <span className="col2">{nutrient.value}</span>
+                            <span className="col3">{nutrient.unit} </span>
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className="detailOtherIngredients">
+                  <h2>Secondary Nutrients</h2>
+                  <ul>
+                    {this.state.food.others.map(other => {
+                      return (
+                        <li key={other.name}>
+                          <span className={other.value ? "row" : "row null"}>
+                            <span className="col1">{other.name}</span>
+                            <span className="col2">{other.value}</span>
+                            <span className="col3">{other.unit} </span>
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="detailImgContainer">
+              <div className="detailImg">
+                <img src={this.state.food.url} alt={this.state.food.name}></img>
               </div>
             </div>
           </div>
-          <div className="detailImgContainer">
-            <div className="detailImg">
-              <img src={this.state.food.url} alt={this.state.food.name}></img>
-            </div>
-          </div>
-        </div>
 
-        <div className="detailControl">
-        
+          <div className="detailControl"></div>
         </div>
       </div>
     ) : (

@@ -169,13 +169,13 @@ class TestApp extends Component {
   render() {
     return (
       <div>
-        <FoodDetail
+        {/* <FoodDetail
           type={this.state.type}
           id={this.state.id}
           getDetails={this.getDetails}
           completeFoodNutrients={this.completeFoodNutrients}
           completeFood={this.completeFood}
-        ></FoodDetail>
+        ></FoodDetail> */}
       </div>
     );
   }
