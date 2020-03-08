@@ -1,9 +1,4 @@
 import React, { Component } from "react";
-import {
-  faExchangeAlt,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class FoodDetail extends Component {
   constructor() {
