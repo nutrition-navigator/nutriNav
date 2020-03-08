@@ -7,7 +7,6 @@ import FoodDetail from './pages/FoodDetail';
 import Compare from './pages/Compare';
 import Home from './pages/Home';
 import firebase from './firebaseConfig';
-
 import './App.css';
 
 class App extends Component {
@@ -65,7 +64,6 @@ class App extends Component {
 				const completedNutrients = this.completeFoodNutrients(
 					response.data.foods[0]
 				);
-
 				// complete the metadata for this food
 				const completedFood = this.completeFood(
 					response.data.foods[0],
@@ -105,14 +103,15 @@ class App extends Component {
 
 	// retrieves the most up to date nutrients from API and their ids, maps the ids to the target nutrient list
 	getNutrients = () => {
+		console.log("getNutrients()");
 		let nutrientsAPI = [];
 		axios({
       url: "https://trackapi.nutritionix.com/v2/utils/nutrients",
       method: "GET",
       responseType: "json",
       headers: {
-        "x-app-id": "f55663ad",
-        "x-app-key": "cff7cf53c177966df0258a52f7591641",
+        "x-app-key": "cdddd74c181520e189039715e81472db",
+        "x-app-id": "88ae7cda",
         "x-remote-user-id": "0"
       }
     }).then(response => {
@@ -217,19 +216,18 @@ class App extends Component {
 
 	// gets the details about a food item from the API based on the id(nix or food_name) and type(common vs branded)
 	// caller must resolve the promise on their own
-	getDetails = (id, type) => {
-		const axiosType = type ? type : this.state.type;
-		const urlEndpoint =
-			axiosType === 'common' ? 'natural/nutrients' : 'search/item';
-		const method = axiosType === 'common' ? 'POST' : 'GET';
-		const params = axiosType === 'common' ? {} : { nix_item_id: id };
-		const data = axiosType === 'common' ? { query: id } : {};
+	getDetails = (id, type) => {	
+		console.log('getDetails() with type: ', type);
+		const urlEndpoint = (type === "common") ? "natural/nutrients" : "search/item";
+		const method = (type === 'common') ? 'POST' : 'GET';
+		const params = (type === 'common') ? {} : { nix_item_id: id };
+		const data = (type === 'common') ? { query: id } : {};
 		return axios({
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,
       headers: {
-        "x-app-id": "f55663ad",
-        "x-app-key": "cff7cf53c177966df0258a52f7591641",
+        "x-app-key": "cdddd74c181520e189039715e81472db",
+        "x-app-id": "88ae7cda",
         "x-remote-user-id": "0",
         "content-type": "application/json"
       },
@@ -239,6 +237,7 @@ class App extends Component {
 	};
 
 	fetchFood = query => {
+		console.log("fetchFood()");
 		axios({
 			url: 'https://trackapi.nutritionix.com/v2/search/instant',
 			method: 'get',
@@ -272,7 +271,7 @@ class App extends Component {
 	foodTypeButtonClick = e => {
 		this.setState({
 			type: e.target.id
-		});
+		}, () => console.log(this.state.type));
 	};
 
 	render() {
@@ -308,10 +307,10 @@ class App extends Component {
 							render={props => (
 								<FoodDetail
 									id={props.match.params.id}
+									type={this.state.type}
 									getDetails={this.getDetails}
 									completeFoodNutrients={this.completeFoodNutrients}
 									completeFood={this.completeFood}
-									// addToFavourites={this.addToFavourites}
 									addToSaved={this.addToSaved}
 								></FoodDetail>
 							)}
