@@ -143,11 +143,13 @@ class TestApp extends Component {
 
   // gets the details about a food item from the API based on the id(nix or food_name) and type(common vs branded)
   // caller must resolve the promise on their own
-  getDetails = (id) => {
-    const urlEndpoint = this.state.type === "common" ? "natural/nutrients" : "search/item";
-    const method = this.state.type === "common" ? "POST" : "GET";
-    const params = this.state.type === "common" ? {} : { nix_item_id: id };
-    const data = this.state.type === "common" ? { query: id } : {};
+  getDetails = (id, type) => {
+    const axiosType = type ? type : this.state.type;
+    const urlEndpoint =
+      axiosType === "common" ? "natural/nutrients" : "search/item";
+    const method = axiosType === "common" ? "POST" : "GET";
+    const params = axiosType === "common" ? {} : { nix_item_id: id };
+    const data = axiosType === "common" ? { query: id } : {};
     return axios({
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,

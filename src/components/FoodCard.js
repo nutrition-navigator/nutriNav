@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 
 class FoodCard extends Component {
   render() {
-		// console.log(this.props.foodItem.food_name);
     const id = this.props.foodItem.nix_item_id
       ? this.props.foodItem.nix_item_id
-			: this.props.foodItem.food_name;
-		console.log(id);	
+			: this.props.foodItem.food_name;	
     return (
       <Link to={`/food/${id}`}>
         <div className="foodCard">

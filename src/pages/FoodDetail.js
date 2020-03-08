@@ -4,6 +4,7 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {NavLink} from 'react-router-dom';
 import Nav from '../components/Nav';
 
 class FoodDetail extends Component {
@@ -17,12 +18,9 @@ class FoodDetail extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.props
       // calls the a function from props that makes an axios call based on the passed id and type
-      .getDetails(
-        "cheese"
-      )
+      .getDetails(this.props.id)
       .then(response => {
         const food = response.data.foods[0];
         // saves this food's completed nutrients to state
@@ -126,7 +124,11 @@ class FoodDetail extends Component {
             </div>
           </div>
 
-          <div className="detailControl"></div>
+          <div className="detailControl">
+              <button onClick={() => {this.props.addToSaved(this.props.id, "compares")}}> Add to Compare </button>    
+
+
+          </div>
         </div>
       </div>
     ) : (

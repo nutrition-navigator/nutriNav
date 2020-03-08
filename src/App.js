@@ -6,6 +6,7 @@ import Favourites from "./pages/Favourites";
 import FoodDetail from "./pages/FoodDetail";
 import Compare from "./pages/Compare";
 import Home from "./pages/Home";
+import firebase from "./firebaseConfig";
 
 import "./App.css";
 
@@ -30,14 +31,72 @@ class App extends Component {
       nutrients: [], // target nutrients with ids
       userFavourites: [],
       userCompared: [],
-      type: "common"
+      type: "branded"
     };
   }
 
   componentDidMount() {
     this.getNutrients(); // get nutrients from API in raw state
     this.randomSearch();
+    this.getAllSaved("compares");
   }
+
+  getAllSaved = (state) => {
+    const dbRef = firebase.database().ref(`${state}`);
+    dbRef.on("value", response => {
+      const savedFromDB = response.val();
+      const arraySaved = [];
+      for (let key in savedFromDB) {
+        arraySaved.push({
+          key: key,
+          id: savedFromDB[key].id,
+          type: savedFromDB[key].type
+        });
+      }
+      this.completeSaved(arraySaved, state);
+    });
+  };
+
+  completeSaved = (foods, state) => {
+    const completedArray = [];
+    foods.forEach(food => {
+      this.getDetails(food.id, food.type).then(response => {
+        // complete the nutrients for this food
+        const completedNutrients = this.completeFoodNutrients(
+          response.data.foods[0]
+        );
+
+        // complete the metadata for this food
+        const completedFood = this.completeFood(
+          response.data.foods[0],
+          completedNutrients
+        );
+
+        // push this food into our accumalitve array that will be used to change state eventually
+        completedArray.push({
+          key: food.key,
+          id: food.id,
+          imgURL: completedFood.url,
+          mainNutrients: completedNutrients,
+          secondaryNutrients: completedFood.others
+        });
+      });
+    });
+    if (state === "compares") {
+      this.setState({
+        userCompared: completedArray
+      }, () => {console.log(this.state.userCompared)});
+    } else {
+			 this.setState({
+         userFavourites: completedArray
+       });
+    }
+  };
+
+  addToSaved = (id, state) => {
+    const dBCompRef = firebase.database().ref(`${state}`);
+    dBCompRef.push({ id: id, type: this.state.type });
+  };
 
   // retrieves the most up to date nutrients from API and their ids, maps the ids to the target nutrient list
   getNutrients = () => {
@@ -98,7 +157,6 @@ class App extends Component {
   };
 
   completeFood = (food, nutrients) => {
-    // console.log(food);
     const completedFood = {
       name: food.food_name,
       brand: food.brand_name,
@@ -133,7 +191,6 @@ class App extends Component {
     };
     const others = completedFood.others;
     completedFood.others = this.othersToArray(others);
-    // console.log(completedFood);
     return completedFood;
   };
 
@@ -155,12 +212,13 @@ class App extends Component {
 
   // gets the details about a food item from the API based on the id(nix or food_name) and type(common vs branded)
   // caller must resolve the promise on their own
-  getDetails = id => {
+  getDetails = (id, type) => {
+    const axiosType = type ? type : this.state.type;
     const urlEndpoint =
-      this.state.type === "common" ? "natural/nutrients" : "search/item";
-    const method = this.state.type === "common" ? "POST" : "GET";
-    const params = this.state.type === "common" ? {} : { nix_item_id: id };
-    const data = this.state.type === "common" ? { query: id } : {};
+      axiosType === "common" ? "natural/nutrients" : "search/item";
+    const method = axiosType === "common" ? "POST" : "GET";
+    const params = axiosType === "common" ? {} : { nix_item_id: id };
+    const data = axiosType === "common" ? { query: id } : {};
     return axios({
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,
@@ -240,12 +298,16 @@ class App extends Component {
             />
             <Route path="/compare" component={Compare} />
             <Route
+              exact
               path="/food/:id"
-              render={() => (
+              render={props => (
                 <FoodDetail
+                  id={props.match.params.id}
                   getDetails={this.getDetails}
                   completeFoodNutrients={this.completeFoodNutrients}
                   completeFood={this.completeFood}
+                  // addToFavourites={this.addToFavourites}
+                  addToSaved={this.addToSaved}
                 ></FoodDetail>
               )}
             />
