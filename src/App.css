@@ -287,11 +287,96 @@ p {
 	font-weight: 400;
 }
 
+/* Ania's Begins FoodDetail -----------------> */
 button {
 	height: 50px;
 	font-size: 2rem;
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
 }
 
+li {
+	font-size: 2rem;
+	list-style: none;
+}
+
+.wrapper {
+	padding: 3% 1%;
+}
+
+
+
+.detail {
+	height: auto;
+}
+
+.detailTitle {
+	text-transform: capitalize;
+}
+
+.col1, .col2, .col3, .row {
+	display: inline-block;
+}
+
+.col1 {
+	width: 45%;
+}
+
+.col2 {
+	width: 30%;
+}
+
+.row {
+	width: 90%;
+	border-bottom: 2px solid #ffe1f9;
+}
+
+.detail {
+	display: flex;
+	justify-content: space-between;
+}
+
+.detailImgContainer{
+	width: 40%;
+}
+
+.detailInfoContainer {
+	width: 60%;
+}
+
+.detailImg {
+	width: 100%;
+	height: 400px;
+	border: 3px solid #350482;
+	padding: 2%;
+	/* border-radius: 0 0 0 30px; */
+}
+
+.detailImg img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.detailIngredients {
+}
+
+.detailOtherIngredients,
+.detailMainIngredients,
+.detailDescription {
+	margin-top: 3%;
+}
+
+.detailControl {
+	margin-top: 3%;
+}
+
+.null {
+	color: rgb(158, 155, 155);
+}
+
+/* Ania's Ends -----------------> */
 /***********/
 /*** NAV ***/
 /***********/
