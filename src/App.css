@@ -131,12 +131,14 @@ input[type='radio'] {
 	box-sizing: border-box;
 	padding: 0;
 }
+
 input[type='search'] {
 	-webkit-appearance: textfield;
 	-moz-box-sizing: content-box;
 	-webkit-box-sizing: content-box;
 	box-sizing: content-box;
 }
+
 input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-decoration {
 	-webkit-appearance: none;
@@ -220,6 +222,9 @@ p {
 .wrapper {
 	max-width: 108.7rem;
 	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .btn {
@@ -233,14 +238,19 @@ p {
 	border-radius: 25px;
 }
 
+.pageContainer {
+	margin-top: 5rem;
+}
+
 /**********************/
 /*** FOOD CONTAINER ***/
 /**********************/
 
-.foodContainer .wrapper {
+.foodContainer {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	width: 100%;
 }
 
 /****************/
@@ -248,7 +258,7 @@ p {
 /****************/
 
 .foodCard {
-	max-width: 33.7rem;
+	width: 33.7rem;
 	margin-bottom: 3.8rem;
 }
 
@@ -367,3 +377,50 @@ li {
 }
 
 /* Ania's Ends -----------------> */
+/***********/
+/*** NAV ***/
+/***********/
+
+.nav-icon {
+	color: slategray;
+	font-size: 1.5rem;
+}
+
+.logo-icon {
+	color: #b20061;
+	font-size: 2rem;
+}
+
+.navigation {
+	background: lightgray;
+}
+
+.nav {
+	list-style: none;
+}
+
+.nav-bar {
+	padding: 30px 15px;
+	margin: 0;
+	display: flex;
+	justify-content: space-around;
+}
+
+/***********/
+/*** SEARCH ***/
+/***********/
+
+#search {
+	padding: 2rem 4rem;
+	width: 66.8rem;
+	background: #f4f2f9;
+	border: none;
+	border-radius: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.toggleBtns {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 3rem;
+}

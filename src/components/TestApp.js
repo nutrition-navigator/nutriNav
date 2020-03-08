@@ -20,7 +20,10 @@ class TestApp extends Component {
       ],
       type: "common",
       id: "skinless chicken breast",
-      nutrients: [] // target nutrients with ids
+      nutrients: [], // target nutrients with ids
+      search: "pizza pops", // from input
+      food: {},
+      nutrientsValues: []
     };
   }
 
