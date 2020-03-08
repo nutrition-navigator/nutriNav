@@ -294,8 +294,14 @@ li {
 	padding: 3% 1%;
 }
 
+
+
 .detail {
 	height: auto;
+}
+
+.detailTitle {
+	text-transform: capitalize;
 }
 
 .col1, .col2, .col3, .row {

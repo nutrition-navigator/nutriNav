@@ -18,7 +18,7 @@ class FoodDetail extends Component {
   componentDidMount() {
     this.props
       // calls the a function from props that makes an axios call based on the passed id and type
-      .getDetails(this.props.id, this.props.type)
+      .getDetails(this.props.id)
       .then(response => {
         const food = response.data.foods[0];
         // saves this food's completed nutrients to state

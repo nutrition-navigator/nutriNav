@@ -18,8 +18,8 @@ class TestApp extends Component {
         { name: "Iron", unit: "mg" },
         { name: "Fiber", unit: "g" }
       ],
-      type: "branded",
-      id: "54836a2305e256f87e091b04",
+      type: "common",
+      id: "skinless chicken breast",
       nutrients: [] // target nutrients with ids
     };
   }
@@ -83,7 +83,7 @@ class TestApp extends Component {
   };
 
   completeFood = (food, nutrients) => {
-    console.log(food);
+    // console.log(food);
     const completedFood = {
       name: food.food_name,
       brand: food.brand_name,
@@ -101,6 +101,7 @@ class TestApp extends Component {
         },
         Sodium: { value: Math.round(food.nf_sodium), unit: "mg" },
         Sugar: { value: Math.round(food.nf_sugars), unit: "g" },
+        Protein: {value: Math.round(food.nf_protein), unit: "g"},
         Fat: { value: Math.round(food.nf_total_fat), unit: "g" },
         "Saturated Fat": {
           value: Math.round(food.nf_saturated_fat),
@@ -117,7 +118,7 @@ class TestApp extends Component {
     };
     const others = completedFood.others;
     completedFood.others = this.othersToArray(others);
-    console.log(completedFood);
+    // console.log(completedFood);
     return completedFood;
   };
 
@@ -139,11 +140,11 @@ class TestApp extends Component {
 
   // gets the details about a food item from the API based on the id(nix or food_name) and type(common vs branded)
   // caller must resolve the promise on their own
-  getDetails = (id, type) => {
-    const urlEndpoint = type === "common" ? "natural/nutrients" : "search/item";
-    const method = type === "common" ? "POST" : "GET";
-    const params = type === "common" ? {} : { nix_item_id: id };
-    const data = type === "common" ? { query: id } : {};
+  getDetails = (id) => {
+    const urlEndpoint = this.state.type === "common" ? "natural/nutrients" : "search/item";
+    const method = this.state.type === "common" ? "POST" : "GET";
+    const params = this.state.type === "common" ? {} : { nix_item_id: id };
+    const data = this.state.type === "common" ? { query: id } : {};
     return axios({
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,
