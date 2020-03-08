@@ -107,30 +107,30 @@ class App extends Component {
 	getNutrients = () => {
 		let nutrientsAPI = [];
 		axios({
-			url: 'https://trackapi.nutritionix.com/v2/utils/nutrients',
-			method: 'GET',
-			responseType: 'json',
-			headers: {
-				'x-app-id': 'f55663ad',
-				'x-app-key': '588db5b40c0c827f5af2785681421696',
-				'x-remote-user-id': '0'
-			}
-		}).then(response => {
-			nutrientsAPI = response.data;
-			// transforms each target nutrient into an object which includes the nutrient's id
-			// stores these objects in a temporary array
-			const tempNutrients = this.state.targetNutrients.map(nutrient => {
-				return {
-					name: nutrient.name,
-					id: this.getNutrientID(nutrient.name, nutrientsAPI),
-					unit: nutrient.unit
-				};
-			});
-			// updates the nutrients state with the temporary array
-			this.setState({
-				nutrients: tempNutrients
-			});
-		});
+      url: "https://trackapi.nutritionix.com/v2/utils/nutrients",
+      method: "GET",
+      responseType: "json",
+      headers: {
+        "x-app-id": "f55663ad",
+        "x-app-key": "cff7cf53c177966df0258a52f7591641",
+        "x-remote-user-id": "0"
+      }
+    }).then(response => {
+      nutrientsAPI = response.data;
+      // transforms each target nutrient into an object which includes the nutrient's id
+      // stores these objects in a temporary array
+      const tempNutrients = this.state.targetNutrients.map(nutrient => {
+        return {
+          name: nutrient.name,
+          id: this.getNutrientID(nutrient.name, nutrientsAPI),
+          unit: nutrient.unit
+        };
+      });
+      // updates the nutrients state with the temporary array
+      this.setState({
+        nutrients: tempNutrients
+      });
+    });
 	};
 
 	// retrieves the id of a nutrient from a given nutrient list, using the name
@@ -225,17 +225,17 @@ class App extends Component {
 		const params = axiosType === 'common' ? {} : { nix_item_id: id };
 		const data = axiosType === 'common' ? { query: id } : {};
 		return axios({
-			url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
-			method: method,
-			headers: {
-				'x-app-id': 'f55663ad',
-				'x-app-key': '588db5b40c0c827f5af2785681421696',
-				'x-remote-user-id': '0',
-				'content-type': 'application/json'
-			},
-			data: data,
-			params: params
-		});
+      url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
+      method: method,
+      headers: {
+        "x-app-id": "f55663ad",
+        "x-app-key": "cff7cf53c177966df0258a52f7591641",
+        "x-remote-user-id": "0",
+        "content-type": "application/json"
+      },
+      data: data,
+      params: params
+    });
 	};
 
 	fetchFood = query => {
