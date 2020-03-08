@@ -7,9 +7,8 @@ import FoodResults from '../components/FoodResults';
 class Home extends Component {
 	render() {
 		return (
-			<div className="home-page">
+			<div className="home">
 				<Nav />
-
 				<div className="pageContainer">
 					<div className="wrapper">
 						<div className="searchBar">
@@ -19,19 +18,20 @@ class Home extends Component {
 									name="search"
 									id="search"
 									onChange={this.props.userSearch}
+									placeholder="What food are you looking for?"
 								/>
 							</div>
 
 							<div className="toggleBtns">
 								<button
-									className="btn"
+									className="toggle toggleCommon"
 									id="common"
 									onClick={this.props.foodTypeButtonClick}
 								>
 									Common
 								</button>
 								<button
-									className="btn"
+									className="toggle toggleBranded"
 									id="branded"
 									onClick={this.props.foodTypeButtonClick}
 								>

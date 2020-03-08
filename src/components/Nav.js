@@ -19,19 +19,19 @@ class Nav extends Component {
 						<ul className="navContainer">
 							<div className="navList">
 								<li className="navItem">
-									<NavLink to="/" exact>
+									<NavLink activeClassName="activeNav" to="/" exact>
 										<FontAwesomeIcon icon={faHome} />
 									</NavLink>
 								</li>
 								<li className="navItem">
-									<NavLink to="/favourites">
+									<NavLink activeClassName="activeNav" to="/favourites">
 										<FontAwesomeIcon icon={faHeart} />
 									</NavLink>
 								</li>
 							</div>
 							<div className="navList">
 								<li className="navLogo">
-									<NavLink to="/" exact>
+									<NavLink activeClassName="activeNav" to="/" exact>
 										<img src={logo} alt="" />
 									</NavLink>
 								</li>
@@ -39,12 +39,12 @@ class Nav extends Component {
 
 							<div className="navList">
 								<li className="nav-icon navItem">
-									<NavLink to="/" exact>
+									<NavLink activeClassName="activeNav" to="/" exact>
 										<FontAwesomeIcon icon={faSearch} />
 									</NavLink>
 								</li>
 								<li className="nav-icon navItem">
-									<NavLink to="/compare">
+									<NavLink activeClassName="activeNav" to="/compare">
 										{' '}
 										<FontAwesomeIcon icon={faExchangeAlt} />
 									</NavLink>

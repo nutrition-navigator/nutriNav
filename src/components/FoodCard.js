@@ -13,10 +13,13 @@ class FoodCard extends Component {
 				}
 			>
 				<div className="foodCard">
-					<img
-						src={this.props.foodItem.photo.thumb}
-						alt={this.props.foodItem.food_name}
-					/>
+					<div className="cardImage">
+						<img
+							src={this.props.foodItem.photo.thumb}
+							alt={this.props.foodItem.food_name}
+						/>
+					</div>
+
 					<div className="cardContent">
 						<h2 className="cardTitle">
 							{this.props.foodItem.nix_item_id
