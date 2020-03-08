@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function ComparisonCard(props) {
-  return (
-    <div className="comparisonCard">
-      <div className="imageContainer">
-        <img src={props.food.imgURL} alt={props.food.name} />
+class ComparisonCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      remove: false,
+      food: props.food,
+    }
+  }
+    handleClick = () => {
+      this.setState({
+        remove: true,
+      })
+  }
+
+  render() {
+    return (
+      <div className="comparisonCard">
+        <div className="imageContainer">
+          <img src={this.state.food.imgURL} alt={this.state.food.name} />
+        </div>
+        <h3>{this.state.food.name}</h3>
+        <h4>Ingredients</h4>
+        <p>{this.state.food.nutrients}</p>
+        <button onClick={this.handleClick}>REMOVE</button>
       </div>
-      <h3>{props.food.name}</h3>
-      <h4>Ingredients</h4>
-      <p>{props.food.nutrients}</p>
-      <button>REMOVE</button>
-    </div>
-  );
+    );
+  }
 }
 
 export default ComparisonCard;

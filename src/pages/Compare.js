@@ -32,7 +32,7 @@ class Compare extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="comparisonPage">
 				<Nav />
 				<h1>Compare Items</h1>
 				<div className="comparisonContainer">
