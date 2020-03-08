@@ -12,22 +12,22 @@ class Compare extends Component {
 					key: 'fbKey1',
 					name: 'cheese',
 					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/1034_thumb.jpg',
-					nutrients: [],
+					nutrients: []
 				},
 				{
 					key: 'fbKey2',
 					name: 'skinless chicken breast',
 					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/7820_thumb.jpg',
-					nutrients: [],
+					nutrients: []
 				},
 				{
 					key: 'fbKey3',
 					name: 'burger',
 					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/608_thumb.jpg',
-					nutrients: [],
+					nutrients: []
 				}
 			]
-		}
+		};
 	}
 
 	render() {
@@ -36,10 +36,8 @@ class Compare extends Component {
 				<Nav />
 				<h1>Compare Items</h1>
 				<div className="comparisonContainer">
-					{this.state.compared.map((food) => {
-						return(
-							<ComparisonCard key={food.key} food={food} />
-						)
+					{this.state.compared.map(food => {
+						return <ComparisonCard key={food.key} food={food} />;
 					})}
 				</div>
 			</div>

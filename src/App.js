@@ -67,7 +67,6 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					<header className="App-header">
-						<h1>WOHOO</h1>
 						<Route
 							path="/"
 							exact
