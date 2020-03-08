@@ -4,14 +4,11 @@ import { Link } from 'react-router-dom';
 class FoodCard extends Component {
 	state = {};
 	render() {
+		const id = this.props.foodItem.nix_item_id
+			? this.props.foodItem.nix_item_id
+			: this.props.foodItem.food_name;
 		return (
-			<Link
-				to={
-					this.props.foodItem.nix_item_id
-						? `/food/${this.props.foodItem.nix_item_id}`
-						: `/food/${this.props.foodItem.food_name}`
-				}
-			>
+			<Link to={`/food/${id}`}>
 				<div className="foodCard">
 					<div className="cardImage">
 						<img
@@ -26,7 +23,6 @@ class FoodCard extends Component {
 								? this.props.foodItem.brand_name
 								: this.props.foodItem.food_name}
 						</h2>
-
 						{this.props.foodItem.nix_item_id ? (
 							<h3 className="cardSubtitle">{this.props.foodItem.food_name}</h3>
 						) : null}
