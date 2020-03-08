@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 function ComparisonCard(props) {
   return (
@@ -11,7 +11,7 @@ function ComparisonCard(props) {
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos voluptas ipsum minima totam placeat quod reprehenderit, fugiat quaerat debitis, modi ipsam distinctio nesciunt odio fugit voluptatum laborum amet deserunt labore.</p>
       <h4>Nutritional Information </h4>
       <p>{props.food.nutrients}</p>
-      <button onClick={(e) => {props.deleteItem(e, props.itemId)}}>REMOVE</button>
+      <button onClick={() => {props.removeItem(props.itemId)}}>REMOVE</button>
     </div>
   );
 }

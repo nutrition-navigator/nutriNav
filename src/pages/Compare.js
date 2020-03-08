@@ -7,7 +7,7 @@ class Compare extends Component {
 		super();
 		this.state = {
 			// this is random data, will be replaced by array in App.js
-			compared: [
+			foodsToCompare: [
 				{
 					key: 'fbKey1',
 					name: 'cheese',
@@ -30,8 +30,8 @@ class Compare extends Component {
 		}
 	}
 
-	handleFilter = (id) => {
-		const selectedFood = this.state.compared.filter((foodItem) => {
+	itemToRemove = (id) => {
+		const newFoodsToCompare = this.state.foodsToCompare.filter((foodItem) => {
 			if(foodItem.key !== id) {
 				return true
 			} else {
@@ -39,14 +39,12 @@ class Compare extends Component {
 			}
 		})
 		this.setState({
-			compared: selectedFood,
+			foodsToCompare: newFoodsToCompare,
 		})
 	}
 
-	deleteItem = (e, id) => {
-		e.preventDefault();
-		console.log("ive been clicked");
-		this.handleFilter(id);
+	removeItem = (id) => {
+		this.itemToRemove(id);
 	}
 
 	
@@ -57,9 +55,9 @@ class Compare extends Component {
 				<Nav />
 				<h1>Compare Items</h1>
 				<div className="comparisonContainer">
-					{this.state.compared.map((food) => {
+					{this.state.foodsToCompare.map((food) => {
 						return(
-							<ComparisonCard key={food.key} itemId={food.key} food={food} deleteItem={this.deleteItem}/>
+							<ComparisonCard key={food.key} itemId={food.key} food={food} removeItem={this.removeItem}/>
 						)
 					})}
 				</div>
