@@ -136,11 +136,11 @@ code {
   height: 100%;
 }
 
-.comparisonCard .imageContainer {
+/* .comparisonCard .imageContainer {
   width: 50%;
   height: 60%;
   margin: 0 auto;
-}
+} */
 
 .comparisonContainer {
   display: flex;
@@ -150,11 +150,17 @@ code {
   width: 50%;
   margin: 0 20px;
   padding: 40px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .comparisonPage h1 {
-  color: #b20061;
+  color:#b20061;
   padding-top: 50px;
   font-size: 3rem;
+}
+
+.comparisonCard h3 {
+  color:#b20061;
+  text-transform: capitalize;
+  font-size: 2rem;
 }
