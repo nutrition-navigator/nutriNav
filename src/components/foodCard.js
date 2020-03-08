@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-class foodCard extends Component {
+class FoodCard extends Component {
 	state = {};
 	render() {
 		return (
-			<div className="foodCard">
-				<img
-					src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-					alt=""
-				/>
-				<div className="cardContent">
-					<h2 className="cardTitle">Mixed Berry Melody</h2>
-					<h3 className="cardSubtitle">
-						Ut enim ad minim veniam, quis nostrud.
-					</h3>
+			<Link
+				to={
+					this.props.foodItem.nix_item_id
+						? `/food/${this.props.foodItem.nix_item_id}`
+						: `/food/${this.props.foodItem.food_name}`
+				}
+			>
+				<div className="foodCard">
+					<img
+						src={this.props.foodItem.photo.thumb}
+						alt={this.props.foodItem.food_name}
+					/>
+					<div className="cardContent">
+						<h2 className="cardTitle">
+							{this.props.foodItem.nix_item_id
+								? this.props.foodItem.brand_name
+								: this.props.foodItem.food_name}
+						</h2>
+
+						{this.props.foodItem.nix_item_id ? (
+							<h3 className="cardSubtitle">{this.props.foodItem.food_name}</h3>
+						) : null}
+					</div>
 				</div>
-			</div>
+			</Link>
 		);
 	}
 }
 
-export default foodCard;
+export default FoodCard;

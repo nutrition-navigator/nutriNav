@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
+import Nav from '../components/Nav';
+import FoodResults from '../components/FoodResults';
 
 class Favourites extends Component {
-	state = {};
 	render() {
-		return <h1>Favourites</h1>;
+		return (
+			<div className="favourites">
+				<Nav />
+				<div className="pageContainer">
+					<div className="wrapper">
+						<h1>Saved Items</h1>
+						<FoodResults foodItems={this.props.savedFoods} />
+					</div>
+				</div>
+			</div>
+		);
 	}
 }
 
