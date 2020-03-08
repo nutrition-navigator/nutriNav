@@ -12,42 +12,40 @@ class Compare extends Component {
 					key: 'fbKey1',
 					name: 'cheese',
 					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/1034_thumb.jpg',
-					nutrients: [],
+					nutrients: []
 				},
 				{
 					key: 'fbKey2',
 					name: 'skinless chicken breast',
 					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/7820_thumb.jpg',
-					nutrients: [],
+					nutrients: []
 				},
 				{
 					key: 'fbKey3',
 					name: 'burger',
 					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/608_thumb.jpg',
-					nutrients: [],
+					nutrients: []
 				}
 			]
-		}
+		};
 	}
 
-	itemToRemove = (id) => {
-		const newFoodsToCompare = this.state.foodsToCompare.filter((foodItem) => {
-			if(foodItem.key !== id) {
-				return true
+	itemToRemove = id => {
+		const newFoodsToCompare = this.state.foodsToCompare.filter(foodItem => {
+			if (foodItem.key !== id) {
+				return true;
 			} else {
-				return false
+				return false;
 			}
-		})
+		});
 		this.setState({
-			foodsToCompare: newFoodsToCompare,
-		})
-	}
+			foodsToCompare: newFoodsToCompare
+		});
+	};
 
-	removeItem = (id) => {
+	removeItem = id => {
 		this.itemToRemove(id);
-	}
-
-	
+	};
 
 	render() {
 		return (
@@ -55,10 +53,15 @@ class Compare extends Component {
 				<Nav />
 				<h1>Compare Items</h1>
 				<div className="comparisonContainer">
-					{this.state.foodsToCompare.map((food) => {
-						return(
-							<ComparisonCard key={food.key} itemId={food.key} food={food} removeItem={this.removeItem}/>
-						)
+					{this.state.foodsToCompare.map(food => {
+						return (
+							<ComparisonCard
+								key={food.key}
+								itemId={food.key}
+								food={food}
+								removeItem={this.removeItem}
+							/>
+						);
 					})}
 				</div>
 			</div>

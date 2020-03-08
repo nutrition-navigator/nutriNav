@@ -220,12 +220,16 @@ p {
 	line-height: 2.4rem;
 }
 
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
 .wrapper {
 	max-width: 108.7rem;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 }
 
 .btn {
@@ -259,23 +263,28 @@ p {
 /****************/
 
 .foodCard {
-	width: 33.7rem;
-	margin-bottom: 3.8rem;
+	width: 34rem;
+	height: 14.5rem;
+	margin-bottom: 3.5rem;
+	display: flex;
+	background: #f4f2f9;
+	border-radius: 15px;
+	padding: 3rem 2rem;
+	align-items: center;
+	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
 }
 
 .foodCard img {
 	object-fit: cover;
 	display: block;
-	width: 100%;
-	height: 21.2rem;
+	height: 8.1rem;
+	width: 12rem;
 	border-radius: 15px;
 }
 
 .cardContent {
-	background: #f4f2f9;
-	border-radius: 0 0 15px 15px;
-	padding: 3.5rem 2rem 3rem 2rem;
-	margin-top: -1rem;
+	/* padding: 3.5rem 2rem 3rem 2rem; */
+	margin-left: 2rem;
 }
 
 .cardTitle {
@@ -290,7 +299,7 @@ p {
 
 /* Ania's Begins FoodDetail -----------------> */
 button {
-	height: 50px;
+	/* height: 50px; */
 	font-size: 2rem;
 	border: none;
 	background-color: rgba(255, 255, 255, 0);
@@ -301,12 +310,6 @@ li {
 	list-style: none;
 }
 
-.wrapper {
-	padding: 3% 1%;
-}
-
-
-
 .detail {
 	height: auto;
 }
@@ -315,7 +318,10 @@ li {
 	text-transform: capitalize;
 }
 
-.col1, .col2, .col3, .row {
+.col1,
+.col2,
+.col3,
+.row {
 	display: inline-block;
 }
 
@@ -337,7 +343,7 @@ li {
 	justify-content: space-between;
 }
 
-.detailImgContainer{
+.detailImgContainer {
 	width: 40%;
 }
 
@@ -382,29 +388,42 @@ li {
 /*** NAV ***/
 /***********/
 
-.nav-icon {
-	color: slategray;
-	font-size: 1.5rem;
-}
-
-.logo-icon {
-	color: #b20061;
-	font-size: 2rem;
-}
-
 .navigation {
-	background: lightgray;
+	background: #f4f2f9;
 }
 
-.nav {
+.activeNav {
+	color: #b20061;
+}
+
+.navList {
+	display: flex;
+}
+
+.navItem {
 	list-style: none;
+	color: #748a9d;
+	font-size: 1.75rem;
 }
 
-.nav-bar {
-	padding: 30px 15px;
+.navLogo {
+	height: 4rem;
+}
+
+.navLogo img {
+	height: 100%;
+}
+
+.navItem:not(:last-child) {
+	margin-right: 5.5rem;
+}
+
+.navContainer {
+	padding: 3rem 0;
 	margin: 0;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	align-items: center;
 }
 
 /***********/
@@ -417,11 +436,39 @@ li {
 	background: #f4f2f9;
 	border: none;
 	border-radius: 1.5rem;
-	margin-bottom: 2rem;
+	margin-bottom: 2.5rem;
+	font-size: 1.5rem;
+	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
+}
+
+.searchBar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .toggleBtns {
 	display: flex;
 	justify-content: center;
-	margin-bottom: 3rem;
+	margin-bottom: 4rem;
+}
+
+.toggle {
+	font-size: 1.4rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #fff;
+	background: #b20061;
+	padding: 1rem 4.3rem;
+	border: none;
+	border-radius: 25px;
+}
+
+.toggleBranded {
+	border-radius: 0 36px 36px 0;
+	background: #d8d8d8;
+}
+
+.toggleCommon {
+	border-radius: 36px 0 0 36px;
 }
