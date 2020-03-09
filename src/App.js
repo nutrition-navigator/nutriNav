@@ -41,7 +41,7 @@ class App extends Component {
   componentDidMount() {
     this.getNutrients(); // get nutrients from API in raw state
     this.randomSearch();
-    // this.getAllSaved("userCompared");
+    this.getAllSaved("userCompared");
   }
 
   getAllSaved = state => {
@@ -64,7 +64,7 @@ class App extends Component {
         });
       }
       console.log(arraySaved);
-      // this.completeSaved(arraySaved, state);
+      this.completeSaved(arraySaved, state);
     });
   };
 
