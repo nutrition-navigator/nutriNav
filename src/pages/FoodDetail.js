@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import {
-  faExchangeAlt,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faExchangeAlt, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {NavLink} from 'react-router-dom';
-import Nav from '../components/Nav';
+import { NavLink } from "react-router-dom";
+import Nav from "../components/Nav";
 
 class FoodDetail extends Component {
   constructor() {
@@ -17,18 +14,24 @@ class FoodDetail extends Component {
   }
 
   componentDidMount() {
-    const food = this.props.getFood(this.props.id, this.props.type);
-    this.setState({
-      food
-    }, () => {
-      console.log(this.state.food);
-      this.setState({
-        // isReady: true,
-      })
-    })       
-  }
-      
-    
+    console.log(" id: ", this.props.id, " type: ", this.props.type);
+    this.props.getDetails(this.props.id, this.props.type).then( response => {
+      const foodDetail = response.data.foods[0];
+      const completedNutrients = this.props.completeFoodNutrients(foodDetail);
+      const completedFood = this.props.completeFood(foodDetail, completedNutrients);      
+      this.setState(
+        {
+          food: completedFood
+        },
+        () => {
+          console.log("componentDidMount() in foodDetails ", this.state.food);
+          this.setState({
+            isReady: true,
+          });
+        }
+      );
+      }); // end of .then()
+      }
 
   render() {
     return this.state.isReady ? (
@@ -95,20 +98,34 @@ class FoodDetail extends Component {
             </div>
             <div className="detailImgContainer">
               <div className="detailImg">
-                <img src={this.state.food.url} alt={this.state.food.name}></img>
+                <img src={this.state.food.imgURL} alt={this.state.food.name}></img>
               </div>
             </div>
           </div>
 
           <div className="detailControl">
-              <button onClick={() => {this.props.addToSaved(this.props.id, "compares")}}> Add to Compare </button>    
-
-
+            <button
+              onClick={() => {
+                this.props.addToSaved(this.props.food, "userCompared");
+              }}
+            >
+              {" "}
+              Add to Compared{" "}
+            </button>
           </div>
         </div>
       </div>
     ) : (
-      "future loader"
+      <div className="detailControl">
+        <button
+          onClick={() => {
+            this.props.addToSaved(this.state.food, "userCompared");
+          }}
+        >
+          {" "}
+          Add to Compared{" "}
+        </button>
+      </div>
     );
   }
 }

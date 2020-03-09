@@ -25,7 +25,6 @@ class App extends Component {
         { name: "Magnesium", unit: "mg" },
         { name: "Zinc", unit: "mg" },
         { name: "Iron", unit: "mg" },
-        { name: "Fiber", unit: "g" }
       ],
       commonFood: [],
       brandedFood: [],
@@ -42,9 +41,7 @@ class App extends Component {
   componentDidMount() {
     this.getNutrients(); // get nutrients from API in raw state
     this.randomSearch();
-    console.log(this.state.userCompared);
-    console.log(this.state.userFavourites);
-    // this.getAllSaved("compares");
+    // this.getAllSaved("userCompared");
   }
 
   getAllSaved = state => {
@@ -59,48 +56,31 @@ class App extends Component {
           name: savedFromDB[key].name,
           brand: savedFromDB[key].brand,
           serving: savedFromDB[key].serving,
-          imgURL: savedFromDB[key].imgUrl,
+          servingUnit: savedFromDB[key].servingUnit,
+          servingWeight: savedFromDB[key].servingWeight,
+          imgURL: savedFromDB[key].imgURL,
           mainNutrients: savedFromDB[key].mainNutrients,
-          secondaryNutrients: savedFromDB[key].secondaryNutrients,
+          secondaryNutrients: savedFromDB[key].secondaryNutrients
         });
       }
-      this.completeSaved(arraySaved, state);
+      console.log(arraySaved);
+      // this.completeSaved(arraySaved, state);
     });
   };
 
-  getFood = (id, type) => {
-    console.log('getFood()', id, type);
-    let food = {};
-    this.getDetails(id, type).then(response => {
-      const foodDetail = response.data.foods[0];
-      // complete the nutrients for this food
-      const completedNutrients = this.completeFoodNutrients(foodDetail);
-      // complete the metadata for this food
-      const completedFood = this.completeFood(foodDetail, completedNutrients);
-      // push this food into our accumalitive array
-      food = {
-        id: food.id,
-        name: food.name,
-        brand: food.brand,
-        serving: {
-          qty: food.serving,
-          unit: food.servingUnit,
-          weight: food.servingWeight
-        },
-        imgURL: completedFood.url,
-        mainNutrients: completedNutrients,
-        secondaryNutrients: completedFood.others
-      };
-    });
-    return food;
-  };
 
+  completeSaved = (data, state) => {
+      this.setState({
+        [state]: data,
+      })
+  }
 
   runToaster = (message, overall, duration) => {
 
   }
 
   addToSaved = (food, state) => {
+    console.log('addToSaved() ', food);
     if (this.isNotDuplicate(food.id, state)) {
       const dBCompRef = firebase.database().ref(`${state}`);
       dBCompRef.push(food);
@@ -116,22 +96,22 @@ class App extends Component {
         () => this.killToaster(this.state.toaster.duration)
       );
     } else {
-      // alert already there
+
     }
   };
 
   isNotDuplicate = (id, state) => {
-    console.log(this.state.userCompared, this.state.userFavourites);
-    console.log("isNotDuplicate() state: ", state);
+    // console.log(this.state.userCompared, this.state.userFavourites);
+    // console.log("isNotDuplicate() state: ", state);
     const copySaved =
-      state === "compares"
+      state === "userCompared"
         ? [...this.state.userCompared]
         : [...this.state.userFavourites];
-    console.log("savedList: ", copySaved);
+    // console.log("savedList: ", copySaved);
     const result = copySaved.filter(food => {
       return food.id === id;
     });
-    console.log("length is", result.length);
+    // console.log("length is", result.length);
     return result.length === 0;
   };
 
@@ -162,7 +142,7 @@ class App extends Component {
       // updates the nutrients state with the temporary array
       this.setState({
         nutrients: tempNutrients
-      });
+      }, () => {console.log('nutrients in app.js', this.state.nutrients)});
     });
   };
 
@@ -195,16 +175,19 @@ class App extends Component {
   };
 
   completeFood = (food, nutrients) => {
+
+    console.log('completeFood() app.js   food: ', food, 'nutrients', nutrients);
     const completedFood = {
       id: food.nix_item_id ? food.nix_item_id : food.food_name,
       name: food.food_name,
       brand: food.brand_name,
-      url: food.photo.highres ? food.photo.highres : food.photo.thumb,
-      serving: food.serving_qty,
+      imgURL: food.photo.highres ? food.photo.highres : food.photo.thumb,
+      serving: Math.round(food.serving_qty),
       servingUnit: food.serving_unit,
       servingWeight: food.serving_weight_grams,
+      mainNutrients: [...nutrients],
       // other non-critical nutrients mentioned in the Client Brief
-      others: {
+      secondaryNutrients: {
         Calories: { value: Math.round(food.nf_calories), unit: "kcal" },
         Carbs: {
           value: Math.round(food.nf_total_carbohydrate),
@@ -219,17 +202,14 @@ class App extends Component {
           unit: "g"
         },
         Fiber: {
-          value: Math.round(
-            // uses the fiber from the main nutrients
-            nutrients.filter(n => n.name === "Fiber")[0].value
-          ),
+          value: Math.round(food.nf_dietary_fiber),
           unit: "g"
         }
-      }
+      }  
     };
-    const others = completedFood.others;
-    completedFood.others = this.othersToArray(others);
-    console.log(completedFood);
+    const secondary = completedFood.secondaryNutrients;
+    completedFood.secondaryNutrients = this.othersToArray(secondary);
+    console.log('completedFood', completedFood);
     return completedFood;
   };
 
@@ -327,7 +307,7 @@ class App extends Component {
         }
       );
     }, duration);
-  };
+  }
 
   render() {
     return (
@@ -363,7 +343,9 @@ class App extends Component {
                 <FoodDetail
                   id={props.match.params.id}
                   type={this.state.type}
-                  getFood={this.getFood}
+                  getDetails={this.getDetails}
+                  completeFoodNutrients={this.completeFoodNutrients}
+                  completeFood={this.completeFood}
                   addToSaved={this.addToSaved}
                 ></FoodDetail>
               )}
@@ -383,7 +365,7 @@ class App extends Component {
           </div>
         </div>
       </Router>
-    );
+    )
   }
 }
 
