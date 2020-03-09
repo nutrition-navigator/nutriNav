@@ -285,73 +285,29 @@ class App extends Component {
 				}
 			});
 		}, duration);
-	};
+  };
+  
+  removeItem = (key, state) => {
+    const dbRef = firebase.database().ref(state)
+    dbRef.child(key).remove();
+  }
 
 	render() {
 		return (
-			<Router>
-				<div className="App">
-					<header className="App-header">
-						<Route
-							path="/"
-							exact
-							render={() => (
-								<Home
-									foodItems={
-										this.state.type === 'branded'
-											? this.state.brandedFood
-											: this.state.commonFood
-									}
-									userSearch={this.userSearch}
-									foodTypeButtonClick={this.foodTypeButtonClick}
-								/>
-							)}
-						/>
-						<Route
-							path="/favourites"
-							render={() => (
-								<Favourites savedFoods={this.state.userFavourites} />
-							)}
-						/>
-						<Route
-							path="/compare"
-							render={() => (
-								<Compare
-									userCompared={this.state.userCompared}
-									removeItem={this.removeItem}
-								/>
-							)}
-						/>
-						<Route
-							exact
-							path="/food/:type/:id"
-							render={props => (
-								<FoodDetail
-									id={props.match.params.id}
-									type={props.match.params.type}
-									getDetails={this.getDetails}
-									completeFoodNutrients={this.completeFoodNutrients}
-									completeFood={this.completeFood}
-									addToSaved={this.addToSaved}
-								></FoodDetail>
-							)}
-						/>
-					</header>
-					<div
-						className={
-							this.state.toaster.hidden
-								? 'toasterContainer hidden'
-								: 'toasterContainer'
-						}
-					>
-						<Toaster
-							overall={this.state.toaster.overall}
-							message={this.state.toaster.message}
-						/>
-					</div>
-				</div>
-			</Router>
-		);
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <Route path="/" exact render={() => <Home foodItems={this.state.type === "branded" ? this.state.brandedFood : this.state.commonFood} userSearch={this.userSearch} foodTypeButtonClick={this.foodTypeButtonClick} />} />
+            <Route path="/favourites" render={() => <Favourites savedFoods={this.state.userFavourites} removeItem={this.removeItem} />} />
+            <Route path="/compare" render={() => <Compare userCompared={this.state.userCompared} removeItem={this.removeItem} />} />
+            <Route exact path="/food/:type/:id" render={props => <FoodDetail id={props.match.params.id} type={props.match.params.type} getDetails={this.getDetails} completeFoodNutrients={this.completeFoodNutrients} completeFood={this.completeFood} addToSaved={this.addToSaved}></FoodDetail>} />
+          </header>
+          <div className={this.state.toaster.hidden ? "toasterContainer hidden" : "toasterContainer"}>
+            <Toaster overall={this.state.toaster.overall} message={this.state.toaster.message} />
+          </div>
+        </div>
+      </Router>
+    );
 	}
 }
 
