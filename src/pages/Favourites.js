@@ -9,7 +9,7 @@ class Favourites extends Component {
 				<Nav />
 				<div className="pageContainer">
 					<div className="wrapper">
-						<h1>Saved Items</h1>
+						<h1 className="pageTitle">Saved Items</h1>
 						<FoodResults foodItems={this.props.savedFoods} />
 					</div>
 				</div>

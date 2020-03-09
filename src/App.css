@@ -205,10 +205,6 @@ body {
 	color: #4a4a4a;
 }
 
-h1 {
-	text-align: center;
-}
-
 h2 {
 }
 
@@ -228,6 +224,7 @@ a {
 .wrapper {
 	max-width: 108.7rem;
 	margin: 0 auto;
+	padding: 0 2rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -245,6 +242,15 @@ a {
 
 .pageContainer {
 	margin-top: 5rem;
+}
+
+.pageTitle {
+	text-transform: uppercase;
+	font-size: 3.8rem;
+	font-weight: 800;
+	color: #b20061;
+	margin-bottom: 5rem;
+	text-align: center;
 }
 
 /**********************/
@@ -341,29 +347,6 @@ li {
 .detail {
 	display: flex;
 	justify-content: space-between;
-}
-
-.detailImgContainer {
-	width: 40%;
-}
-
-.detailInfoContainer {
-	width: 60%;
-}
-
-.detailImg {
-	width: 100%;
-	height: 400px;
-	border: 3px solid #350482;
-	padding: 2%;
-	/* border-radius: 0 0 0 30px; */
-}
-
-.detailImg img {
-	object-fit: cover;
-	width: 100%;
-	height: 100%;
-	display: block;
 }
 
 .detailIngredients {
@@ -471,4 +454,59 @@ li {
 
 .toggleCommon {
 	border-radius: 36px 0 0 36px;
+}
+
+/**************/
+/*** DETAIL ***/
+/**************/
+
+.detailContainer {
+	margin-top: 5rem;
+}
+
+.detailContainer .wrapper {
+	flex-direction: row;
+}
+
+.detailContent {
+	width: 100%;
+	background: #f4f2f9;
+	padding: 4rem;
+	border-radius: 25px;
+}
+
+.detailIntro {
+	display: flex;
+	justify-content: space-between;
+}
+
+.introLeft {
+	width: 50%;
+}
+
+.detailImgContainer {
+	width: 35%;
+}
+
+.detailContainer h1 {
+	font-size: 3rem;
+	color: #b20061;
+}
+
+.detailContainer h2 {
+	font-size: 2rem;
+	color: #350482;
+	font-weight: 600;
+}
+
+.detailImg {
+	height: 175px;
+}
+
+.detailImg img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 25px;
 }

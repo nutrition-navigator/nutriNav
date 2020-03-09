@@ -51,7 +51,7 @@ class Compare extends Component {
 		return (
 			<div className="comparisonPage">
 				<Nav />
-				<h1>Compare Items</h1>
+				<h1 className="pageTitle">Compare Items</h1>
 				<div className="comparisonContainer">
 					{this.state.foodsToCompare.map(food => {
 						return (
