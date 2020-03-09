@@ -62,7 +62,7 @@ class App extends Component {
           secondaryNutrients: savedFromDB[key].secondaryNutrients
         });
       }
-      console.log(arraySaved);
+      
       this.completeSaved(arraySaved, state);
     });
   };
@@ -76,7 +76,7 @@ class App extends Component {
   runToaster = (message, overall, duration) => {};
 
   addToSaved = (food, state) => {
-    console.log("addToSaved() ", food);
+    
     if (this.isNotDuplicate(food.id, state)) {
       const dBCompRef = firebase.database().ref(`${state}`);
       dBCompRef.push(food);
@@ -96,20 +96,17 @@ class App extends Component {
   };
 
   isNotDuplicate = (id, state) => {
-    // console.log(this.state.userCompared, this.state.userFavourites);
-    // console.log("isNotDuplicate() state: ", state);
     const copySaved = state === "userCompared" ? [...this.state.userCompared] : [...this.state.userFavourites];
-    // console.log("savedList: ", copySaved);
+
     const result = copySaved.filter(food => {
       return food.id === id;
     });
-    // console.log("length is", result.length);
     return result.length === 0;
   };
 
   // retrieves the most up to date nutrients from API and their ids, maps the ids to the target nutrient list
   getNutrients = () => {
-    console.log("getNutrients()");
+
     let nutrientsAPI = [];
     axios({
       url: "https://trackapi.nutritionix.com/v2/utils/nutrients",
@@ -135,9 +132,6 @@ class App extends Component {
       this.setState(
         {
           nutrients: tempNutrients
-        },
-        () => {
-          console.log("nutrients in app.js", this.state.nutrients);
         }
       );
     });
@@ -172,7 +166,7 @@ class App extends Component {
   };
 
   completeFood = (food, nutrients) => {
-    console.log("completeFood() app.js   food: ", food, "nutrients", nutrients);
+    
     const completedFood = {
       id: food.nix_item_id ? food.nix_item_id : food.food_name,
       name: food.food_name,
@@ -205,7 +199,7 @@ class App extends Component {
     };
     const secondary = completedFood.secondaryNutrients;
     completedFood.secondaryNutrients = this.othersToArray(secondary);
-    console.log("completedFood", completedFood);
+    
     return completedFood;
   };
 
@@ -228,7 +222,7 @@ class App extends Component {
   // gets the details about a food item from the API based on the id(nix or food_name) and type(common vs branded)
   // caller must resolve the promise on their own
   getDetails = (id, type) => {
-    console.log("getDetails() with type: ", type);
+    
     const urlEndpoint = type === "common" ? "natural/nutrients" : "search/item";
     const method = type === "common" ? "POST" : "GET";
     const params = type === "common" ? {} : { nix_item_id: id };
@@ -248,7 +242,7 @@ class App extends Component {
   };
 
   fetchFood = query => {
-    console.log("fetchFood()");
+    
     axios({
       url: "https://trackapi.nutritionix.com/v2/search/instant",
       method: "get",
@@ -283,23 +277,19 @@ class App extends Component {
     this.setState(
       {
         type: e.target.id
-      },
-      () => console.log(this.state.type)
+      }
     );
   };
 
   killToaster = duration => {
-    console.log("kill Toaster");
+    
     setTimeout(() => {
-      console.log("timeout");
+      
       this.setState(
         {
           toaster: {
             hidden: true
           }
-        },
-        () => {
-          console.log(this.state.toaster);
         }
       );
     }, duration);
