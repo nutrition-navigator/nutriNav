@@ -12,17 +12,19 @@ class Compare extends Component {
 			<div className="comparisonPage">
 				<Nav />
 				<h1 className="pageTitle">Compare Items</h1>
-				<div className="comparisonContainer">
-					{this.props.userCompared.map(food => {
-						return (
-							<ComparisonCard
-								key={food.key}
-								id={food.key}
-								food={food}
-								removeItem={this.props.removeItem}
-							/>
-						);
-					})}
+				<div className="wrapper">
+					<div className="comparisonContainer">
+						{this.props.userCompared.map(food => {
+							return (
+								<ComparisonCard
+									key={food.key}
+									id={food.key}
+									food={food}
+									removeItem={this.props.removeItem}
+								/>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		);
