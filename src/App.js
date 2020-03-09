@@ -31,6 +31,8 @@ class App extends Component {
       userFavourites: [],
       userCompared: [],
       type: "common",
+      maxCompared: 3,
+      maxFavourites: 9,
       toaster: {
         hidden: true
       }
@@ -77,8 +79,15 @@ class App extends Component {
 	runToaster = (message, overall, duration) => {};
 
 	addToSaved = (food, state) => {
-    console.log("addToSaved()",state, "FOOD:", food)
-		if (this.isNotDuplicate(food.id, state)) {
+    const max = state === "userCompared" ? this.state.maxCompared : this.state.maxFavourites;
+    console.log(
+      "addToSaved()",
+      "Max: ",
+      max,
+      "state length: ",
+      this.state[state].length
+    );
+		if ( (this.isNotDuplicate(food.id, state)) && (this.state[state].length < max)) {
 			const dBCompRef = firebase.database().ref(`${state}`);
 			dBCompRef.push(food);
 			// this.setState(
