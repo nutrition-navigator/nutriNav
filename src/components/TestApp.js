@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import FoodDetail from "../pages/FoodDetail";
+// import FoodDetail from "../pages/FoodDetail";
 
 class TestApp extends Component {
   constructor() {

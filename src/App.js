@@ -5,6 +5,7 @@ import Favourites from "./pages/Favourites";
 import FoodDetail from "./pages/FoodDetail";
 import Compare from "./pages/Compare";
 import Home from "./pages/Home";
+import Toaster from "./components/Toaster";
 import firebase from "./firebaseConfig";
 import "./App.css";
 import creds from "./apiKey";
@@ -23,22 +24,23 @@ class App extends Component {
         { name: "Magnesium", unit: "mg" },
         { name: "Zinc", unit: "mg" },
         { name: "Iron", unit: "mg" },
-        { name: "Fiber", unit: "g" }
       ],
       commonFood: [],
       brandedFood: [],
       nutrients: [], // target nutrients with ids
       userFavourites: [],
       userCompared: [],
-      type: "branded"
+      type: "branded",
+      toaster: {
+        hidden: true
+      }
     };
   }
 
   componentDidMount() {
-		console.log(creds.key, creds.id);
     this.getNutrients(); // get nutrients from API in raw state
     this.randomSearch();
-    this.getAllSaved("compares");
+    this.getAllSaved("userCompared");
   }
   
   getAllSaved = state => {
@@ -50,69 +52,66 @@ class App extends Component {
         arraySaved.push({
           key: key,
           id: savedFromDB[key].id,
-          type: savedFromDB[key].type
+          name: savedFromDB[key].name,
+          brand: savedFromDB[key].brand,
+          serving: savedFromDB[key].serving,
+          servingUnit: savedFromDB[key].servingUnit,
+          servingWeight: savedFromDB[key].servingWeight,
+          imgURL: savedFromDB[key].imgURL,
+          mainNutrients: savedFromDB[key].mainNutrients,
+          secondaryNutrients: savedFromDB[key].secondaryNutrients
         });
       }
+      console.log(arraySaved);
       this.completeSaved(arraySaved, state);
     });
   };
 
-  completeSaved = (foods, state) => {
-    const completedArray = [];
-    foods.forEach(food => {
-      this.getDetails(food.id, food.type).then(response => {
-        // complete the nutrients for this food
-        const completedNutrients = this.completeFoodNutrients(
-          response.data.foods[0]
-        );
-        // complete the metadata for this food
-        const completedFood = this.completeFood(
-          response.data.foods[0],
-          completedNutrients
-        );
 
-        // push this food into our accumalitve array that will be used to change state eventually
-        completedArray.push({
-          key: food.key,
-          id: food.id,
-          imgURL: completedFood.url,
-          mainNutrients: completedNutrients,
-          secondaryNutrients: completedFood.others
-        });
-      });
-    });
-    if (state === "compares") {
-      this.setState(
-        {
-          userCompared: completedArray
-        },
-        () => {
-          console.log(this.state.userCompared);
-        }
-      );
-    } else {
+  completeSaved = (data, state) => {
       this.setState({
-        userFavourites: completedArray
-      });
+        [state]: data,
+      })
+  }
+
+  runToaster = (message, overall, duration) => {
+
+  }
+
+  addToSaved = (food, state) => {
+    console.log('addToSaved() ', food);
+    if (this.isNotDuplicate(food.id, state)) {
+      const dBCompRef = firebase.database().ref(`${state}`);
+      dBCompRef.push(food);
+      // this.setState(
+      //   {
+      //     toaster: {
+      //       hidden: false,
+      //       message: `This food has been successfully saved to your ${state}`,
+      //       overall: "SUCCESS",
+      //       duration: 5000
+      //     }
+      //   },
+      //   () => this.killToaster(this.state.toaster.duration)
+      // );
+    } else {
+
     }
   };
 
-  addToSaved = (id, state) => {
-    if (this.isNotDuplicate(id, state)) {
-      const dBCompRef = firebase.database().ref(`${state}`);
-      dBCompRef.push({ id: id, type: this.state.type });
-    } else {
-			// alert already there
-		}
-  };
-
-  isNotDuplicate = (key, state) => {
-    const saved =
-      state === "compare" ? this.state.userCompared : this.state.userFavourites;
-    const result = saved.filter(food => {
-      return food.key === key;
+  isNotDuplicate = (id, state) => {
+    // console.log(this.state.userCompared, this.state.userFavourites);
+    // console.log("isNotDuplicate() state: ", state);
+    const copySaved =
+      state === "userCompared"
+        ? [...this.state.userCompared]
+        : [...this.state.userFavourites];
+    // console.log("savedList: ", copySaved);
+    const result = copySaved.filter(food => {
+      return food.id === id;
     });
-    return result.length === 0 ? true : false;
+    // console.log("length is", result.length);
+    return result.length === 0;
   };
 
   // retrieves the most up to date nutrients from API and their ids, maps the ids to the target nutrient list
@@ -142,7 +141,7 @@ class App extends Component {
       // updates the nutrients state with the temporary array
       this.setState({
         nutrients: tempNutrients
-      });
+      }, () => {console.log('nutrients in app.js', this.state.nutrients)});
     });
   };
 
@@ -175,16 +174,19 @@ class App extends Component {
   };
 
   completeFood = (food, nutrients) => {
+
+    console.log('completeFood() app.js   food: ', food, 'nutrients', nutrients);
     const completedFood = {
+      id: food.nix_item_id ? food.nix_item_id : food.food_name,
       name: food.food_name,
       brand: food.brand_name,
-      url: food.photo.highres ? food.photo.highres : food.photo.thumb,
-      isRaw: food.metadata.is_raw_food ? "Yes" : "No",
-      serving: food.serving_qty,
+      imgURL: food.photo.highres ? food.photo.highres : food.photo.thumb,
+      serving: Math.round(food.serving_qty),
       servingUnit: food.serving_unit,
       servingWeight: food.serving_weight_grams,
+      mainNutrients: [...nutrients],
       // other non-critical nutrients mentioned in the Client Brief
-      others: {
+      secondaryNutrients: {
         Calories: { value: Math.round(food.nf_calories), unit: "kcal" },
         Carbs: {
           value: Math.round(food.nf_total_carbohydrate),
@@ -199,23 +201,21 @@ class App extends Component {
           unit: "g"
         },
         Fiber: {
-          value: Math.round(
-            // uses the fiber from the main nutrients
-            nutrients.filter(n => n.name === "Fiber")[0].value
-          ),
+          value: Math.round(food.nf_dietary_fiber),
           unit: "g"
         }
-      }
+      }  
     };
-    const others = completedFood.others;
-    completedFood.others = this.othersToArray(others);
+    const secondary = completedFood.secondaryNutrients;
+    completedFood.secondaryNutrients = this.othersToArray(secondary);
+    console.log('completedFood', completedFood);
     return completedFood;
   };
 
   // receives a food item and returns its completed main nutrient list with name, value, id, and measure unit
   completeFoodNutrients = food => {
     const completeNutrients = this.state.nutrients.map(nutrient => {
-      // calls a function from props that maps this nutrient to its value using another axios call
+      // calls a function from props that maps this nutrient to its value
       const value = this.getValue(nutrient.id, food.full_nutrients);
       // returns the completed nutrient profile as an object to exist in the completedNutrients array
       return {
@@ -265,8 +265,8 @@ class App extends Component {
     }).then(res => {
       this.setState({
         brandedFood: res.data.branded,
-        commonFood: res.data.common,
-        userFavourites: res.data.common
+        commonFood: res.data.common
+        // userFavourites: res.data.common
       });
     });
   };
@@ -290,6 +290,24 @@ class App extends Component {
       () => console.log(this.state.type)
     );
   };
+
+  killToaster = duration => {
+    console.log("kill Toaster");
+    setTimeout(() => {
+      console.log("timeout");
+      this.setState(
+        {
+          toaster: {
+            hidden: true
+          }
+        },
+        () => {
+          console.log(this.state.toaster);
+        }
+      );
+    }, duration);
+  }
+
   render() {
     return (
       <Router>
@@ -332,9 +350,21 @@ class App extends Component {
               )}
             />
           </header>
+          <div
+            className={
+              this.state.toaster.hidden
+                ? "toasterContainer hidden"
+                : "toasterContainer"
+            }
+          >
+            <Toaster
+              overall={this.state.toaster.overall}
+              message={this.state.toaster.message}
+            />
+          </div>
         </div>
       </Router>
-    );
+    )
   }
 }
 
