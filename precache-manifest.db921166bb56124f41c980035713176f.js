@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "10863c33c37889285968d24ba49b09ef",
+    "revision": "0f2a26750c3e075d1fcdc36b66258f0a",
     "url": "/nutriNav/index.html"
   },
   {
-    "revision": "96a19305c4d58ece9f9a",
+    "revision": "73a11e341f999ed36206",
     "url": "/nutriNav/static/css/main.15193a86.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/nutriNav/static/js/2.caf16494.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "96a19305c4d58ece9f9a",
-    "url": "/nutriNav/static/js/main.5b014d5a.chunk.js"
+    "revision": "73a11e341f999ed36206",
+    "url": "/nutriNav/static/js/main.223de4f6.chunk.js"
   },
   {
     "revision": "48ae16bbc6b7b314b68f",

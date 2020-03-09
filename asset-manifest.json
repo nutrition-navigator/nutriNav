@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/nutriNav/static/css/main.15193a86.chunk.css",
-    "main.js": "/nutriNav/static/js/main.5b014d5a.chunk.js",
-    "main.js.map": "/nutriNav/static/js/main.5b014d5a.chunk.js.map",
+    "main.js": "/nutriNav/static/js/main.223de4f6.chunk.js",
+    "main.js.map": "/nutriNav/static/js/main.223de4f6.chunk.js.map",
     "runtime-main.js": "/nutriNav/static/js/runtime-main.b00aee75.js",
     "runtime-main.js.map": "/nutriNav/static/js/runtime-main.b00aee75.js.map",
     "static/js/2.caf16494.chunk.js": "/nutriNav/static/js/2.caf16494.chunk.js",
     "static/js/2.caf16494.chunk.js.map": "/nutriNav/static/js/2.caf16494.chunk.js.map",
     "index.html": "/nutriNav/index.html",
-    "precache-manifest.bf85f33fb394be3c91d967a2a53d99da.js": "/nutriNav/precache-manifest.bf85f33fb394be3c91d967a2a53d99da.js",
+    "precache-manifest.db921166bb56124f41c980035713176f.js": "/nutriNav/precache-manifest.db921166bb56124f41c980035713176f.js",
     "service-worker.js": "/nutriNav/service-worker.js",
     "static/css/main.15193a86.chunk.css.map": "/nutriNav/static/css/main.15193a86.chunk.css.map",
     "static/js/2.caf16494.chunk.js.LICENSE.txt": "/nutriNav/static/js/2.caf16494.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.b00aee75.js",
     "static/js/2.caf16494.chunk.js",
     "static/css/main.15193a86.chunk.css",
-    "static/js/main.5b014d5a.chunk.js"
+    "static/js/main.223de4f6.chunk.js"
   ]
 }
