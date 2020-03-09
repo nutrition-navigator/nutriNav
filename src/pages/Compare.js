@@ -16,6 +16,7 @@ class Compare extends Component {
 	
 
 	render() {
+		console.log("this is foods to compare sent to compare page ",this.state.foodsToCompare)
 		return (
 			<div className="comparisonPage">
 				<Nav />
