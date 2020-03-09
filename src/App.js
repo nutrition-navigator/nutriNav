@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
-
 import Favourites from "./pages/Favourites";
 import FoodDetail from "./pages/FoodDetail";
 import Compare from "./pages/Compare";
@@ -41,7 +40,7 @@ class App extends Component {
     this.randomSearch();
     this.getAllSaved("compares");
   }
-
+  
   getAllSaved = state => {
     const dbRef = firebase.database().ref(`${state}`);
     dbRef.on("value", response => {
@@ -291,7 +290,6 @@ class App extends Component {
       () => console.log(this.state.type)
     );
   };
-
   render() {
     return (
       <Router>
