@@ -472,3 +472,31 @@ li {
 .toggleCommon {
 	border-radius: 36px 0 0 36px;
 }
+
+/* Toaster */
+
+.App {
+}
+
+.toasterContainer {
+	position: fixed;
+	height: 10vh;
+	width: 100%;
+	background-color: white;
+	bottom: 0;
+	left: 0;
+	padding: 2%;
+}
+
+.toasterContainer p {
+	text-align: center;
+	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
+}
+.show {
+	transform: scale(1.1);
+
+}
+
+.hidden {
+	transform: scale(0);	
+}

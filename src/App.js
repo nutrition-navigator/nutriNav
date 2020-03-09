@@ -6,6 +6,7 @@ import Favourites from "./pages/Favourites";
 import FoodDetail from "./pages/FoodDetail";
 import Compare from "./pages/Compare";
 import Home from "./pages/Home";
+import Toaster from "./components/Toaster";
 import firebase from "./firebaseConfig";
 import "./App.css";
 import creds from "./apiKey";
@@ -31,7 +32,10 @@ class App extends Component {
       nutrients: [], // target nutrients with ids
       userFavourites: [],
       userCompared: [],
-      type: "branded"
+      type: "branded",
+      toaster: {
+        hidden: true,
+      }
     };
   }
 
@@ -67,7 +71,7 @@ class App extends Component {
         const completedNutrients = this.completeFoodNutrients(foodDetail);
         // complete the metadata for this food
         const completedFood = this.completeFood(foodDetail, completedNutrients);
-        // push this food into our accumalitive array 
+        // push this food into our accumalitive array
         completedArray.push({
           key: food.key,
           id: food.id,
@@ -83,7 +87,7 @@ class App extends Component {
           userCompared: completedArray
         },
         () => {
-          console.log('userCompared: ', this.state.userCompared);
+          console.log("userCompared: ", this.state.userCompared);
         }
       );
     } else {
@@ -100,19 +104,32 @@ class App extends Component {
 
   addToSaved = (id, state) => {
     if (this.isNotDuplicate(id, state)) {
+    
       const dBCompRef = firebase.database().ref(`${state}`);
       dBCompRef.push({ id: id, type: this.state.type });
+      this.setState({
+        toaster: {
+          hidden: false,
+          message: `This food has been successfully saved to your ${state}`,
+          overall: "SUCCESS",
+          duration: 5000,
+        }
+      }, () => this.killToaster(this.state.duration));
     } else {
       // alert already there
     }
   };
 
-  isNotDuplicate = (key, state) => {
-    const saved =
-      state === "compare" ? this.state.userCompared : this.state.userFavourites;
-    const result = saved.filter(food => {
-      return food.key === key;
+  isNotDuplicate = (id, state) => {
+    console.log('isNotDuplicate() state: ', state);
+    const savedList = (state === "compare") ? [...this.state.userCompared] : [...this.state.userFavourites];
+    console.log('saved: ', savedList);
+    const result = savedList.filter(food => {
+      console.log('food.id: ', food.id);
+      console.log('id', id);
+      return (food.id === id);
     });
+    console.log('length is', result.length);
     return result.length === 0;
   };
 
@@ -292,6 +309,18 @@ class App extends Component {
     );
   };
 
+  killToaster = duration => {
+    console.log('kill Toaster');
+    setTimeout(() => {
+      console.log('timeout');
+      this.setState({
+        toaster: {
+          hidden: true,
+        }
+      }, () => {console.log(this.state.toaster)});
+    }, duration);
+  };
+
   render() {
     return (
       <Router>
@@ -334,6 +363,18 @@ class App extends Component {
               )}
             />
           </header>
+          <div
+            className={
+              this.state.toaster.hidden
+                ? "toasterContainer hidden"
+                : "toasterContainer"
+            }
+          >
+            <Toaster
+              overall={this.state.toaster.overall}
+              message={this.state.toaster.message}
+            />
+          </div>
         </div>
       </Router>
     );
