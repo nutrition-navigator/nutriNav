@@ -23,7 +23,7 @@ class App extends Component {
         { name: "Vitamin E", unit: "mg" },
         { name: "Magnesium", unit: "mg" },
         { name: "Zinc", unit: "mg" },
-        { name: "Iron", unit: "mg" },
+        { name: "Iron", unit: "mg" }
       ],
       commonFood: [],
       brandedFood: [],
@@ -42,7 +42,7 @@ class App extends Component {
     this.randomSearch();
     this.getAllSaved("userCompared");
   }
-  
+
   getAllSaved = state => {
     const dbRef = firebase.database().ref(`${state}`);
     dbRef.on("value", response => {
@@ -67,19 +67,16 @@ class App extends Component {
     });
   };
 
-
   completeSaved = (data, state) => {
-      this.setState({
-        [state]: data,
-      })
-  }
+    this.setState({
+      [state]: data
+    });
+  };
 
-  runToaster = (message, overall, duration) => {
-
-  }
+  runToaster = (message, overall, duration) => {};
 
   addToSaved = (food, state) => {
-    console.log('addToSaved() ', food);
+    console.log("addToSaved() ", food);
     if (this.isNotDuplicate(food.id, state)) {
       const dBCompRef = firebase.database().ref(`${state}`);
       dBCompRef.push(food);
@@ -95,17 +92,13 @@ class App extends Component {
       //   () => this.killToaster(this.state.toaster.duration)
       // );
     } else {
-
     }
   };
 
   isNotDuplicate = (id, state) => {
     // console.log(this.state.userCompared, this.state.userFavourites);
     // console.log("isNotDuplicate() state: ", state);
-    const copySaved =
-      state === "userCompared"
-        ? [...this.state.userCompared]
-        : [...this.state.userFavourites];
+    const copySaved = state === "userCompared" ? [...this.state.userCompared] : [...this.state.userFavourites];
     // console.log("savedList: ", copySaved);
     const result = copySaved.filter(food => {
       return food.id === id;
@@ -139,9 +132,14 @@ class App extends Component {
         };
       });
       // updates the nutrients state with the temporary array
-      this.setState({
-        nutrients: tempNutrients
-      }, () => {console.log('nutrients in app.js', this.state.nutrients)});
+      this.setState(
+        {
+          nutrients: tempNutrients
+        },
+        () => {
+          console.log("nutrients in app.js", this.state.nutrients);
+        }
+      );
     });
   };
 
@@ -174,8 +172,7 @@ class App extends Component {
   };
 
   completeFood = (food, nutrients) => {
-
-    console.log('completeFood() app.js   food: ', food, 'nutrients', nutrients);
+    console.log("completeFood() app.js   food: ", food, "nutrients", nutrients);
     const completedFood = {
       id: food.nix_item_id ? food.nix_item_id : food.food_name,
       name: food.food_name,
@@ -204,11 +201,11 @@ class App extends Component {
           value: Math.round(food.nf_dietary_fiber),
           unit: "g"
         }
-      }  
+      }
     };
     const secondary = completedFood.secondaryNutrients;
     completedFood.secondaryNutrients = this.othersToArray(secondary);
-    console.log('completedFood', completedFood);
+    console.log("completedFood", completedFood);
     return completedFood;
   };
 
@@ -306,65 +303,36 @@ class App extends Component {
         }
       );
     }, duration);
-  }
+  };
+
+  removeItem = (key, state) => {
+    const dbRef = firebase.database().ref(state);
+    dbRef.child(key).remove();
+  };
 
   render() {
     return (
       <Router>
         <div className="App">
           <header className="App-header">
+            <Route path="/" exact render={() => <Home foodItems={this.state.type === "branded" ? this.state.brandedFood : this.state.commonFood} userSearch={this.userSearch} foodTypeButtonClick={this.foodTypeButtonClick} />} />
+            <Route path="/favourites" render={() => <Favourites savedFoods={this.state.userFavourites} />} />
             <Route
-              path="/"
-              exact
-              render={() => (
-                <Home
-                  foodItems={
-                    this.state.type === "branded"
-                      ? this.state.brandedFood
-                      : this.state.commonFood
-                  }
-                  userSearch={this.userSearch}
-                  foodTypeButtonClick={this.foodTypeButtonClick}
-                />
-              )}
+              path="/compare"
+              render={() => 
+                <Compare 
+                userCompared={this.state.userCompared} 
+                removeItem={this.removeItem} />
+              }
             />
-            <Route
-              path="/favourites"
-              render={() => (
-                <Favourites savedFoods={this.state.userFavourites} />
-              )}
-            />
-            <Route path="/compare" component={Compare} />
-            <Route
-              exact
-              path="/food/:id"
-              render={props => (
-                <FoodDetail
-                  id={props.match.params.id}
-                  type={this.state.type}
-                  getDetails={this.getDetails}
-                  completeFoodNutrients={this.completeFoodNutrients}
-                  completeFood={this.completeFood}
-                  addToSaved={this.addToSaved}
-                ></FoodDetail>
-              )}
-            />
+            <Route exact path="/food/:id" render={props => <FoodDetail id={props.match.params.id} type={this.state.type} getDetails={this.getDetails} completeFoodNutrients={this.completeFoodNutrients} completeFood={this.completeFood} addToSaved={this.addToSaved}></FoodDetail>} />
           </header>
-          <div
-            className={
-              this.state.toaster.hidden
-                ? "toasterContainer hidden"
-                : "toasterContainer"
-            }
-          >
-            <Toaster
-              overall={this.state.toaster.overall}
-              message={this.state.toaster.message}
-            />
+          <div className={this.state.toaster.hidden ? "toasterContainer hidden" : "toasterContainer"}>
+            <Toaster overall={this.state.toaster.overall} message={this.state.toaster.message} />
           </div>
         </div>
       </Router>
-    )
+    );
   }
 }
 
