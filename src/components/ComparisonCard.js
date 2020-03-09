@@ -7,27 +7,39 @@ function ComparisonCard(props) {
 				<img src={props.food.imgURL} alt={props.food.name} />
 			</div>
 			<h3>{props.food.name}</h3>
-			<h4>Main Nutrients</h4>
-			{props.food.mainNutrients.map(nutrient => {
-				return (
-					<li key={nutrient.id}>
-						<p>
-							{nutrient.name}: {nutrient.value} {nutrient.unit}
-						</p>
-					</li>
-				);
-			})}
-			<h4>Secondary Nutrients</h4>
-			{props.food.secondaryNutrients.map(secondNutrient => {
-				return (
-					<li key={secondNutrient.name}>
-						<p>
-							{secondNutrient.name}: {secondNutrient.value}{' '}
-							{secondNutrient.unit}
-						</p>
-					</li>
-				);
-			})}
+			<h4>Nutritional Facts</h4>
+			<ul>
+				{props.food.secondaryNutrients.map(secondNutrient => {
+					return (
+						<li key={secondNutrient.name}>
+							<div className="nutrient">
+								<div className="nutrientName">{secondNutrient.name}</div>
+								<div className="nutrientUnit">
+									{secondNutrient.value}
+									{secondNutrient.unit}
+								</div>
+							</div>
+						</li>
+					);
+				})}
+			</ul>
+
+			<h4>Vitamins and Minerals</h4>
+			<ul>
+				{props.food.mainNutrients.map(nutrient => {
+					return (
+						<li key={nutrient.id}>
+							<div className="nutrient">
+								<div className="nutrientName">{nutrient.name}</div>
+								<div className="nutrientUnit">
+									{nutrient.value}
+									{nutrient.unit}
+								</div>
+							</div>
+						</li>
+					);
+				})}
+			</ul>
 			<button
 				onClick={() => {
 					props.removeItem(props.id, 'userCompared');
