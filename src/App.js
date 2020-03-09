@@ -290,7 +290,6 @@ class App extends Component {
       () => console.log(this.state.type)
     );
   };
-<<<<<<< HEAD
 
   killToaster = duration => {
     console.log("kill Toaster");
@@ -309,8 +308,6 @@ class App extends Component {
     }, duration);
   }
 
-=======
->>>>>>> master
   render() {
     return (
       <Router>
