@@ -5,33 +5,35 @@ import { NavLink } from "react-router-dom";
 import Nav from "../components/Nav";
 
 class FoodDetail extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       food: {},
+      foodType: this.props.type,
       isReady: false
     };
   }
 
   componentDidMount() {
-    console.log(" id: ", this.props.id, " type: ", this.props.type);
-    this.props.getDetails(this.props.id, this.props.type).then( response => {
+    this.props.getDetails(this.props.id, this.props.type).then(response => {
       const foodDetail = response.data.foods[0];
       const completedNutrients = this.props.completeFoodNutrients(foodDetail);
-      const completedFood = this.props.completeFood(foodDetail, completedNutrients);      
+      const completedFood = this.props.completeFood(
+        foodDetail,
+        completedNutrients
+      );
       this.setState(
         {
           food: completedFood
         },
         () => {
-          console.log("componentDidMount() in foodDetails ", this.state.food);
           this.setState({
-            isReady: true,
+            isReady: true
           });
         }
       );
-      }); // end of .then()
-      }
+    }); // end of .then()
+  }
 
   render() {
     return this.state.isReady ? (
@@ -98,7 +100,10 @@ class FoodDetail extends Component {
             </div>
             <div className="detailImgContainer">
               <div className="detailImg">
-                <img src={this.state.food.imgURL} alt={this.state.food.name}></img>
+                <img
+                  src={this.state.food.imgURL}
+                  alt={this.state.food.name}
+                ></img>
               </div>
             </div>
           </div>
@@ -106,7 +111,6 @@ class FoodDetail extends Component {
           <div className="detailControl">
             <button
               onClick={() => {
-                console.log("this.state.food: ", this.state.food);
                 this.props.addToSaved(this.state.food, "userCompared");
               }}
             >
@@ -120,8 +124,7 @@ class FoodDetail extends Component {
       <div className="detailControl">
         <button
           onClick={() => {
-            console.log('this.state.food: ', this.state.food)
-            // this.props.addToSaved(this.state.food, "userCompared");
+            this.props.addToSaved(this.state.food, "userCompared");
           }}
         >
           {" "}

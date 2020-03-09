@@ -30,7 +30,7 @@ class App extends Component {
       nutrients: [], // target nutrients with ids
       userFavourites: [],
       userCompared: [],
-      type: "branded",
+      type: "common",
       toaster: {
         hidden: true
       }
