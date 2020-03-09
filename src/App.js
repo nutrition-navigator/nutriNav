@@ -315,7 +315,7 @@ class App extends Component {
                 removeItem={this.removeItem} />
               }
             />
-            <Route exact path="/food/:id" render={props => <FoodDetail id={props.match.params.id} type={this.state.type} getDetails={this.getDetails} completeFoodNutrients={this.completeFoodNutrients} completeFood={this.completeFood} addToSaved={this.addToSaved}></FoodDetail>} />
+            <Route exact path="/food/:type/:id" render={props => <FoodDetail id={props.match.params.id} type={props.match.params.type} getDetails={this.getDetails} completeFoodNutrients={this.completeFoodNutrients} completeFood={this.completeFood} addToSaved={this.addToSaved}></FoodDetail>} />
           </header>
           <div className={this.state.toaster.hidden ? "toasterContainer hidden" : "toasterContainer"}>
             <Toaster overall={this.state.toaster.overall} message={this.state.toaster.message} />
