@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/nutrition-navigator/nutriNav/static/css/main.15193a86.chunk.css",
-    "main.js": "/nutrition-navigator/nutriNav/static/js/main.4c3a419c.chunk.js",
-    "main.js.map": "/nutrition-navigator/nutriNav/static/js/main.4c3a419c.chunk.js.map",
-    "runtime-main.js": "/nutrition-navigator/nutriNav/static/js/runtime-main.1fe9bb6f.js",
-    "runtime-main.js.map": "/nutrition-navigator/nutriNav/static/js/runtime-main.1fe9bb6f.js.map",
-    "static/js/2.c2943870.chunk.js": "/nutrition-navigator/nutriNav/static/js/2.c2943870.chunk.js",
-    "static/js/2.c2943870.chunk.js.map": "/nutrition-navigator/nutriNav/static/js/2.c2943870.chunk.js.map",
-    "index.html": "/nutrition-navigator/nutriNav/index.html",
-    "precache-manifest.1925032cc994b209d1b8f2bfd966daad.js": "/nutrition-navigator/nutriNav/precache-manifest.1925032cc994b209d1b8f2bfd966daad.js",
-    "service-worker.js": "/nutrition-navigator/nutriNav/service-worker.js",
-    "static/css/main.15193a86.chunk.css.map": "/nutrition-navigator/nutriNav/static/css/main.15193a86.chunk.css.map",
-    "static/js/2.c2943870.chunk.js.LICENSE.txt": "/nutrition-navigator/nutriNav/static/js/2.c2943870.chunk.js.LICENSE.txt",
-    "static/media/nutriNavLogo.svg": "/nutrition-navigator/nutriNav/static/media/nutriNavLogo.ba2638de.svg"
+    "main.css": "/static/css/main.15193a86.chunk.css",
+    "main.js": "/static/js/main.79b43bc4.chunk.js",
+    "main.js.map": "/static/js/main.79b43bc4.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4dfd3123.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4dfd3123.js.map",
+    "static/js/2.d1b65451.chunk.js": "/static/js/2.d1b65451.chunk.js",
+    "static/js/2.d1b65451.chunk.js.map": "/static/js/2.d1b65451.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c8facd112d6a2a718367191806c65f5f.js": "/precache-manifest.c8facd112d6a2a718367191806c65f5f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.15193a86.chunk.css.map": "/static/css/main.15193a86.chunk.css.map",
+    "static/js/2.d1b65451.chunk.js.LICENSE.txt": "/static/js/2.d1b65451.chunk.js.LICENSE.txt",
+    "static/media/nutriNavLogo.svg": "/static/media/nutriNavLogo.ba2638de.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.1fe9bb6f.js",
-    "static/js/2.c2943870.chunk.js",
+    "static/js/runtime-main.4dfd3123.js",
+    "static/js/2.d1b65451.chunk.js",
     "static/css/main.15193a86.chunk.css",
-    "static/js/main.4c3a419c.chunk.js"
+    "static/js/main.79b43bc4.chunk.js"
   ]
 }
