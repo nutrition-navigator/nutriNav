@@ -6,8 +6,12 @@ class FoodCard extends Component {
 		const id = this.props.foodItem.nix_item_id
 			? this.props.foodItem.nix_item_id
 			: this.props.foodItem.food_name;
+		const type = this.props.foodItem.nix_item_id
+			? "branded" : "common"
+
 		return (
-			<Link to={`/food/${id}`}>
+			
+			<Link to={`/food/${type}/${id}`}>
 				<div className="foodCard">
 					<div className="cardImage">
 						<img
