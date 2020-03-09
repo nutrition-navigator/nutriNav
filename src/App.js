@@ -285,11 +285,6 @@ class App extends Component {
 		}, duration);
 	};
 
-	removeItem = (key, state) => {
-		const dbRef = firebase.database().ref(state);
-		dbRef.child(key).remove();
-	};
-
 	render() {
 		return (
 			<Router>
@@ -327,11 +322,11 @@ class App extends Component {
 						/>
 						<Route
 							exact
-							path="/food/:id"
+							path="/food/:type/:id"
 							render={props => (
 								<FoodDetail
 									id={props.match.params.id}
-									type={this.state.type}
+									type={props.match.params.type}
 									getDetails={this.getDetails}
 									completeFoodNutrients={this.completeFoodNutrients}
 									completeFood={this.completeFood}
