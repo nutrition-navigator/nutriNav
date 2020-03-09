@@ -111,8 +111,8 @@ class App extends Component {
       method: "GET",
       responseType: "json",
       headers: {
-				"x-app-key": '5a98a2bf788857870a11fdc4934b3a10',
-				"x-app-id": 'e3f07b95',
+				"x-app-key": 'eb5b3447c1ed9e619ddfd88c0fb87154',
+				"x-app-id": '4d0e8522',
         "x-remote-user-id": "0"
       }
     }).then(response => {
@@ -227,8 +227,8 @@ class App extends Component {
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,
       headers: {
-				"x-app-key": '5a98a2bf788857870a11fdc4934b3a10',
-				"x-app-id": 'e3f07b95',
+				"x-app-key": 'eb5b3447c1ed9e619ddfd88c0fb87154',
+				"x-app-id": '4d0e8522',
         "x-remote-user-id": "0",
         "content-type": "application/json"
       },
@@ -243,8 +243,8 @@ class App extends Component {
 			url: 'https://trackapi.nutritionix.com/v2/search/instant',
 			method: 'get',
 			headers: {
-				'x-app-key': '5a98a2bf788857870a11fdc4934b3a10',
-				'x-app-id': 'e3f07b95',
+				'x-app-key': 'eb5b3447c1ed9e619ddfd88c0fb87154',
+				'x-app-id': '4d0e8522',
 			},
 			params: {
 				query
