@@ -42,6 +42,7 @@ class App extends Component {
 	}
 
 	getAllSaved = state => {
+		console.log("im inside get all saved");
 		const dbRef = firebase.database().ref(`${state}`);
 		dbRef.on('value', response => {
 			const savedFromDB = response.val();
@@ -111,8 +112,8 @@ class App extends Component {
       method: "GET",
       responseType: "json",
       headers: {
-				"x-app-key": 'eb5b3447c1ed9e619ddfd88c0fb87154',
-				"x-app-id": '4d0e8522',
+				"x-app-key": '5351b782d2b73419d37d445d175a56c8',
+				"x-app-id": '2b4ef56f',
         "x-remote-user-id": "0"
       }
     }).then(response => {
@@ -227,8 +228,8 @@ class App extends Component {
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,
       headers: {
-				"x-app-key": 'eb5b3447c1ed9e619ddfd88c0fb87154',
-				"x-app-id": '4d0e8522',
+				"x-app-key": '5351b782d2b73419d37d445d175a56c8',
+				"x-app-id": '2b4ef56f',
         "x-remote-user-id": "0",
         "content-type": "application/json"
       },
@@ -243,8 +244,8 @@ class App extends Component {
 			url: 'https://trackapi.nutritionix.com/v2/search/instant',
 			method: 'get',
 			headers: {
-				'x-app-key': 'eb5b3447c1ed9e619ddfd88c0fb87154',
-				'x-app-id': '4d0e8522',
+				'x-app-key': '5351b782d2b73419d37d445d175a56c8',
+				'x-app-id': '2b4ef56f',
 			},
 			params: {
 				query
@@ -278,6 +279,8 @@ class App extends Component {
 	removeItem = (key, state) => {
 		const dbRef = firebase.database().ref(state);
 		dbRef.child(key).remove();
+		console.log('key:', key);
+		console.log('state:', state);
 	}
 
 	render() {

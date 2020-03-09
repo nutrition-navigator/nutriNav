@@ -5,9 +5,9 @@ import ComparisonCard from '../components/ComparisonCard';
 class Compare extends Component {
 	constructor(props) {
 		super(props);
-		// this.state = {
-		// 	foodsToCompare: props.userCompared,
-		// }
+		this.state = {
+			foodsToCompare: this.props.userCompared,
+		}
 	};
 
 	// componentDidMount() {
@@ -21,12 +21,13 @@ class Compare extends Component {
 				<Nav />
 				<h1>Compare Items</h1>
 				<div className="comparisonContainer">
-					{this.props.userCompared.map(food => {
+					{this.state.foodsToCompare.map(food => {
 						return (
 							<ComparisonCard
 								key={food.key}
+								id={food.key}
 								food={food}
-								removeItem={this.props.removeItem()}
+								removeItem={this.props.removeItem}
 							/>
 						);
 					})}

@@ -23,7 +23,7 @@ function ComparisonCard(props) {
           </li>
         )
       })}
-      <button onClick={ () => {this.props.removeItem()}}>REMOVE</button>
+      <button onClick={ () => {props.removeItem(props.id, 'compares')}}>REMOVE</button>
     </div>
   );
 }
