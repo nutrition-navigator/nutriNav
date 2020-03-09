@@ -37,81 +37,72 @@ class FoodDetail extends Component {
 
 	render() {
 		return this.state.isReady ? (
-			<div className="detailPage">
-				<Nav />
+      <div className="detailPage">
+        <Nav />
 
-				<div className="detailContainer">
-					<div className="wrapper">
-						<div className="detailContent">
-							<div className="detailIntro">
-								<div className="detailImg">
-									<img
-										src={this.state.food.imgURL}
-										alt={this.state.food.name}
-									></img>
-								</div>
-								<div className="detailDesc">
-									<div className="detailTitle">
-										<h1> {this.state.food.name}</h1>
-									</div>
+        <div className="detailContainer">
+          <div className="wrapper">
+            <div className="detailContent">
+              <div className="detailIntro">
+                <div className="detailImg">
+                  <img src={this.state.food.imgURL} alt={this.state.food.name}></img>
+                </div>
+                <div className="detailDesc">
+                  <div className="detailTitle">
+                    <h1> {this.state.food.name}</h1>
+                  </div>
 
-									<div className="detailDescription">
-										<h2>Description</h2>
-										<ul>
-											<li>
-												Serving: {this.state.food.serving}{' '}
-												{this.state.food.servingUnit} (
-												{this.state.food.servingWeight}
-												g){' '}
-											</li>
-											<li>Raw State: {this.state.food.isRaw} </li>
-											{this.state.food.brand ? (
-												<li> Brand: {this.state.food.brand} </li>
-											) : (
-												''
-											)}
-										</ul>
-									</div>
-								</div>
-							</div>
+                  <div className="detailDescription">
+                    <h2>Description</h2>
+                    <ul>
+                      <li>
+                        Serving: {this.state.food.serving} {this.state.food.servingUnit} ({this.state.food.servingWeight}
+                        g){" "}
+                      </li>
+                      <li>Raw State: {this.state.food.isRaw} </li>
+                      {this.state.food.brand ? <li> Brand: {this.state.food.brand} </li> : ""}
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-							<div className="detailNutrition">
-								<h2>Nutritional Facts</h2>
-								<div className="detailNutritionFacts">
-									<ul className="nutrientList">
-										{this.state.food.secondaryNutrients.map(other => {
-											return (
-												<li key={other.name}>
-													<div className="nutrient">
-														<div className="nutrientName">{other.name}</div>
-														<div className="nutrientUnit">
-															{other.value}
-															{other.unit}
-														</div>
-													</div>
-												</li>
-											);
-										})}
-									</ul>
+              <div className="detailNutrition">
+                <h2>Nutritional Facts</h2>
+                <div className="detailNutritionFacts">
+                  <ul className="nutrientList">
+                    {this.state.food.secondaryNutrients.map(other => {
+                      return (
+                        <li key={other.name}>
+                          <div className="nutrient">
+                            <div className="nutrientName">{other.name}</div>
+                            <div className="nutrientUnit">
+                              {other.value}
+                              {other.unit}
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
 
-									<ul className="nutrientList">
-										{this.state.food.mainNutrients.map(nutrient => {
-											return (
-												<li key={nutrient.name}>
-													<div className="nutrient">
-														<div className="nutrientName">{nutrient.name}</div>
-														<div className="nutrientUnit">
-															{nutrient.value}
-															{nutrient.unit}
-														</div>
-													</div>
-												</li>
-											);
-										})}
-									</ul>
-								</div>
+                  <ul className="nutrientList">
+                    {this.state.food.mainNutrients.map(nutrient => {
+                      return (
+                        <li key={nutrient.name}>
+                          <div className="nutrient">
+                            <div className="nutrientName">{nutrient.name}</div>
+                            <div className="nutrientUnit">
+                              {nutrient.value}
+                              {nutrient.unit}
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
 
-								{/* <div className="detailVitsMins">
+                {/* <div className="detailVitsMins">
 									<h2>Vitamins and Minerals</h2>
 									<ul>
 										{this.state.food.mainNutrients.map(nutrient => {
@@ -127,25 +118,33 @@ class FoodDetail extends Component {
 										})}
 									</ul>
 								</div> */}
-							</div>
-						</div>
-					</div>
-				</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-				<div className="detailControl">
-					<button
-						onClick={() => {
-							this.props.addToSaved(this.props.id, 'compares');
-						}}
-					>
-						{' '}
-						Add to Compare{' '}
-					</button>
-				</div>
-			</div>
-		) : (
-			'future loader'
-		);
+        <div className="detailControl">
+          <button
+            onClick={() => {
+              this.props.addToSaved(this.state.food, "userCompared");
+            }}
+          >
+            {" "}
+            Add to Compare{" "}
+          </button>
+          <button
+            onClick={() => {
+              this.props.addToSaved(this.state.food, "userFavourites");
+            }}
+          >
+            {" "}
+            Add to Favourites{" "}
+          </button>
+        </div>
+      </div>
+    ) : (
+      "future loader"
+    );
 	}
 }
 export default FoodDetail;

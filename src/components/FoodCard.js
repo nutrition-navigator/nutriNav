@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 class FoodCard extends Component {
 	render() {
-		const id = this.props.foodItem.nix_item_id
+		let id = this.props.foodItem.nix_item_id
 			? this.props.foodItem.nix_item_id
 			: this.props.foodItem.food_name;
+		id = encodeURI(id);
 		const type = this.props.foodItem.nix_item_id
 			? "branded" : "common"
 

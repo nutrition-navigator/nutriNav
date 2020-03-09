@@ -40,7 +40,8 @@ class App extends Component {
 	componentDidMount() {
 		this.getNutrients(); // get nutrients from API in raw state
 		this.randomSearch();
-		this.getAllSaved('userCompared');
+    this.getAllSaved('userCompared');
+    this.getAllSaved('userFavourites');
 	}
 
 	getAllSaved = state => {
@@ -76,6 +77,7 @@ class App extends Component {
 	runToaster = (message, overall, duration) => {};
 
 	addToSaved = (food, state) => {
+    console.log("addToSaved()",state, "FOOD:", food)
 		if (this.isNotDuplicate(food.id, state)) {
 			const dBCompRef = firebase.database().ref(`${state}`);
 			dBCompRef.push(food);
