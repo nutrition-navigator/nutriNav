@@ -8,7 +8,12 @@ import Home from './pages/Home';
 import Toaster from './components/Toaster';
 import firebase from './firebaseConfig';
 import './App.css';
-import creds from './apiKey';
+// import creds from './apiKey';
+
+const creds = {
+  key: "0d45466c03d80039b01119cd195711a9",
+  id: "ff87fb2a"
+};
 
 class App extends Component {
   constructor() {
@@ -208,7 +213,6 @@ class App extends Component {
 		};
 		const secondary = completedFood.secondaryNutrients;
 		completedFood.secondaryNutrients = this.othersToArray(secondary);
-
 		return completedFood;
 	};
 
@@ -303,7 +307,7 @@ class App extends Component {
 
 	render() {
 		return (
-      <Router>
+      <Router basename="/">
         <div className="App">
           <header className="App-header">
             <Route path="/" exact render={() => <Home foodItems={this.state.type === "branded" ? this.state.brandedFood : this.state.commonFood} userSearch={this.userSearch} foodTypeButtonClick={this.foodTypeButtonClick} />} />
