@@ -49,7 +49,7 @@ class FoodDetail extends Component {
         );
       })
       .catch(err => {
-        console.log(err);
+        console.log('FoodDetail', err);
       });
   }
 

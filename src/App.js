@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-		console.log(creds.key, creds.id);
+    console.log(creds.key, creds.id);
     this.getNutrients(); // get nutrients from API in raw state
     this.randomSearch();
     this.getAllSaved("compares");
@@ -59,20 +59,15 @@ class App extends Component {
   };
 
   completeSaved = (foods, state) => {
-    const completedArray = [];
+    const completedArray = []; // temporary accumulative array to be used for setting state later
     foods.forEach(food => {
       this.getDetails(food.id, food.type).then(response => {
+        const foodDetail = response.data.foods[0];
         // complete the nutrients for this food
-        const completedNutrients = this.completeFoodNutrients(
-          response.data.foods[0]
-        );
+        const completedNutrients = this.completeFoodNutrients(foodDetail);
         // complete the metadata for this food
-        const completedFood = this.completeFood(
-          response.data.foods[0],
-          completedNutrients
-        );
-
-        // push this food into our accumalitve array that will be used to change state eventually
+        const completedFood = this.completeFood(foodDetail, completedNutrients);
+        // push this food into our accumalitive array 
         completedArray.push({
           key: food.key,
           id: food.id,
@@ -88,13 +83,18 @@ class App extends Component {
           userCompared: completedArray
         },
         () => {
-          console.log(this.state.userCompared);
+          console.log('userCompared: ', this.state.userCompared);
         }
       );
     } else {
-      this.setState({
-        userFavourites: completedArray
-      });
+      this.setState(
+        {
+          userFavourites: completedArray
+        },
+        () => {
+          console.log("userFavourites: ", this.state.userFavourites);
+        }
+      );
     }
   };
 
@@ -103,8 +103,8 @@ class App extends Component {
       const dBCompRef = firebase.database().ref(`${state}`);
       dBCompRef.push({ id: id, type: this.state.type });
     } else {
-			// alert already there
-		}
+      // alert already there
+    }
   };
 
   isNotDuplicate = (key, state) => {
@@ -113,7 +113,7 @@ class App extends Component {
     const result = saved.filter(food => {
       return food.key === key;
     });
-    return result.length === 0 ? true : false;
+    return result.length === 0;
   };
 
   // retrieves the most up to date nutrients from API and their ids, maps the ids to the target nutrient list
@@ -216,7 +216,7 @@ class App extends Component {
   // receives a food item and returns its completed main nutrient list with name, value, id, and measure unit
   completeFoodNutrients = food => {
     const completeNutrients = this.state.nutrients.map(nutrient => {
-      // calls a function from props that maps this nutrient to its value using another axios call
+      // calls a function from props that maps this nutrient to its value
       const value = this.getValue(nutrient.id, food.full_nutrients);
       // returns the completed nutrient profile as an object to exist in the completedNutrients array
       return {
