@@ -31,16 +31,16 @@ class Compare extends Component {
 	}
 
 	itemToRemove = id => {
-		const newFoodsToCompare = this.state.foodsToCompare.filter(foodItem => {
-			if (foodItem.key !== id) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		this.setState({
-			foodsToCompare: newFoodsToCompare
-		});
+		// const newFoodsToCompare = this.state.foodsToCompare.filter(foodItem => {
+		// 	if (foodItem.key !== id) {
+		// 		return true;
+		// 	} else {
+		// 		return false;
+		// 	}
+		// });
+		// this.setState({
+		// 	foodsToCompare: newFoodsToCompare
+		// });
 	};
 
 	removeItem = id => {

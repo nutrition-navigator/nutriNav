@@ -34,16 +34,17 @@ class App extends Component {
       userCompared: [],
       type: "branded",
       toaster: {
-        hidden: true,
+        hidden: true
       }
     };
   }
 
   componentDidMount() {
-    console.log(creds.key, creds.id);
     this.getNutrients(); // get nutrients from API in raw state
     this.randomSearch();
-    this.getAllSaved("compares");
+    console.log(this.state.userCompared);
+    console.log(this.state.userFavourites);
+    // this.getAllSaved("compares");
   }
 
   getAllSaved = state => {
@@ -55,81 +56,82 @@ class App extends Component {
         arraySaved.push({
           key: key,
           id: savedFromDB[key].id,
-          type: savedFromDB[key].type
+          name: savedFromDB[key].name,
+          brand: savedFromDB[key].brand,
+          serving: savedFromDB[key].serving,
+          imgURL: savedFromDB[key].imgUrl,
+          mainNutrients: savedFromDB[key].mainNutrients,
+          secondaryNutrients: savedFromDB[key].secondaryNutrients,
         });
       }
       this.completeSaved(arraySaved, state);
     });
   };
 
-  completeSaved = (foods, state) => {
-    const completedArray = []; // temporary accumulative array to be used for setting state later
-    foods.forEach(food => {
-      this.getDetails(food.id, food.type).then(response => {
-        const foodDetail = response.data.foods[0];
-        // complete the nutrients for this food
-        const completedNutrients = this.completeFoodNutrients(foodDetail);
-        // complete the metadata for this food
-        const completedFood = this.completeFood(foodDetail, completedNutrients);
-        // push this food into our accumalitive array
-        completedArray.push({
-          key: food.key,
-          id: food.id,
-          imgURL: completedFood.url,
-          mainNutrients: completedNutrients,
-          secondaryNutrients: completedFood.others
-        });
-      });
+  getFood = (id, type) => {
+    console.log('getFood()', id, type);
+    let food = {};
+    this.getDetails(id, type).then(response => {
+      const foodDetail = response.data.foods[0];
+      // complete the nutrients for this food
+      const completedNutrients = this.completeFoodNutrients(foodDetail);
+      // complete the metadata for this food
+      const completedFood = this.completeFood(foodDetail, completedNutrients);
+      // push this food into our accumalitive array
+      food = {
+        id: food.id,
+        name: food.name,
+        brand: food.brand,
+        serving: {
+          qty: food.serving,
+          unit: food.servingUnit,
+          weight: food.servingWeight
+        },
+        imgURL: completedFood.url,
+        mainNutrients: completedNutrients,
+        secondaryNutrients: completedFood.others
+      };
     });
-    if (state === "compares") {
-      this.setState(
-        {
-          userCompared: completedArray
-        },
-        () => {
-          console.log("userCompared: ", this.state.userCompared);
-        }
-      );
-    } else {
-      this.setState(
-        {
-          userFavourites: completedArray
-        },
-        () => {
-          console.log("userFavourites: ", this.state.userFavourites);
-        }
-      );
-    }
+    return food;
   };
 
-  addToSaved = (id, state) => {
-    if (this.isNotDuplicate(id, state)) {
-    
+
+  runToaster = (message, overall, duration) => {
+
+  }
+
+  addToSaved = (food, state) => {
+    if (this.isNotDuplicate(food.id, state)) {
       const dBCompRef = firebase.database().ref(`${state}`);
-      dBCompRef.push({ id: id, type: this.state.type });
-      this.setState({
-        toaster: {
-          hidden: false,
-          message: `This food has been successfully saved to your ${state}`,
-          overall: "SUCCESS",
-          duration: 5000,
-        }
-      }, () => this.killToaster(this.state.duration));
+      dBCompRef.push(food);
+      this.setState(
+        {
+          toaster: {
+            hidden: false,
+            message: `This food has been successfully saved to your ${state}`,
+            overall: "SUCCESS",
+            duration: 5000
+          }
+        },
+        () => this.killToaster(this.state.toaster.duration)
+      );
     } else {
       // alert already there
     }
   };
 
   isNotDuplicate = (id, state) => {
-    console.log('isNotDuplicate() state: ', state);
-    const savedList = (state === "compare") ? [...this.state.userCompared] : [...this.state.userFavourites];
-    console.log('saved: ', savedList);
-    const result = savedList.filter(food => {
-      console.log('food.id: ', food.id);
-      console.log('id', id);
-      return (food.id === id);
+    console.log(this.state.userCompared, this.state.userFavourites);
+    console.log("isNotDuplicate() state: ", state);
+    const copySaved =
+      state === "compares"
+        ? [...this.state.userCompared]
+        : [...this.state.userFavourites];
+    console.log("savedList: ", copySaved);
+    const result = copySaved.filter(food => {
+      return food.id === id;
     });
-    console.log('length is', result.length);
+    console.log("length is", result.length);
     return result.length === 0;
   };
 
@@ -194,10 +196,10 @@ class App extends Component {
 
   completeFood = (food, nutrients) => {
     const completedFood = {
+      id: food.nix_item_id ? food.nix_item_id : food.food_name,
       name: food.food_name,
       brand: food.brand_name,
       url: food.photo.highres ? food.photo.highres : food.photo.thumb,
-      isRaw: food.metadata.is_raw_food ? "Yes" : "No",
       serving: food.serving_qty,
       servingUnit: food.serving_unit,
       servingWeight: food.serving_weight_grams,
@@ -227,6 +229,7 @@ class App extends Component {
     };
     const others = completedFood.others;
     completedFood.others = this.othersToArray(others);
+    console.log(completedFood);
     return completedFood;
   };
 
@@ -283,8 +286,8 @@ class App extends Component {
     }).then(res => {
       this.setState({
         brandedFood: res.data.branded,
-        commonFood: res.data.common,
-        userFavourites: res.data.common
+        commonFood: res.data.common
+        // userFavourites: res.data.common
       });
     });
   };
@@ -310,14 +313,19 @@ class App extends Component {
   };
 
   killToaster = duration => {
-    console.log('kill Toaster');
+    console.log("kill Toaster");
     setTimeout(() => {
-      console.log('timeout');
-      this.setState({
-        toaster: {
-          hidden: true,
+      console.log("timeout");
+      this.setState(
+        {
+          toaster: {
+            hidden: true
+          }
+        },
+        () => {
+          console.log(this.state.toaster);
         }
-      }, () => {console.log(this.state.toaster)});
+      );
     }, duration);
   };
 
@@ -355,9 +363,7 @@ class App extends Component {
                 <FoodDetail
                   id={props.match.params.id}
                   type={this.state.type}
-                  getDetails={this.getDetails}
-                  completeFoodNutrients={this.completeFoodNutrients}
-                  completeFood={this.completeFood}
+                  getFood={this.getFood}
                   addToSaved={this.addToSaved}
                 ></FoodDetail>
               )}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class FoodCard extends Component {
-	state = {};
 	render() {
 		const id = this.props.foodItem.nix_item_id
 			? this.props.foodItem.nix_item_id

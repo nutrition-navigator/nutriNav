@@ -12,46 +12,23 @@ class FoodDetail extends Component {
     super();
     this.state = {
       food: {},
-      foodNutrients: [],
       isReady: false
     };
   }
 
   componentDidMount() {
-    this.props
-      // calls the a function from props that makes an axios call based on the passed id and type
-      .getDetails(this.props.id, this.props.type)
-      .then(response => {
-        const food = response.data.foods[0];
-        // saves this food's completed nutrients to state
-        this.setState({
-          foodNutrients: this.props.completeFoodNutrients(food)
-        });
-        // creates a completed food object and saves it to state
-        this.setState(
-          {
-            food: this.props.completeFood(food, this.state.foodNutrients)
-          },
-          () => {
-            // removes fiber from the main nutrients because it is now part of the completed food state
-            this.setState(
-              {
-                foodNutrients: this.state.foodNutrients.slice(
-                  0,
-                  this.state.foodNutrients.length - 1
-                )
-              },
-              () => {
-                this.setState({ isReady: true });
-              }
-            );
-          }
-        );
+    const food = this.props.getFood(this.props.id, this.props.type);
+    this.setState({
+      food
+    }, () => {
+      console.log(this.state.food);
+      this.setState({
+        // isReady: true,
       })
-      .catch(err => {
-        console.log('FoodDetail', err);
-      });
+    })       
   }
+      
+    
 
   render() {
     return this.state.isReady ? (
@@ -68,12 +45,11 @@ class FoodDetail extends Component {
                 <h2>Description</h2>
                 <ul>
                   <li>
-                    Serving: {this.state.food.serving}{" "}
-                    {this.state.food.servingUnit} (
-                    {this.state.food.servingWeight}
+                    Serving: {this.state.food.serving.qty}{" "}
+                    {this.state.food.serving.unit} (
+                    {this.state.food.serving.weight}
                     g){" "}
                   </li>
-                  <li>Raw State: {this.state.food.isRaw} </li>
                   {this.state.food.brand ? (
                     <li> Brand: {this.state.food.brand} </li>
                   ) : (
@@ -86,7 +62,7 @@ class FoodDetail extends Component {
                 <div className="detailMainIngredients">
                   <h2>Main Nutrients</h2>
                   <ul>
-                    {this.state.foodNutrients.map(nutrient => {
+                    {this.state.food.mainNutrients.map(nutrient => {
                       return (
                         <li key={nutrient.id}>
                           <span className={nutrient.value ? "row" : "row null"}>
@@ -102,7 +78,7 @@ class FoodDetail extends Component {
                 <div className="detailOtherIngredients">
                   <h2>Secondary Nutrients</h2>
                   <ul>
-                    {this.state.food.others.map(other => {
+                    {this.state.food.secondaryNutrients.map(other => {
                       return (
                         <li key={other.name}>
                           <span className={other.value ? "row" : "row null"}>
