@@ -3,49 +3,14 @@ import Nav from '../components/Nav';
 import ComparisonCard from '../components/ComparisonCard';
 
 class Compare extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			// this is random data, will be replaced by array in App.js
-			foodsToCompare: [
-				{
-					key: 'fbKey1',
-					name: 'cheese',
-					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/1034_thumb.jpg',
-					nutrients: []
-				},
-				{
-					key: 'fbKey2',
-					name: 'skinless chicken breast',
-					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/7820_thumb.jpg',
-					nutrients: []
-				},
-				{
-					key: 'fbKey3',
-					name: 'burger',
-					imgURL: 'https://d2xdmhkmkbyw75.cloudfront.net/608_thumb.jpg',
-					nutrients: []
-				}
-			]
-		};
-	}
-
-	itemToRemove = id => {
-		const newFoodsToCompare = this.state.foodsToCompare.filter(foodItem => {
-			if (foodItem.key !== id) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		this.setState({
-			foodsToCompare: newFoodsToCompare
-		});
+			foodsToCompare: props.userCompared,
+		}
+		console.log('compare array:', this.state.foodsToCompare);
 	};
 
-	removeItem = id => {
-		this.itemToRemove(id);
-	};
 
 	render() {
 		return (
@@ -57,9 +22,8 @@ class Compare extends Component {
 						return (
 							<ComparisonCard
 								key={food.key}
-								itemId={food.key}
 								food={food}
-								removeItem={this.removeItem}
+								removeItem={this.props.removeItem(this.props.key, 'compares')}
 							/>
 						);
 					})}

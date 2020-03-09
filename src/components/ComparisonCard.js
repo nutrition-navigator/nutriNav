@@ -7,11 +7,23 @@ function ComparisonCard(props) {
         <img src={props.food.imgURL} alt={props.food.name} />
       </div>
       <h3>{props.food.name}</h3>
-      <h4>Description</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos voluptas ipsum minima totam placeat quod reprehenderit, fugiat quaerat debitis, modi ipsam distinctio nesciunt odio fugit voluptatum laborum amet deserunt labore.</p>
-      <h4>Nutritional Information </h4>
-      <p>{props.food.nutrients}</p>
-      <button onClick={() => {props.removeItem(props.itemId)}}>REMOVE</button>
+      <h4>Main Nutrients</h4>
+      {props.food.mainNutrients.map(nutrient => {
+        return(
+          <li key={nutrient.id}>
+            <p>{nutrient.name}: {nutrient.value} {nutrient.unit}</p>
+          </li>
+        )
+      })}
+      <h4>Secondary Nutrients</h4>
+      {props.food.secondaryNutrients.map(secondNutrient => {
+        return(
+          <li key={secondNutrient.name}>
+            <p>{secondNutrient.name}: {secondNutrient.value} {secondNutrient.unit}</p>
+          </li>
+        )
+      })}
+      <button onClick={ () => {this.props.removeItem(props.key, 'compares')}}>REMOVE</button>
     </div>
   );
 }

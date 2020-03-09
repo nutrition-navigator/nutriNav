@@ -8,6 +8,7 @@ import Compare from './pages/Compare';
 import Home from './pages/Home';
 import firebase from './firebaseConfig';
 import './App.css';
+import creds from './apiKey';
 
 class App extends Component {
 	constructor() {
@@ -86,7 +87,7 @@ class App extends Component {
 					userCompared: completedArray
 				},
 				() => {
-					console.log(this.state.userCompared);
+					console.log('app.js user compared', this.state.userCompared);
 				}
 			);
 		} else {
@@ -110,8 +111,8 @@ class App extends Component {
       method: "GET",
       responseType: "json",
       headers: {
-        "x-app-key": "cdddd74c181520e189039715e81472db",
-        "x-app-id": "88ae7cda",
+				"x-app-key": '5a98a2bf788857870a11fdc4934b3a10',
+				"x-app-id": 'e3f07b95',
         "x-remote-user-id": "0"
       }
     }).then(response => {
@@ -226,8 +227,8 @@ class App extends Component {
       url: `https://trackapi.nutritionix.com/v2/${urlEndpoint}`,
       method: method,
       headers: {
-        "x-app-key": "cdddd74c181520e189039715e81472db",
-        "x-app-id": "88ae7cda",
+				"x-app-key": '5a98a2bf788857870a11fdc4934b3a10',
+				"x-app-id": 'e3f07b95',
         "x-remote-user-id": "0",
         "content-type": "application/json"
       },
@@ -242,8 +243,8 @@ class App extends Component {
 			url: 'https://trackapi.nutritionix.com/v2/search/instant',
 			method: 'get',
 			headers: {
-				'x-app-key': 'cdddd74c181520e189039715e81472db',
-				'x-app-id': '88ae7cda'
+				'x-app-key': '5a98a2bf788857870a11fdc4934b3a10',
+				'x-app-id': 'e3f07b95',
 			},
 			params: {
 				query
@@ -274,6 +275,11 @@ class App extends Component {
 		}, () => console.log(this.state.type));
 	};
 
+	removeItem = (key, state) => {
+		const dbRef = firebase.database().ref(state);
+		dbRef.child(key).remove();
+	}
+
 	render() {
 		return (
 			<Router>
@@ -300,7 +306,15 @@ class App extends Component {
 								<Favourites savedFoods={this.state.userFavourites} />
 							)}
 						/>
-						<Route path="/compare" component={Compare} />
+						<Route 
+							path="/compare" 
+							render={() => (
+								<Compare
+									removeItem={this.removeItem} 
+									userCompared={this.state.userCompared} 
+								></Compare>
+							)}
+						/>
 						<Route
 							exact
 							path="/food/:id"
