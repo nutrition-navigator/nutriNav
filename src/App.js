@@ -84,17 +84,17 @@ class App extends Component {
     if (this.isNotDuplicate(food.id, state)) {
       const dBCompRef = firebase.database().ref(`${state}`);
       dBCompRef.push(food);
-      this.setState(
-        {
-          toaster: {
-            hidden: false,
-            message: `This food has been successfully saved to your ${state}`,
-            overall: "SUCCESS",
-            duration: 5000
-          }
-        },
-        () => this.killToaster(this.state.toaster.duration)
-      );
+      // this.setState(
+      //   {
+      //     toaster: {
+      //       hidden: false,
+      //       message: `This food has been successfully saved to your ${state}`,
+      //       overall: "SUCCESS",
+      //       duration: 5000
+      //     }
+      //   },
+      //   () => this.killToaster(this.state.toaster.duration)
+      // );
     } else {
 
     }

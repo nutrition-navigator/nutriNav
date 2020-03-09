@@ -106,7 +106,8 @@ class FoodDetail extends Component {
           <div className="detailControl">
             <button
               onClick={() => {
-                this.props.addToSaved(this.props.food, "userCompared");
+                console.log("this.state.food: ", this.state.food);
+                this.props.addToSaved(this.state.food, "userCompared");
               }}
             >
               {" "}
@@ -119,7 +120,8 @@ class FoodDetail extends Component {
       <div className="detailControl">
         <button
           onClick={() => {
-            this.props.addToSaved(this.state.food, "userCompared");
+            console.log('this.state.food: ', this.state.food)
+            // this.props.addToSaved(this.state.food, "userCompared");
           }}
         >
           {" "}
