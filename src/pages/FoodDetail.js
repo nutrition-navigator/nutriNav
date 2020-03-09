@@ -1,134 +1,153 @@
-import React, { Component } from "react";
-import { faExchangeAlt, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
-import Nav from "../components/Nav";
+import React, { Component } from 'react';
+import { faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
+import Nav from '../components/Nav';
 
 class FoodDetail extends Component {
-  constructor() {
-    super();
-    this.state = {
-      food: {},
-      isReady: false
-    };
-  }
+	constructor() {
+		super();
+		this.state = {
+			food: {},
+			isReady: false
+		};
+	}
 
-  componentDidMount() {
-    console.log(" id: ", this.props.id, " type: ", this.props.type);
-    this.props.getDetails(this.props.id, this.props.type).then( response => {
-      const foodDetail = response.data.foods[0];
-      const completedNutrients = this.props.completeFoodNutrients(foodDetail);
-      const completedFood = this.props.completeFood(foodDetail, completedNutrients);      
-      this.setState(
-        {
-          food: completedFood
-        },
-        () => {
-          console.log("componentDidMount() in foodDetails ", this.state.food);
-          this.setState({
-            isReady: true,
-          });
-        }
-      );
-      }); // end of .then()
-      }
+	componentDidMount() {
+		console.log(this.state.food);
+		console.log(' id: ', this.props.id, ' type: ', this.props.type);
+		this.props.getDetails(this.props.id, this.props.type).then(response => {
+			const foodDetail = response.data.foods[0];
+			const completedNutrients = this.props.completeFoodNutrients(foodDetail);
+			const completedFood = this.props.completeFood(
+				foodDetail,
+				completedNutrients
+			);
+			this.setState(
+				{
+					food: completedFood
+				},
+				() => {
+					console.log('componentDidMount() in foodDetails ', this.state.food);
+					this.setState({
+						isReady: true
+					});
+				}
+			);
+		}); // end of .then()
+	}
 
-  render() {
-    return this.state.isReady ? (
-      <div className="detailPage">
-        <Nav />
-        <div className="wrapper">
-          <div className="detail">
-            <div className="detailInfoContainer">
-              <div className="detailTitle">
-                <h1> {this.state.food.name}</h1>
-              </div>
+	render() {
+		return this.state.isReady ? (
+			<div className="detailPage">
+				<Nav />
 
-              <div className="detailDescription">
-                <h2>Description</h2>
-                <ul>
-                  <li>
-                    Serving: {this.state.food.serving.qty}{" "}
-                    {this.state.food.serving.unit} (
-                    {this.state.food.serving.weight}
-                    g){" "}
-                  </li>
-                  {this.state.food.brand ? (
-                    <li> Brand: {this.state.food.brand} </li>
-                  ) : (
-                    ""
-                  )}
-                </ul>
-              </div>
+				<div className="detailContainer">
+					<div className="wrapper">
+						<div className="detailContent">
+							<div className="detailIntro">
+								<div className="detailImg">
+									<img
+										src={this.state.food.imgURL}
+										alt={this.state.food.name}
+									></img>
+								</div>
+								<div className="detailDesc">
+									<div className="detailTitle">
+										<h1> {this.state.food.name}</h1>
+									</div>
 
-              <div className="detailIngredients">
-                <div className="detailMainIngredients">
-                  <h2>Main Nutrients</h2>
-                  <ul>
-                    {this.state.food.mainNutrients.map(nutrient => {
-                      return (
-                        <li key={nutrient.id}>
-                          <span className={nutrient.value ? "row" : "row null"}>
-                            <span className="col1">{nutrient.name}</span>
-                            <span className="col2">{nutrient.value}</span>
-                            <span className="col3">{nutrient.unit} </span>
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-                <div className="detailOtherIngredients">
-                  <h2>Secondary Nutrients</h2>
-                  <ul>
-                    {this.state.food.secondaryNutrients.map(other => {
-                      return (
-                        <li key={other.name}>
-                          <span className={other.value ? "row" : "row null"}>
-                            <span className="col1">{other.name}</span>
-                            <span className="col2">{other.value}</span>
-                            <span className="col3">{other.unit} </span>
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="detailImgContainer">
-              <div className="detailImg">
-                <img src={this.state.food.imgURL} alt={this.state.food.name}></img>
-              </div>
-            </div>
-          </div>
+									<div className="detailDescription">
+										<h2>Description</h2>
+										<ul>
+											<li>
+												Serving: {this.state.food.serving}{' '}
+												{this.state.food.servingUnit} (
+												{this.state.food.servingWeight}
+												g){' '}
+											</li>
+											<li>Raw State: {this.state.food.isRaw} </li>
+											{this.state.food.brand ? (
+												<li> Brand: {this.state.food.brand} </li>
+											) : (
+												''
+											)}
+										</ul>
+									</div>
+								</div>
+							</div>
 
-          <div className="detailControl">
-            <button
-              onClick={() => {
-                console.log("this.state.food: ", this.state.food);
-                this.props.addToSaved(this.state.food, "userCompared");
-              }}
-            >
-              {" "}
-              Add to Compared{" "}
-            </button>
-          </div>
-        </div>
-      </div>
-    ) : (
-      <div className="detailControl">
-        <button
-          onClick={() => {
-            console.log('this.state.food: ', this.state.food)
-            // this.props.addToSaved(this.state.food, "userCompared");
-          }}
-        >
-          {" "}
-          Add to Compared{" "}
-        </button>
-      </div>
-    );
-  }
+							<div className="detailNutrition">
+								<h2>Nutritional Facts</h2>
+								<div className="detailNutritionFacts">
+									<ul className="nutrientList">
+										{this.state.food.secondaryNutrients.map(other => {
+											return (
+												<li key={other.name}>
+													<div className="nutrient">
+														<div className="nutrientName">{other.name}</div>
+														<div className="nutrientUnit">
+															{other.value}
+															{other.unit}
+														</div>
+													</div>
+												</li>
+											);
+										})}
+									</ul>
+
+									<ul className="nutrientList">
+										{this.state.food.mainNutrients.map(nutrient => {
+											return (
+												<li key={nutrient.name}>
+													<div className="nutrient">
+														<div className="nutrientName">{nutrient.name}</div>
+														<div className="nutrientUnit">
+															{nutrient.value}
+															{nutrient.unit}
+														</div>
+													</div>
+												</li>
+											);
+										})}
+									</ul>
+								</div>
+
+								{/* <div className="detailVitsMins">
+									<h2>Vitamins and Minerals</h2>
+									<ul>
+										{this.state.food.mainNutrients.map(nutrient => {
+											return (
+												<li key={nutrient.id}>
+													<span className={nutrient.value ? 'row' : 'row null'}>
+														<span className="col1">{nutrient.name}</span>
+														<span className="col2">{nutrient.value}</span>
+														<span className="col3">{nutrient.unit} </span>
+													</span>
+												</li>
+											);
+										})}
+									</ul>
+								</div> */}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="detailControl">
+					<button
+						onClick={() => {
+							this.props.addToSaved(this.props.id, 'compares');
+						}}
+					>
+						{' '}
+						Add to Compare{' '}
+					</button>
+				</div>
+			</div>
+		) : (
+			'future loader'
+		);
+	}
 }
 export default FoodDetail;
