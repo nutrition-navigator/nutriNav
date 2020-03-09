@@ -537,3 +537,73 @@ li {
 	display: flex;
 	justify-content: space-between;
 }
+
+/* COMPARE PAGE STYLES */
+
+.comparisonCard img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* .comparisonCard .imageContainer {
+  width: 50%;
+  height: 60%;
+  margin: 0 auto;
+} */
+
+.comparisonContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.comparisonCard {
+	width: 32%;
+	padding: 3rem;
+	background: #f4f2f9;
+	border-radius: 25px;
+}
+
+.imageContainer {
+	margin-bottom: 2rem;
+}
+
+.comparisonCard img {
+	display: block;
+	width: 100%;
+	height: 25rem;
+	object-fit: cover;
+	border-radius: 25px;
+}
+
+.comparisonCard:not(:last-child) {
+	margin-right: calc(8% / 2);
+}
+
+.comparisonPage h1 {
+	color: #b20061;
+	padding-top: 50px;
+	font-size: 3rem;
+}
+
+.comparisonCard h3 {
+	color: #b20061;
+	text-transform: capitalize;
+	font-size: 2.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.comparisonCard h4 {
+	font-size: 1.75rem;
+	font-weight: 500;
+	color: #350482;
+	margin-bottom: 0.5rem;
+}
+
+.comparisonCard ul:not(:last-child) {
+	margin-bottom: 1rem;
+}
+
+.comparisonCard .nutrient {
+	font-size: 1.5rem;
+}
