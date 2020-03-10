@@ -339,12 +339,6 @@ class App extends Component {
     });
   };
 
-  foodTypeButtonClick = e => {
-    this.setState({
-      type: e.target.id
-    });
-  };
-
   // Function to remove an item in compare or userFavourites
   removeItem = (key, state) => {
     const dbRef = firebase.database().ref(state);
@@ -356,6 +350,7 @@ class App extends Component {
       <Router basename="/">
         <div className="App">
           <header className="App-header">
+
             <Route
               path="/"
               exact
