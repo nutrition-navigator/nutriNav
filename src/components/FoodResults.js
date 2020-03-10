@@ -7,9 +7,11 @@ class FoodResults extends Component {
 	render() {
 		return (
 			<div className="foodContainer">
-				{this.props.foodItems.map((foodItem, index) => (
-					<FoodCard key={index} foodItem={foodItem} />
-				))}
+				{this.props.foodItems.length===0 ? <p>Your search found nothing, please try something else.</p> :
+					this.props.foodItems.map((foodItem, index) => (
+						<FoodCard key={index} foodItem={foodItem} />
+					))}
+				
 			</div>
 		);
 	}
