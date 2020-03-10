@@ -35,6 +35,10 @@ class FoodDetail extends Component {
 		}); // end of .then()
 	}
 
+	removeFocus = e => {
+		e.target.blur();
+	};
+
 	render() {
 		return this.state.isReady ? (
 			<div className="detailPage">
