@@ -290,6 +290,7 @@ a {
 	margin: 10px 20px 10px 20px;
 }
 
+
 .foodCard img {
   object-fit: cover;
   display: block;
@@ -312,6 +313,12 @@ a {
 .cardSubtitle {
   font-size: 1.2rem;
   font-weight: 400;
+}
+
+.favCard {
+	display: flex;
+	align-items:center;
+	justify-content: center;
 }
 
 /* Ania's Begins FoodDetail -----------------> */
@@ -390,7 +397,9 @@ li {
 
 
 .deleteIcon:hover,
-.deleteIcon:focus {
+.deleteIcon:focus,
+.detailButtons button:hover,
+.detailButtons button:focus {
   animation: deleteIcons 1s ease-in-out infinite;
 }
 
@@ -578,12 +587,16 @@ li {
   margin-bottom: 1rem;
 }
 
-.detailButtons svg {
+.detailButtons button svg {
 	font-size: 1.75rem;
+	
+}
+
+.detailButtons button {
 	color: #748a9d;
 }
 
-.detailButtons svg:not(:last-child) {
+.detailButtons button:not(:last-child) {
 	margin-right: 1rem;
 }
 
