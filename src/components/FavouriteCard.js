@@ -12,12 +12,7 @@ class FavouriteCard extends Component {
     const type = this.props.foodItem.brand ? "branded" : "common";
     console.log(type);
     return (
-<<<<<<< HEAD
-      <Link className="foodCardLink" to={`/food/${type}/${id}`}>
-        <div className="foodCard">
-=======
       <div className="foodCard">
->>>>>>> master
           <button
             title="Click to Remove"
             aria-label="Click to Remove from Favourites"
