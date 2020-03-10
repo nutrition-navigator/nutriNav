@@ -40,7 +40,9 @@ class App extends Component {
       maxFavourites: 9,
       toaster: {
         hidden: true
-      }
+			},
+			toggleCommon: true,
+			toggleBranded: false,
     };
   }
 
@@ -286,8 +288,10 @@ class App extends Component {
 
 	foodTypeButtonClick = e => {
 		this.setState({
-			type: e.target.id
-		});
+			type: e.target.id,
+			toggleCommon: true,
+			toggleBranded: false,
+		}, () => {console.log(this.state.toggleCommon, this.state.toggleBranded)});
 	};
 
 	killToaster = duration => {
