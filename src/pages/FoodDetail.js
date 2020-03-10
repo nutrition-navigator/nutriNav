@@ -83,8 +83,21 @@ class FoodDetail extends Component {
 
 								<div className="introRight">
 									<div className="detailButtons">
-										<FontAwesomeIcon icon={faHeart} />
-										<FontAwesomeIcon icon={faExchangeAlt} />
+										<FontAwesomeIcon
+											icon={faHeart}
+											onClick={() => {
+												this.props.addToSaved(
+													this.state.food,
+													'userFavourites'
+												);
+											}}
+										/>
+										<FontAwesomeIcon
+											icon={faExchangeAlt}
+											onClick={() => {
+												this.props.addToSaved(this.state.food, 'userCompared');
+											}}
+										/>
 									</div>
 								</div>
 							</div>
@@ -148,24 +161,6 @@ class FoodDetail extends Component {
 									</ul>
 								</div> */}
 							</div>
-						</div>
-						<div className="detailControl">
-							<button
-								onClick={() => {
-									this.props.addToSaved(this.state.food, 'userCompared');
-								}}
-							>
-								{' '}
-								Add to Compare{' '}
-							</button>
-							<button
-								onClick={() => {
-									this.props.addToSaved(this.state.food, 'userFavourites');
-								}}
-							>
-								{' '}
-								Add to Favourites{' '}
-							</button>
 						</div>
 					</div>
 				</div>
