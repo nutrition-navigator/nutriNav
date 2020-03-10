@@ -1,4 +1,8 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faTimes
+} from '@fortawesome/free-solid-svg-icons';
 
 function ComparisonCard(props) {
 	return (
@@ -45,7 +49,7 @@ function ComparisonCard(props) {
 					props.removeItem(props.id, 'userCompared');
 				}}
 			>
-				REMOVE
+				<FontAwesomeIcon className="deleteIcon" icon={faTimes} />
 			</button>
 		</div>
 	);

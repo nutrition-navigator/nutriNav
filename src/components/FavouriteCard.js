@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faTimes
+} from '@fortawesome/free-solid-svg-icons';
 
 class FavouriteCard extends Component {
   render() {
@@ -18,11 +22,12 @@ class FavouriteCard extends Component {
             <h2 className="cardTitle">{this.props.foodItem.brand ? this.props.foodItem.brand : this.props.foodItem.name}</h2>
             {this.props.foodItem.brand ? <h3 className="cardSubtitle">{this.props.foodItem.name}</h3> : null}
             <button
+              z-index="300"
               onClick={() => {
                 this.props.removeItem(this.props.foodItem.key, "userFavourites");
               }}
             >
-              REMOVE
+              <FontAwesomeIcon className="deleteIcon" icon={faTimes}/>
             </button >
           </div>
         </div>
