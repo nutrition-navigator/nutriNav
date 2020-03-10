@@ -766,6 +766,23 @@ li {
 	border: solid 2px #350482;
 }
 
+.favourite.foodCard:focus-within {
+	border: solid 2px #350482;
+}
+
+.favouriteCardLink:focus img {
+	transform: scale(1.3);
+}
+
+.favouriteCardLink:focus {
+	outline: none;
+}
+
+.foodCard button:focus .deleteIcon {
+	color: #b20061;
+	transform: scale(1.3);
+}
+
 .foodCardLink:focus {
 	outline: none;
 }
