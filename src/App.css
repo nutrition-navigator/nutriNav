@@ -283,14 +283,6 @@ a {
 	position:relative;
 }
 
-.foodCardLink:focus .foodCard {
-	border: solid 2px #350482;
-}
-
-.foodCardLink:focus {
-	outline: none;
-}
-
 .foodCard button {
 	position: absolute;
 	top:0;
@@ -744,4 +736,16 @@ li {
 		transform:scale(1);
 		color:#4a4a4a;
 	}
+}
+
+/******************/
+/*** ACCESSIBILTY ***/
+/******************/
+
+.foodCardLink:focus .foodCard {
+	border: solid 2px #350482;
+}
+
+.foodCardLink:focus {
+	outline: none;
 }

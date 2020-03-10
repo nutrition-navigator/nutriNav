@@ -12,7 +12,7 @@ class FavouriteCard extends Component {
     const type = this.props.foodItem.brand ? "branded" : "common";
     console.log(type);
     return (
-      <Link to={`/food/${type}/${id}`}>
+      <Link className="foodCardLink" to={`/food/${type}/${id}`}>
         <div className="foodCard">
           <button
             z-index="300"
