@@ -407,8 +407,8 @@ class App extends Component {
           <div
             className={
               this.state.toaster.hidden
-                ? "toasterContainer hidden"
-                : "toasterContainer"
+                ? "toasterContainer hide"
+                : "toasterContainer show"
             }
           >
             <Toaster
