@@ -40,7 +40,7 @@ class App extends Component {
       maxFavourites: 9,
       toaster: {
         hidden: true
-      }
+			},
     };
   }
 
@@ -293,8 +293,8 @@ class App extends Component {
 	// Function to switch between displaying either commmon foods or branded foods to the user.
 	foodTypeButtonClick = e => {
 		this.setState({
-			type: e.target.id
-		});
+			type: e.target.id,
+		})
 	};
 
 	killToaster = duration => {
@@ -318,7 +318,7 @@ class App extends Component {
       <Router basename="/">
         <div className="App">
           <header className="App-header">
-            <Route path="/" exact render={() => <Home foodItems={this.state.type === "branded" ? this.state.brandedFood : this.state.commonFood} userSearch={this.userSearch} foodTypeButtonClick={this.foodTypeButtonClick} />} />
+            <Route path="/" exact render={() => <Home foodItems={this.state.type === "branded" ? this.state.brandedFood : this.state.commonFood} userSearch={this.userSearch} foodTypeButtonClick={this.foodTypeButtonClick} type={this.state.type} />} />
             <Route path="/favourites" render={() => <Favourites savedFoods={this.state.userFavourites} removeItem={this.removeItem} />} />
             <Route path="/compare" render={() => <Compare userCompared={this.state.userCompared} removeItem={this.removeItem} />} />
             <Route exact path="/food/:type/:id" render={props => <FoodDetail id={props.match.params.id} type={props.match.params.type} getDetails={this.getDetails} completeFoodNutrients={this.completeFoodNutrients} completeFood={this.completeFood} addToSaved={this.addToSaved}></FoodDetail>} />

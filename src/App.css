@@ -469,6 +469,11 @@ li {
 
 .toggleCommon {
 	border-radius: 36px 0 0 36px;
+	background: #d8d8d8;
+}
+
+.toggleActive {
+	background :#b20061
 }
 
 /**************/
