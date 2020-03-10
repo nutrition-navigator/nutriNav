@@ -120,27 +120,28 @@ class FoodDetail extends Component {
 								</div> */}
               </div>
             </div>
+            <div className="detailControl">
+              <button
+                onClick={() => {
+                  this.props.addToSaved(this.state.food, "userCompared");
+                }}
+              >
+                {" "}
+                Add to Compare{" "}
+              </button>
+              <button
+                onClick={() => {
+                  this.props.addToSaved(this.state.food, "userFavourites");
+                }}
+              >
+                {" "}
+                Add to Favourites{" "}
+              </button>
+            </div>
+
           </div>
         </div>
 
-        <div className="detailControl">
-          <button
-            onClick={() => {
-              this.props.addToSaved(this.state.food, "userCompared");
-            }}
-          >
-            {" "}
-            Add to Compare{" "}
-          </button>
-          <button
-            onClick={() => {
-              this.props.addToSaved(this.state.food, "userFavourites");
-            }}
-          >
-            {" "}
-            Add to Favourites{" "}
-          </button>
-        </div>
       </div>
     ) : (
       "future loader"

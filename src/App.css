@@ -367,6 +367,21 @@ li {
 }
 
 /* Ania's Ends -----------------> */
+
+/******************/
+/*** DELETEICON ***/
+/******************/
+
+.deleteIcon {
+	color: #b20061;
+	transform:scale(1.5);
+}
+
+.deleteIcon:hover,
+.deleteIcon:focus {
+	animation: deleteIcons 1s ease-in-out infinite;
+}
+
 /***********/
 /*** NAV ***/
 /***********/
@@ -465,7 +480,19 @@ li {
 }
 
 .detailContainer .wrapper {
-	flex-direction: row;
+	flex-direction: column-reverse;
+	align-items: center;
+}
+
+.detailControl button {
+	margin: 0 30px;
+	color: #4a4a4a;
+	transform:scale(1);
+}
+
+.detailControl button:hover,
+.detailControl button:focus {
+	animation: addButtons 1s ease-in-out infinite;
 }
 
 .detailContent {
@@ -562,6 +589,12 @@ li {
 	padding: 3rem;
 	background: #f4f2f9;
 	border-radius: 25px;
+	display: flex;
+	flex-direction: column;
+}
+
+.comparisonCard button {
+	text-align: center;
 }
 
 .imageContainer {
@@ -591,6 +624,7 @@ li {
 	text-transform: capitalize;
 	font-size: 2.5rem;
 	margin-bottom: 0.5rem;
+	min-height: 10vh;
 }
 
 .comparisonCard h4 {
@@ -606,4 +640,38 @@ li {
 
 .comparisonCard .nutrient {
 	font-size: 1.5rem;
+}
+
+/******************/
+/*** KEY FRAMES ***/
+/******************/
+
+@keyframes addButtons {
+	0%{
+		transform:scale(1);
+		color:#4a4a4a;
+	}
+	50% {
+		transform:scale(1.3);
+		color:#350482;
+	}
+	100%{
+		transform:scale(1);
+		color:#4a4a4a;
+	}
+}
+
+@keyframes deleteIcons {
+	0%{
+		transform:scale(1.5);
+		
+	}
+	50% {
+		transform:scale(1.9);
+		
+	}
+	100%{
+		transform:scale(1.5);
+		
+	}
 }
