@@ -615,12 +615,12 @@ li {
 }
 
 .toaster.success {
-	background-color: #f4f2f9;
+	background-color: #cdc2df;
 	color: #350482;
 }
 
 .toaster.failed {
-	background-color: #f4f2f9;
+	background-color: #f6cee4;
 	color: #b20061;
 
 }
