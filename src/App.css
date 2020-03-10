@@ -712,7 +712,9 @@ li {
 }
 
 .toaster {
-	height: 100px;
+	padding: 2rem;
+
+	border-radius: 15px;
 }
 
 .toaster.success {
