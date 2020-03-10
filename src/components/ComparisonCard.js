@@ -45,6 +45,8 @@ function ComparisonCard(props) {
 				})}
 			</ul>
 			<button
+				title="Click to remove"
+				aria-label="Click to remove from Item Comparison"
 				onClick={() => {
 					props.removeItem(props.id, 'userCompared');
 				}}

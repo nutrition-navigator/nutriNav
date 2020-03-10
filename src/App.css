@@ -288,7 +288,9 @@ a {
 	top:0;
 	right:0;
 	margin: 10px 20px 10px 20px;
+	font-size: 2.75rem;
 }
+
 
 .foodCard img {
   object-fit: cover;
@@ -312,6 +314,12 @@ a {
 .cardSubtitle {
   font-size: 1.2rem;
   font-weight: 400;
+}
+
+.favCard {
+	display: flex;
+	align-items:center;
+	justify-content: center;
 }
 
 /* Ania's Begins FoodDetail -----------------> */
@@ -390,7 +398,9 @@ li {
 
 
 .deleteIcon:hover,
-.deleteIcon:focus {
+.deleteIcon:focus,
+.detailButtons button:hover,
+.detailButtons button:focus {
   animation: deleteIcons 1s ease-in-out infinite;
 }
 
@@ -413,7 +423,13 @@ li {
 .navItem {
   list-style: none;
   color: #748a9d;
-  font-size: 1.75rem;
+	font-size: 2.75rem;
+	transition: all 0.5s;
+}
+
+.navItem:hover,
+.navItem:focus {
+	color: #b20061;
 }
 
 .navLogo {
@@ -578,13 +594,17 @@ li {
   margin-bottom: 1rem;
 }
 
-.detailButtons svg {
-	font-size: 1.75rem;
+.detailButtons button svg {
+	font-size: 2.75rem;
+	
+}
+
+.detailButtons button {
 	color: #748a9d;
 }
 
-.detailButtons svg:not(:last-child) {
-	margin-right: 1rem;
+.detailButtons button:not(:last-child) {
+	margin-right: 2rem;
 }
 
 .detailNutritionFacts {
@@ -733,3 +753,5 @@ li {
 		color:#4a4a4a;
 	}
 }
+
+
