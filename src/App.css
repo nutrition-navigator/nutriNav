@@ -271,15 +271,23 @@ a {
 /****************/
 
 .foodCard {
-  width: 34rem;
-  height: 14.5rem;
-  margin-bottom: 3.5rem;
-  display: flex;
-  background: #f4f2f9;
-  border-radius: 15px;
-  padding: 3rem 2rem;
-  align-items: center;
-  box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
+	width: 34rem;
+	height: 14.5rem;
+	margin-bottom: 3.5rem;
+	display: flex;
+	background: #f4f2f9;
+	border-radius: 15px;
+	padding: 3rem 2rem;
+	align-items: center;
+	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
+	position:relative;
+}
+
+.foodCard button {
+	position: absolute;
+	top:0;
+	right:0;
+	margin: 10px 20px 10px 20px;
 }
 
 .foodCard img {
@@ -376,8 +384,8 @@ li {
 /******************/
 
 .deleteIcon {
-	color: #b20061;
-	transform: scale(1.5);
+	color: #4a4a4a;
+	transform:scale(1);
 }
 
 
@@ -710,3 +718,18 @@ li {
 /*** KEY FRAMES ***/
 /******************/
 
+
+@keyframes deleteIcons {
+	0%{
+		transform:scale(1);
+		color: #4a4a4a;
+	}
+	50% {
+		transform:scale(1.9);
+		color: #b20061
+	}
+	100%{
+		transform:scale(1);
+		color:#4a4a4a;
+	}
+}
