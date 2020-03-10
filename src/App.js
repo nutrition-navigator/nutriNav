@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
-import axios from 'axios';
-import Favourites from './pages/Favourites';
-import FoodDetail from './pages/FoodDetail';
-import Compare from './pages/Compare';
-import Home from './pages/Home';
-import Toaster from './components/Toaster';
-import firebase from './firebaseConfig';
-import './App.css';
-import creds from './apiKey';
+import React, { Component } from "react";
+import { HashRouter as Router, Route } from "react-router-dom";
+import axios from "axios";
+import Favourites from "./pages/Favourites";
+import FoodDetail from "./pages/FoodDetail";
+import Compare from "./pages/Compare";
+import Home from "./pages/Home";
+import Toaster from "./components/Toaster";
+import firebase from "./firebaseConfig";
+import "./App.css";
+import creds from "./apiKey";
 
 // const creds = {
 //   key: "0d45466c03d80039b01119cd195711a9",
@@ -44,35 +44,35 @@ class App extends Component {
     };
   }
 
-	componentDidMount() {
-		this.getNutrients(); // get nutrients from API in raw state
-		this.randomSearch();
-    this.getAllSaved('userCompared');
-    this.getAllSaved('userFavourites');
-	}
+  componentDidMount() {
+    this.getNutrients(); // get nutrients from API in raw state
+    this.randomSearch();
+    this.getAllSaved("userCompared");
+    this.getAllSaved("userFavourites");
+  }
 
-	//Function to access firebase and retrieve userCompared and userFavourites array to store in state.
-	getAllSaved = state => {
-		const dbRef = firebase.database().ref(`${state}`);
-		dbRef.on('value', response => {
-			const savedFromDB = response.val();
-			const arraySaved = [];
-			for (let key in savedFromDB) {
-				arraySaved.push({
-					key: key,
-					id: savedFromDB[key].id,
-					name: savedFromDB[key].name,
-					brand: savedFromDB[key].brand,
-					serving: savedFromDB[key].serving,
-					servingUnit: savedFromDB[key].servingUnit,
-					servingWeight: savedFromDB[key].servingWeight,
-					imgURL: savedFromDB[key].imgURL,
-					mainNutrients: savedFromDB[key].mainNutrients,
-					secondaryNutrients: savedFromDB[key].secondaryNutrients
-				});
-			}
-		});
-	}
+  //Function to access firebase and retrieve userCompared and userFavourites array to store in state.
+  getAllSaved = state => {
+    const dbRef = firebase.database().ref(`${state}`);
+    dbRef.on("value", response => {
+      const savedFromDB = response.val();
+      const arraySaved = [];
+      for (let key in savedFromDB) {
+        arraySaved.push({
+          key: key,
+          id: savedFromDB[key].id,
+          name: savedFromDB[key].name,
+          brand: savedFromDB[key].brand,
+          serving: savedFromDB[key].serving,
+          servingUnit: savedFromDB[key].servingUnit,
+          servingWeight: savedFromDB[key].servingWeight,
+          imgURL: savedFromDB[key].imgURL,
+          mainNutrients: savedFromDB[key].mainNutrients,
+          secondaryNutrients: savedFromDB[key].secondaryNutrients
+        });
+      }
+    });
+  };
 
   getAllSaved = state => {
     const dbRef = firebase.database().ref(`${state}`);
@@ -141,7 +141,7 @@ class App extends Component {
         duration: 5000
       });
     } else {
-			console.log('not added');
+      console.log("not added");
       this.isNotDuplicate(food.id, state)
         ? this.runToaster({
             overall: `SAVE FAILED`,
@@ -319,33 +319,33 @@ class App extends Component {
     });
   };
 
-	// Function to random decide some initial search results on page load
-	randomSearch = () => {
-		const randomArray = ['corn', 'spinach', 'burger', 'broccoli'];
-		const randomInteger = Math.floor(Math.random() * 4);
-		this.fetchFood(randomArray[randomInteger]);
-	};
+  // Function to random decide some initial search results on page load
+  randomSearch = () => {
+    const randomArray = ["corn", "spinach", "burger", "broccoli"];
+    const randomInteger = Math.floor(Math.random() * 4);
+    this.fetchFood(randomArray[randomInteger]);
+  };
 
-	// Function that tracks which letters the user is typing into the search bar
-	userSearch = e => {
-		const query = e.target.value;
-		this.fetchFood(query);
-	};
+  // Function that tracks which letters the user is typing into the search bar
+  userSearch = e => {
+    const query = e.target.value;
+    this.fetchFood(query);
+  };
 
-	// Function to switch between displaying either commmon foods or branded foods to the user.
-	foodTypeButtonClick = e => {
-		this.setState({
-			type: e.target.id
-		});
-	};
+  // Function to switch between displaying either commmon foods or branded foods to the user.
+  foodTypeButtonClick = e => {
+    this.setState({
+      type: e.target.id
+    });
+  };
 
   foodTypeButtonClick = e => {
     this.setState({
       type: e.target.id
     });
   };
-	
-	// Function to remove an item in compare or userFavourites
+
+  // Function to remove an item in compare or userFavourites
   removeItem = (key, state) => {
     const dbRef = firebase.database().ref(state);
     dbRef.child(key).remove();
@@ -368,6 +368,7 @@ class App extends Component {
                   }
                   userSearch={this.userSearch}
                   foodTypeButtonClick={this.foodTypeButtonClick}
+                  type={this.state.type}
                 />
               )}
             />
