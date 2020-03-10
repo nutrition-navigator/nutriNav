@@ -8,12 +8,12 @@ import Home from './pages/Home';
 import Toaster from './components/Toaster';
 import firebase from './firebaseConfig';
 import './App.css';
-// import creds from './apiKey';
+import creds from './apiKey';
 
-const creds = {
-  key: "0d45466c03d80039b01119cd195711a9",
-  id: "ff87fb2a"
-};
+// const creds = {
+//   key: "0d45466c03d80039b01119cd195711a9",
+//   id: "ff87fb2a"
+// };
 
 class App extends Component {
   constructor() {
@@ -41,8 +41,6 @@ class App extends Component {
       toaster: {
         hidden: true
 			},
-			toggleCommon: true,
-			toggleBranded: false,
     };
   }
 
@@ -289,9 +287,7 @@ class App extends Component {
 	foodTypeButtonClick = e => {
 		this.setState({
 			type: e.target.id,
-			toggleCommon: true,
-			toggleBranded: false,
-		}, () => {console.log(this.state.toggleCommon, this.state.toggleBranded)});
+		})
 	};
 
 	killToaster = duration => {
@@ -314,7 +310,7 @@ class App extends Component {
       <Router basename="/">
         <div className="App">
           <header className="App-header">
-            <Route path="/" exact render={() => <Home foodItems={this.state.type === "branded" ? this.state.brandedFood : this.state.commonFood} userSearch={this.userSearch} foodTypeButtonClick={this.foodTypeButtonClick} />} />
+            <Route path="/" exact render={() => <Home foodItems={this.state.type === "branded" ? this.state.brandedFood : this.state.commonFood} userSearch={this.userSearch} foodTypeButtonClick={this.foodTypeButtonClick} type={this.state.type} />} />
             <Route path="/favourites" render={() => <Favourites savedFoods={this.state.userFavourites} removeItem={this.removeItem} />} />
             <Route path="/compare" render={() => <Compare userCompared={this.state.userCompared} removeItem={this.removeItem} />} />
             <Route exact path="/food/:type/:id" render={props => <FoodDetail id={props.match.params.id} type={props.match.params.type} getDetails={this.getDetails} completeFoodNutrients={this.completeFoodNutrients} completeFood={this.completeFood} addToSaved={this.addToSaved}></FoodDetail>} />
