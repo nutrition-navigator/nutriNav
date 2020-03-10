@@ -6,7 +6,6 @@ import FoodResults from '../components/FoodResults';
 
 class Home extends Component {
 	render() {
-		console.log(this.props.type)
 		return (
 			<div className="home">
 				<Nav />
@@ -25,14 +24,14 @@ class Home extends Component {
 
 							<div className="toggleBtns">
 								<button
-									className={this.props.type === 'common' ? "toggle toggleCommon toggleActive" : "toggle toggleCommon" }
+									className="toggle toggleCommon"
 									id="common"
 									onClick={this.props.foodTypeButtonClick}
 								>
 									Common
 								</button>
 								<button
-									className={this.props.type === 'branded' ? "toggle toggleBranded toggleActive" : "toggle toggleBranded" }
+									className="toggle toggleBranded"
 									id="branded"
 									onClick={this.props.foodTypeButtonClick}
 								>
