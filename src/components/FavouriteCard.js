@@ -14,6 +14,14 @@ class FavouriteCard extends Component {
     return (
       <Link to={`/food/${type}/${id}`}>
         <div className="foodCard">
+          <button
+            z-index="300"
+            onClick={() => {
+              this.props.removeItem(this.props.foodItem.key, "userFavourites");
+            }}
+          >
+            <FontAwesomeIcon className="deleteIcon" icon={faTimes} />
+          </button >
           <div className="cardImage">
             <img src={this.props.foodItem.imgURL} alt={this.props.foodItem.name} />
           </div>
@@ -21,14 +29,7 @@ class FavouriteCard extends Component {
           <div className="cardContent">
             <h2 className="cardTitle">{this.props.foodItem.brand ? this.props.foodItem.brand : this.props.foodItem.name}</h2>
             {this.props.foodItem.brand ? <h3 className="cardSubtitle">{this.props.foodItem.name}</h3> : null}
-            <button
-              z-index="300"
-              onClick={() => {
-                this.props.removeItem(this.props.foodItem.key, "userFavourites");
-              }}
-            >
-              <FontAwesomeIcon className="deleteIcon" icon={faTimes}/>
-            </button >
+            
           </div>
         </div>
       </Link>
