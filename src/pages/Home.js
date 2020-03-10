@@ -24,14 +24,14 @@ class Home extends Component {
 
 							<div className="toggleBtns">
 								<button
-									className="toggle toggleCommon"
+									className={this.props.type === 'common' ? "toggle toggleCommon toggleActive" : "toggle toggleCommon"}
 									id="common"
 									onClick={this.props.foodTypeButtonClick}
 								>
 									Common
 								</button>
 								<button
-									className="toggle toggleBranded"
+									className={this.props.type === 'branded' ? "toggle toggleBranded toggleActive" : "toggle toggleBranded"}
 									id="branded"
 									onClick={this.props.foodTypeButtonClick}
 								>
