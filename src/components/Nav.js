@@ -18,19 +18,19 @@ class Nav extends Component {
 					<nav>
 						<ul className="navContainer">
 							<div className="navList">
-								<li className="navItem">
+								<li className="navItem" title="Go to Homepage" aria-label="Go to Homepage">
 									<NavLink activeClassName="activeNav" to="/" exact>
 										<FontAwesomeIcon icon={faHome} />
 									</NavLink>
 								</li>
-								<li className="navItem">
+								<li className="navItem" title="Go to Favourited Items Page" aria-label="Go to Favourited Items Page">
 									<NavLink activeClassName="activeNav" to="/favourites">
 										<FontAwesomeIcon icon={faHeart} />
 									</NavLink>
 								</li>
 							</div>
 							<div className="navList">
-								<li className="navLogo">
+								<li className="navLogo" title="Go to Homepage" aria-label="Go to Homepage">
 									<NavLink activeClassName="activeNav" to="/" exact>
 										<img src={logo} alt="" />
 									</NavLink>
@@ -38,12 +38,12 @@ class Nav extends Component {
 							</div>
 
 							<div className="navList">
-								<li className="nav-icon navItem">
+								<li className="nav-icon navItem" title="Go to Search Page" aria-label="Go to Search Page">
 									<NavLink activeClassName="activeNav" to="/" exact>
 										<FontAwesomeIcon icon={faSearch} />
 									</NavLink>
 								</li>
-								<li className="nav-icon navItem">
+								<li className="nav-icon navItem" title="Go to Food Comparing Page" aria-label="Go to Food Comparing Page">
 									<NavLink activeClassName="activeNav" to="/compare">
 										{' '}
 										<FontAwesomeIcon icon={faExchangeAlt} />
