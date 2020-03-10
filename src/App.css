@@ -283,6 +283,14 @@ a {
 	position:relative;
 }
 
+.foodCardLink:focus .foodCard {
+	border: solid 2px #350482;
+}
+
+.foodCardLink:focus {
+	outline: none;
+}
+
 .foodCard button {
 	position: absolute;
 	top:0;
@@ -473,6 +481,10 @@ li {
   padding: 1rem 4.3rem;
   border: none;
   border-radius: 25px;
+}
+
+.toggle:focus {
+	border: solid 2px #350482;
 }
 
 .toggleBranded {
