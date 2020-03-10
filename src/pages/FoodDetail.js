@@ -35,6 +35,10 @@ class FoodDetail extends Component {
     }); // end of .then()
   }
 
+  removeFocus = (e) => {
+    e.target.blur();
+  }
+
 	render() {
 		return this.state.isReady ? (
       <div className="detailPage">
@@ -122,16 +126,18 @@ class FoodDetail extends Component {
             </div>
             <div className="detailControl">
               <button
-                onClick={() => {
+                onClick={(e) => {
                   this.props.addToSaved(this.state.food, "userCompared");
+                  e.target.blur();
                 }}
               >
                 {" "}
                 Add to Compare{" "}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
                   this.props.addToSaved(this.state.food, "userFavourites");
+                  e.target.blur();
                 }}
               >
                 {" "}
