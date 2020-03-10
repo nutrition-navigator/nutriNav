@@ -51,6 +51,7 @@ class App extends Component {
     this.getAllSaved('userFavourites');
 	}
 
+	//Function to access firebase and retrieve userCompared and userFavourites array to store in state.
 	getAllSaved = state => {
 		const dbRef = firebase.database().ref(`${state}`);
 		dbRef.on('value', response => {
@@ -75,6 +76,7 @@ class App extends Component {
 		});
 	};
 
+	// Function to decide which state the array retrieved from firebase is saved to
 	completeSaved = (data, state) => {
 		this.setState({
 			[state]: data
@@ -83,6 +85,7 @@ class App extends Component {
 
 	runToaster = (message, overall, duration) => {};
 
+	// Function to add a custom food object to firebase
 	addToSaved = (food, state) => {
     const max = state === "userCompared" ? this.state.maxCompared : this.state.maxFavourites;
     console.log(
@@ -110,6 +113,7 @@ class App extends Component {
 		}
 	};
 
+	// Function to check if the food object the user is trying to add to compare or favourite is a duplicate 
 	isNotDuplicate = (id, state) => {
 		const copySaved =
 			state === 'userCompared'
@@ -273,17 +277,20 @@ class App extends Component {
 		});
 	};
 
+	// Function to random decide some initial search results on page load
 	randomSearch = () => {
-		const randomArray = ['corn', 'cheese', 'spinach', 'big mac'];
+		const randomArray = ['corn', 'spinach', 'burger', 'broccoli'];
 		const randomInteger = Math.floor(Math.random() * 4);
 		this.fetchFood(randomArray[randomInteger]);
 	};
 
+	// Function that tracks which letters the user is typing into the search bar
 	userSearch = e => {
 		const query = e.target.value;
 		this.fetchFood(query);
 	};
 
+	// Function to switch between displaying either commmon foods or branded foods to the user.
 	foodTypeButtonClick = e => {
 		this.setState({
 			type: e.target.id,
@@ -299,7 +306,8 @@ class App extends Component {
 			});
 		}, duration);
   };
-  
+	
+	// Function to remove an item in compare or userFavourites
   removeItem = (key, state) => {
     const dbRef = firebase.database().ref(state)
     dbRef.child(key).remove();
