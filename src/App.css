@@ -607,3 +607,20 @@ li {
 .comparisonCard .nutrient {
 	font-size: 1.5rem;
 }
+
+/* Toaster */
+
+.toasterContainer {
+	width: 60%;
+}
+
+.toaster.success {
+	background-color: #f4f2f9;
+	color: #350482;
+}
+
+.toaster.failed {
+	background-color: #f4f2f9;
+	color: #b20061;
+
+}
