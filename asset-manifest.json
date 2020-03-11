@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/nutriNav/static/css/main.ef15e54e.chunk.css",
-    "main.js": "/nutriNav/static/js/main.fd6f1e83.chunk.js",
-    "main.js.map": "/nutriNav/static/js/main.fd6f1e83.chunk.js.map",
+    "main.css": "/nutriNav/static/css/main.0575d89b.chunk.css",
+    "main.js": "/nutriNav/static/js/main.fcece330.chunk.js",
+    "main.js.map": "/nutriNav/static/js/main.fcece330.chunk.js.map",
     "runtime-main.js": "/nutriNav/static/js/runtime-main.b00aee75.js",
     "runtime-main.js.map": "/nutriNav/static/js/runtime-main.b00aee75.js.map",
     "static/js/2.a50248fe.chunk.js": "/nutriNav/static/js/2.a50248fe.chunk.js",
     "static/js/2.a50248fe.chunk.js.map": "/nutriNav/static/js/2.a50248fe.chunk.js.map",
     "index.html": "/nutriNav/index.html",
-    "precache-manifest.0624802f0d06f0bdd43fe49e695addcf.js": "/nutriNav/precache-manifest.0624802f0d06f0bdd43fe49e695addcf.js",
+    "precache-manifest.8342fd398540b312e8939c3140f5dfe2.js": "/nutriNav/precache-manifest.8342fd398540b312e8939c3140f5dfe2.js",
     "service-worker.js": "/nutriNav/service-worker.js",
-    "static/css/main.ef15e54e.chunk.css.map": "/nutriNav/static/css/main.ef15e54e.chunk.css.map",
+    "static/css/main.0575d89b.chunk.css.map": "/nutriNav/static/css/main.0575d89b.chunk.css.map",
     "static/js/2.a50248fe.chunk.js.LICENSE.txt": "/nutriNav/static/js/2.a50248fe.chunk.js.LICENSE.txt",
     "static/media/nutriNavLogo.svg": "/nutriNav/static/media/nutriNavLogo.ba2638de.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b00aee75.js",
     "static/js/2.a50248fe.chunk.js",
-    "static/css/main.ef15e54e.chunk.css",
-    "static/js/main.fd6f1e83.chunk.js"
+    "static/css/main.0575d89b.chunk.css",
+    "static/js/main.fcece330.chunk.js"
   ]
 }
