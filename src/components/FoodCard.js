@@ -13,7 +13,7 @@ class FoodCard extends Component {
 		return (
 			
 			<Link className="foodCardLink" to={`/food/${type}/${id}`}>
-				<div className="foodCard" title="Click for details">
+				<div className="foodCard">
 					<div className="cardImage">
 						<img
 							src={this.props.foodItem.photo.thumb}
