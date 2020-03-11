@@ -12,15 +12,7 @@ class FavouriteCard extends Component {
     const type = this.props.foodItem.brand ? "branded" : "common";
     return (
       <div className="foodCard favourite">
-          <button
-            title="Click to Remove"
-            aria-label="Click to Remove from Favourites"
-            onClick={() => {
-              this.props.removeItem(this.props.foodItem.key, "userFavourites");
-            }}
-          >
-            <FontAwesomeIcon className="deleteIcon" icon={faTimes} />
-          </button >
+          
           <Link className="favouriteCardLink" to={`/food/${type}/${id}`}>
             <div className="favCard">
 
@@ -35,6 +27,15 @@ class FavouriteCard extends Component {
               </div>
             </div>
           </Link>
+        <button
+          title="Click to Remove"
+          aria-label="Click to Remove from Favourites"
+          onClick={() => {
+            this.props.removeItem(this.props.foodItem.key, "userFavourites");
+          }}
+        >
+          <FontAwesomeIcon className="deleteIcon" icon={faTimes} />
+        </button >
         </div>
     );
   }
