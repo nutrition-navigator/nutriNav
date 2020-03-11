@@ -98,7 +98,7 @@ class FoodDetail extends Component {
                             this.state.food,
                             'userFavourites'
                           );
-                          e.target.parentNode.blur()
+													e.target.parentNode.blur()
                         }}
                       />
                     </button>
@@ -110,7 +110,7 @@ class FoodDetail extends Component {
                         icon={faExchangeAlt}
                         onClick={(e) => {
                           this.props.addToSaved(this.state.food, 'userCompared');
-                          e.target.parentNode.blur()
+													e.target.parentNode.blur()
                         }}
                       />
                     </button>
