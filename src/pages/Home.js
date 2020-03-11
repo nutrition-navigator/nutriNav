@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Nav from '../components/Nav';
-import TestApp from '../components/TestApp';
-
 import FoodResults from '../components/FoodResults';
 
 class Home extends Component {

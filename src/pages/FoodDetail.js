@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { faExchangeAlt, faHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink } from 'react-router-dom';
 import Nav from '../components/Nav';
 
 class FoodDetail extends Component {

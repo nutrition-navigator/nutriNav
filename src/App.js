@@ -39,7 +39,7 @@ class App extends Component {
       userCompared: [],
       type: "common",
       maxCompared: 3,
-      maxFavourites: 9,
+      maxFavourites: 18,
       toaster: {
         hidden: true
       }
