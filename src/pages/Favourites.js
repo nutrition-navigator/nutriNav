@@ -17,7 +17,7 @@ class Favourites extends Component {
   render() {
     return (
       <div className="favourites">
-        <Nav />
+        <Nav resetFilter={this.props.resetFilter}/>
         <div className="pageContainer">
           <div className="wrapper">
             <h1 className="pageTitle">Saved Items</h1>

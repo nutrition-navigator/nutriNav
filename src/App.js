@@ -35,7 +35,7 @@ class App extends Component {
       nutrients: [], // target nutrients with ids
       userFavourites: [],
       userFavouritesFilt: [],
-      filterString: "corn",
+      filterString: "",
       userCompared: [],
       type: "common",
       maxCompared: 3,
@@ -126,19 +126,19 @@ class App extends Component {
       this.runToaster({
         overall: `SUCCESS`,
         message: `Your food (${food.name}) has been saved.`,
-        duration: 5000
+        duration: 2500
       });
     } else {
       this.isNotDuplicate(food.id, state)
         ? this.runToaster({
             overall: `SAVE FAILED`,
             message: `Unable to add. The list is full`,
-            duration: 3000
+            duration: 2500
           })
         : this.runToaster({
             overall: `SAVE FAILED`,
             message: `This food (${food.name}) is already saved.`,
-            duration: 3000
+            duration: 2500
           });
     }
   };
@@ -163,7 +163,7 @@ class App extends Component {
     this.runToaster({
       overall: `SUCCESS`,
       message: `The food item has been removed.`,
-      duration: 3000
+      duration: 2500
     });
   };
 
@@ -347,7 +347,16 @@ class App extends Component {
     this.setState({
       userFavouritesFilt: filteredData
     });
-  };
+	};
+	
+	// brings the saved favourites into an unfiltered state
+	resetFilter = () => {
+		console.log('resetFilter()', this.state.userFavourites);
+		this.setState({
+			filterString: '',
+			userFavouritesFilt: this.state.userFavourites,
+		})
+	}
 
   render() {
     return (
@@ -365,7 +374,8 @@ class App extends Component {
                 }
                 userSearch={this.userSearch}
                 foodTypeButtonClick={this.foodTypeButtonClick}
-                type={this.state.type}
+								type={this.state.type}
+								resetFilter={this.resetFilter}
               />
             )}
           />
@@ -375,7 +385,8 @@ class App extends Component {
               <Favourites
                 savedFoods={this.state.userFavouritesFilt}
                 updateFilterString={this.updateFilterString}
-                removeItem={this.removeItem}
+								removeItem={this.removeItem}
+								resetFilter={this.resetFilter}
               />
             )}
           />
@@ -384,7 +395,8 @@ class App extends Component {
             render={() => (
               <Compare
                 userCompared={this.state.userCompared}
-                removeItem={this.removeItem}
+								removeItem={this.removeItem}
+								resetFilter={this.resetFilter}
               />
             )}
           />
@@ -398,7 +410,8 @@ class App extends Component {
                 getDetails={this.getDetails}
                 completeFoodNutrients={this.completeFoodNutrients}
                 completeFood={this.completeFood}
-                addToSaved={this.addToSaved}
+								addToSaved={this.addToSaved}
+								resetFilter={this.resetFilter}
               ></FoodDetail>
             )}
           />
