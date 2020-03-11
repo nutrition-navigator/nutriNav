@@ -870,6 +870,19 @@ li {
 	height: 100%;
 }
 
+@media only screen and (max-width: 800px) {
+	.comparisonContainer {
+		flex-direction: column;
+	}
+	.comparisonCard {
+		width: 100%;
+	}
+
+	.comparisonCard:not(:last-child) {
+		margin-bottom: 3rem;
+	}
+}
+
 @media only screen and (max-width: 530px) {
 	.introLeft {
 		flex-direction: column;
