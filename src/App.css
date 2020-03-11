@@ -832,3 +832,13 @@ li {
 .comparisonCard button:focus {
   border: solid 2px #350482;
 }
+
+/* filtering */
+
+.pageFilter {
+  height: 50px;
+}
+
+.pageFilter input {
+  height: 100%;
+}
