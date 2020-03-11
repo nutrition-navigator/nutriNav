@@ -12,7 +12,7 @@ class FoodCard extends Component {
 
 		return (
 			
-			<Link to={`/food/${type}/${id}`}>
+			<Link className="foodCardLink" to={`/food/${type}/${id}`}>
 				<div className="foodCard">
 					<div className="cardImage">
 						<img
