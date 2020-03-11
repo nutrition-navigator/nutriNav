@@ -93,11 +93,12 @@ class FoodDetail extends Component {
                       >
                       <FontAwesomeIcon
                         icon={faHeart}
-                        onClick={() => {
+                        onClick={(e) => {
                           this.props.addToSaved(
                             this.state.food,
                             'userFavourites'
                           );
+                          e.target.parentNode.blur()
                         }}
                       />
                     </button>
@@ -107,8 +108,9 @@ class FoodDetail extends Component {
                       >
                       <FontAwesomeIcon
                         icon={faExchangeAlt}
-                        onClick={() => {
+                        onClick={(e) => {
                           this.props.addToSaved(this.state.food, 'userCompared');
+                          e.target.parentNode.blur()
                         }}
                       />
                     </button>
