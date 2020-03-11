@@ -42,7 +42,8 @@ class App extends Component {
       maxFavourites: 18,
       toaster: {
         hidden: true
-      }
+			},
+			hasUserTyped:false
     };
   }
 
@@ -318,18 +319,23 @@ class App extends Component {
     });
   };
 
-  // Function to random decide some initial search results on page load
-  randomSearch = () => {
-    const randomArray = ["corn", "spinach", "burger", "broccoli"];
-    const randomInteger = Math.floor(Math.random() * 4);
-    this.fetchFood(randomArray[randomInteger]);
-  };
+	// Function to random decide some initial search results on page load
+	randomSearch = () => {
+		const randomArray = ['corn', 'spinach', 'burger', 'broccoli'];
+		const randomInteger = Math.floor(Math.random() * randomArray.length);
+		this.fetchFood(randomArray[randomInteger]);
+	};
 
-  // Function that tracks which letters the user is typing into the search bar
-  userSearch = e => {
-    const query = e.target.value;
+	// Function that tracks which letters the user is typing into the search bar
+	userSearch = e => {
+		const query = e.target.value;
     this.fetchFood(query);
-  };
+    if (this.state.hasUserTyped===false) {
+      this.setState({
+        hasUserTyped:true,
+      })
+    }
+	};
 
   // Function to switch between displaying either commmon foods or branded foods to the user.
   foodTypeButtonClick = e => {
@@ -376,6 +382,7 @@ class App extends Component {
                 foodTypeButtonClick={this.foodTypeButtonClick}
 								type={this.state.type}
 								resetFilter={this.resetFilter}
+								hasUserTyped={this.state.hasUserTyped}
               />
             )}
           />

@@ -12,7 +12,7 @@ class FavouriteCard extends Component {
     const type = this.props.foodItem.brand ? "branded" : "common";
     console.log(type);
     return (
-      <div className="foodCard favourite">
+      <div className="foodCard favourite" title="Click for details">
           <button
             title="Click to Remove"
             aria-label="Click to Remove from Favourites"
