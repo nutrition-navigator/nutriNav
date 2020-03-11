@@ -835,12 +835,6 @@ li {
 	border: solid 2px #350482;
 }
 
-@media only screen and (max-width: 425px) {
-	#search {
-		width: 23rem;
-	}
-
-	.navItem {
-		font-size: 2rem;
-	}
+.home input#search:focus {
+  border: solid 2px #350482;
 }
