@@ -21,174 +21,174 @@ hgroup,
 nav,
 section,
 summary {
-  display: block;
+	display: block;
 }
 audio,
 canvas,
 video {
-  display: inline-block;
+	display: inline-block;
 }
 audio:not([controls]) {
-  display: none;
-  height: 0;
+	display: none;
+	height: 0;
 }
 [hidden] {
-  display: none;
+	display: none;
 }
 html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
 }
 a:focus {
   outline: dotted;
 }
 a:active,
 a:hover {
-  outline: 0;
+	outline: 0;
 }
 h1 {
-  font-size: 2em;
+	font-size: 2em;
 }
 abbr[title] {
-  border-bottom: 1px dotted;
+	border-bottom: 1px dotted;
 }
 b,
 strong {
-  font-weight: 700;
+	font-weight: 700;
 }
 dfn {
-  font-style: italic;
+	font-style: italic;
 }
 mark {
-  background: #ff0;
-  color: #000;
+	background: #ff0;
+	color: #000;
 }
 code,
 kbd,
 pre,
 samp {
-  font-family: monospace, serif;
-  font-size: 1em;
+	font-family: monospace, serif;
+	font-size: 1em;
 }
 pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 q {
-  quotes: \201c \201d \2018 \2019;
+	quotes: \201c \201d \2018 \2019;
 }
 small {
-  font-size: 80%;
+	font-size: 80%;
 }
 sub,
 sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
 }
 sup {
-  top: -0.5em;
+	top: -0.5em;
 }
 sub {
-  bottom: -0.25em;
+	bottom: -0.25em;
 }
 img {
-  border: 0;
+	border: 0;
 }
 svg:not(:root) {
-  overflow: hidden;
+	overflow: hidden;
 }
 fieldset {
-  border: 1px solid silver;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
+	border: 1px solid silver;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
 }
 button,
 input,
 select,
 textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
 }
 button,
 input {
-  line-height: normal;
+	line-height: normal;
 }
 button,html input[type=button],/* 1 */input[type=reset],input[type=submit] {
-  -webkit-appearance: button;
-  cursor: pointer;
+	-webkit-appearance: button;
+	cursor: pointer;
 }
 button[disabled],
 input[disabled] {
-  cursor: default;
+	cursor: default;
 }
-input[type="checkbox"],
-input[type="radio"] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-input[type="search"] {
-  -webkit-appearance: textfield;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
+input[type='checkbox'],
+input[type='radio'] {
+	box-sizing: border-box;
+	padding: 0;
 }
 
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+input[type='search'] {
+	-webkit-appearance: textfield;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+	-webkit-appearance: none;
 }
 textarea {
-  overflow: auto;
-  vertical-align: top;
+	overflow: auto;
+	vertical-align: top;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 body,
 figure {
-  margin: 0;
+	margin: 0;
 }
 legend,
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
+	border: 0;
+	padding: 0;
 }
 
 .clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: "";
-  clear: both;
-  height: 0;
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: '';
+	clear: both;
+	height: 0;
 }
 
 * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 .visuallyHidden:not(:focus):not(:active) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(00 0 0);
-  overflow: hidden;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(00 0 0);
+	overflow: hidden;
 }
 
 /*************/
@@ -196,7 +196,7 @@ input::-moz-focus-inner {
 /*************/
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
@@ -212,47 +212,49 @@ h4 {
 }
 
 p {
-
-
 	font-size: 1.7rem;
 	line-height: 2.4rem;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 .wrapper {
-  max-width: 108.7rem;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
+	max-width: 108.7rem;
+	margin: 0 auto;
+	padding: 0 2rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .btn {
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  background: #b20061;
-  padding: 1rem 10rem;
-  border: none;
-  border-radius: 25px;
+	font-size: 1.4rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #fff;
+	background: #b20061;
+	padding: 1rem 10rem;
+	border: none;
+	border-radius: 25px;
 }
 
 .pageContainer {
-  margin-top: 5rem;
+	padding-top: 5rem;
 }
 
 .pageTitle {
-  text-transform: uppercase;
-  font-size: 3.8rem;
-  font-weight: 800;
-  color: #b20061;
-  margin-bottom: 5rem;
-  text-align: center;
+	text-transform: uppercase;
+	font-size: 3.8rem;
+	font-weight: 800;
+	color: #b20061;
+	margin-bottom: 5rem;
+	text-align: center;
+}
+
+.App {
+	margin-top: 100px;
 }
 
 /**********************/
@@ -271,7 +273,7 @@ a {
 /****************/
 
 .foodCard {
-	width: 34rem;
+	width: 31rem;
 	height: 14.5rem;
 	margin-bottom: 3.5rem;
 	display: flex;
@@ -280,29 +282,28 @@ a {
 	padding: 3rem 2rem;
 	align-items: center;
 	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
-	position:relative;
+	position: relative;
 }
 
 .foodCard button {
 	position: absolute;
-	top:0;
-	right:0;
+	top: 0;
+	right: 0;
 	margin: 10px 20px 10px 20px;
 	font-size: 2.75rem;
 }
 
-
 .foodCard img {
-  object-fit: cover;
-  display: block;
-  height: 8.1rem;
-  width: 12rem;
-  border-radius: 15px;
+	object-fit: cover;
+	display: block;
+	height: 8.1rem;
+	width: 12rem;
+	border-radius: 15px;
 }
 
 .cardContent {
-  /* padding: 3.5rem 2rem 3rem 2rem; */
-  margin-left: 2rem;
+	/* padding: 3.5rem 2rem 3rem 2rem; */
+	margin-left: 2rem;
 }
 
 .cardTitle {
@@ -312,60 +313,60 @@ a {
 }
 
 .cardSubtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
+	font-size: 1.2rem;
+	font-weight: 400;
 }
 
 .favCard {
 	display: flex;
-	align-items:center;
+	align-items: center;
 	justify-content: center;
 }
 
 /* Ania's Begins FoodDetail -----------------> */
 button {
-  /* height: 50px; */
-  font-size: 2rem;
-  border: none;
-  background-color: rgba(255, 255, 255, 0);
+	/* height: 50px; */
+	font-size: 2rem;
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
 }
 
 li {
-  font-size: 2rem;
-  list-style: none;
+	font-size: 2rem;
+	list-style: none;
 }
 
 .detail {
-  height: auto;
+	height: auto;
 }
 
 .detailTitle {
-  text-transform: capitalize;
+	text-transform: capitalize;
 }
 
 .col1,
 .col2,
 .col3,
 .row {
-  display: inline-block;
+	display: inline-block;
 }
 
 .col1 {
-  width: 45%;
+	width: 45%;
 }
 
 .col2 {
-  width: 30%;
+	width: 30%;
 }
 
 .row {
-  width: 90%;
-  border-bottom: 2px solid #ffe1f9;
+	width: 90%;
+	border-bottom: 2px solid #ffe1f9;
 }
 
 .detail {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .detailIngredients {
@@ -374,15 +375,15 @@ li {
 .detailOtherIngredients,
 .detailMainIngredients,
 .detailDescription {
-  margin-top: 3%;
+	margin-top: 3%;
 }
 
 .detailControl {
-  margin-top: 3%;
+	margin-top: 3%;
 }
 
 .null {
-  color: rgb(158, 155, 155);
+	color: rgb(158, 155, 155);
 }
 
 /* Ania's Ends -----------------> */
@@ -393,15 +394,14 @@ li {
 
 .deleteIcon {
 	color: #4a4a4a;
-	transform:scale(1);
+	transform: scale(1);
 }
-
 
 .deleteIcon:hover,
 .deleteIcon:focus,
 .detailButtons button:hover,
 .detailButtons button:focus {
-  animation: deleteIcons 1s ease-in-out infinite;
+	animation: deleteIcons 1s ease-in-out infinite;
 }
 
 /***********/
@@ -409,20 +409,24 @@ li {
 /***********/
 
 .navigation {
-  background: #f4f2f9;
+	background: #f4f2f9;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1;
 }
 
 .activeNav {
-  color: #b20061;
+	color: #b20061;
 }
 
 .navList {
-  display: flex;
+	display: flex;
 }
 
 .navItem {
-  list-style: none;
-  color: #748a9d;
+	list-style: none;
+	color: #748a9d;
 	font-size: 2.75rem;
 	transition: all 0.5s;
 }
@@ -433,23 +437,23 @@ li {
 }
 
 .navLogo {
-  height: 4rem;
+	height: 4rem;
 }
 
 .navLogo img {
-  height: 100%;
+	height: 100%;
 }
 
 .navItem:not(:last-child) {
-  margin-right: 5.5rem;
+	margin-right: 5.5rem;
 }
 
 .navContainer {
-  padding: 3rem 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	padding: 3rem 0;
+	margin: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 /***********/
@@ -469,26 +473,26 @@ li {
 }
 
 .searchBar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .toggleBtns {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4rem;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 4rem;
 }
 
 .toggle {
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  background: #b20061;
-  padding: 1rem 4.3rem;
-  border: none;
-  border-radius: 25px;
+	font-size: 1.4rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #fff;
+	background: #b20061;
+	padding: 1rem 4.3rem;
+	border: none;
+	border-radius: 25px;
 }
 
 .toggle:focus {
@@ -496,8 +500,8 @@ li {
 }
 
 .toggleBranded {
-  border-radius: 0 36px 36px 0;
-  background: #d8d8d8;
+	border-radius: 0 36px 36px 0;
+	background: #d8d8d8;
 }
 
 .toggleCommon {
@@ -510,41 +514,54 @@ li {
 }
 
 /**************/
+/*** NO RESULTS ***/
+/**************/
+
+.noResults {
+	display: flex;
+	flex-direction: column;
+	margin-top: 2rem;
+}
+
+.noResults img {
+	width: 35%;
+	margin: 0 auto 2rem auto;
+}
+
+/**************/
 /*** DETAIL ***/
 /**************/
 
 .detailContainer {
-	margin-top: 5rem;
-	margin: 5rem 0;
+	padding: 5rem 0;
 }
 
 .detailContainer .wrapper {
-  flex-direction: column-reverse;
-  align-items: center;
+	flex-direction: column-reverse;
+	align-items: center;
 }
 
 .detailControl button {
 	margin: 0 30px;
 	color: #4a4a4a;
 	transform: scale(1);
-
 }
 
 .detailControl button:hover,
 .detailControl button:focus {
-  animation: addButtons 1s ease-in-out infinite;
+	animation: addButtons 1s ease-in-out infinite;
 }
 
 .detailControl button:active {
-	transform:scale(1.3);
+	transform: scale(1.3);
 	color: #b20061;
 }
 
 .detailContent {
-  width: 100%;
-  background: #f4f2f9;
-  padding: 4rem;
-  border-radius: 25px;
+	width: 100%;
+	background: #f4f2f9;
+	padding: 4rem;
+	border-radius: 25px;
 }
 
 .detailIntro {
@@ -555,52 +572,50 @@ li {
 
 .introLeft {
 	display: flex;
-
 }
 
 .detailDesc {
-  margin-left: 3rem;
+	margin-left: 3rem;
 }
 
 .introLeft {
-  width: 50%;
+	width: 50%;
 }
 
 .detailImgContainer {
-  width: 35%;
+	width: 35%;
 }
 
 .detailContainer h1 {
-  font-size: 3rem;
-  color: #b20061;
+	font-size: 3rem;
+	color: #b20061;
 }
 
 .detailContainer h2 {
-  font-size: 2rem;
-  color: #350482;
-  font-weight: 600;
+	font-size: 2rem;
+	color: #350482;
+	font-weight: 600;
 }
 
 .detailImg {
-  height: 175px;
-  width: 175px;
+	height: 175px;
+	width: 175px;
 }
 
 .detailImg img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: 25px;
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 25px;
 }
 
 .detailNutrition h2 {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .detailButtons button svg {
 	font-size: 2.75rem;
-	
 }
 
 .detailButtons button {
@@ -612,12 +627,12 @@ li {
 }
 
 .detailNutritionFacts {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .nutrientList {
-  width: 40%;
+	width: 40%;
 }
 
 .nutrientName {
@@ -625,16 +640,16 @@ li {
 }
 
 .nutrient {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 /* COMPARE PAGE STYLES */
 
 .comparisonCard img {
-  display: block;
-  width: 100%;
-  height: 100%;
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 /* .comparisonCard .imageContainer {
@@ -644,125 +659,128 @@ li {
 } */
 
 .comparisonContainer {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .comparisonCard {
-  width: 32%;
-  padding: 3rem;
-  background: #f4f2f9;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
+	width: 32%;
+	padding: 3rem;
+	background: #f4f2f9;
+	border-radius: 25px;
+	display: flex;
+	flex-direction: column;
 }
 
 .comparisonCard button {
-  text-align: center;
+	text-align: center;
 }
 
 .imageContainer {
-  margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
 
 .comparisonCard img {
-  display: block;
-  width: 100%;
-  height: 25rem;
-  object-fit: cover;
-  border-radius: 25px;
+	display: block;
+	width: 100%;
+	height: 25rem;
+	object-fit: cover;
+	border-radius: 25px;
 }
 
 .comparisonCard:not(:last-child) {
-  margin-right: calc(8% / 2);
+	margin-right: calc(8% / 2);
 }
 
 .comparisonPage h1 {
-  color: #b20061;
-  padding-top: 50px;
-  font-size: 3rem;
+	color: #b20061;
+	padding-top: 50px;
+	font-size: 3rem;
 }
 
 .comparisonCard h3 {
-  color: #b20061;
-  text-transform: capitalize;
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  min-height: 10vh;
+	color: #b20061;
+	text-transform: capitalize;
+	font-size: 2.5rem;
+	margin-bottom: 0.5rem;
+	min-height: 10vh;
 }
 
 .comparisonCard h4 {
-  font-size: 1.75rem;
-  font-weight: 500;
-  color: #350482;
-  margin-bottom: 0.5rem;
+	font-size: 1.75rem;
+	font-weight: 500;
+	color: #350482;
+	margin-bottom: 0.5rem;
 }
 
 .comparisonCard ul:not(:last-child) {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .comparisonCard .nutrient {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 /* Toaster */
 
 .toasterContainer {
-  transform: scale(0);
-  width: 180px;
-  position: absolute;
-  top: 10px;
-	right: 10px;
-	transition: transform 1s; 
+	max-width: 500px;
+	top: 110px;
+	transition: transform 1s;
+	z-index: 3;
+	left: 0;
+	right: 0;
+	margin: auto;
+	position: fixed;
 }
 
 .toasterContainer.hide {
-  transform: scale(0);
+	transform: scale(0);
 }
 
 .toasterContainer.show {
-  transform: scale(1);
+	transform: scale(1);
 }
 
 .toaster {
-  height: 100px;
+	padding: 2rem;
+
+	border-radius: 15px;
 }
 
 .toaster.success {
-  background-color: #cdc2df;
-  color: #350482;
+	background-color: #cdc2df;
+	color: #350482;
 }
 
 .toaster.failed {
-  background-color: #f6cee4;
-  color: #b20061;
+	background-color: #f6cee4;
+	color: #b20061;
 }
 /******************/
 /*** KEY FRAMES ***/
 /******************/
 
-
 @keyframes deleteIcons {
-	0%{
-		transform:scale(1);
+	0% {
+		transform: scale(1);
 		color: #4a4a4a;
 	}
 	50% {
-		transform:scale(1.9);
-		color: #b20061
+		transform: scale(1.9);
+		color: #b20061;
 	}
-	100%{
-		transform:scale(1);
-		color:#4a4a4a;
+	100% {
+		transform: scale(1);
+		color: #4a4a4a;
 	}
 }
 
 /******************/
 /*** ACCESSIBILTY ***/
 /******************/
-
 .foodCardLink:focus .foodCard {
+
 	border: solid 2px #350482;
 }
 
@@ -778,11 +796,11 @@ li {
 	outline: none;
 }
 
-.foodCard button:focus .deleteIcon {
 	color: #b20061;
+.foodCard button:focus .deleteIcon {
 	transform: scale(1.3);
-}
 
+}
 .foodCardLink:focus {
 	outline: none;
 }

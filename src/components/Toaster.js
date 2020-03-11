@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Toaster extends Component {
-  constructor() {
-    super();
-    this.state = {
-      theme: {
-        "SUCCESS" : "success",
-        "SAVE FAILED": "failed",
-      }
-    }
-  }
+	constructor() {
+		super();
+		this.state = {
+			theme: {
+				SUCCESS: 'success',
+				'SAVE FAILED': 'failed'
+			}
+		};
+	}
 
   render() {
     const theme = this.state.theme[this.props.overall];
