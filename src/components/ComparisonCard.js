@@ -19,8 +19,7 @@ function ComparisonCard(props) {
 							<div className="nutrient">
 								<div className="nutrientName">{secondNutrient.name}</div>
 								<div className="nutrientUnit">
-									{secondNutrient.value}
-									{secondNutrient.unit}
+									{secondNutrient.value} {secondNutrient.unit}
 								</div>
 							</div>
 						</li>
@@ -36,8 +35,7 @@ function ComparisonCard(props) {
 							<div className="nutrient">
 								<div className="nutrientName">{nutrient.name}</div>
 								<div className="nutrientUnit">
-									{nutrient.value}
-									{nutrient.unit}
+									{nutrient.value} {nutrient.unit}
 								</div>
 							</div>
 						</li>
