@@ -126,12 +126,12 @@ class App extends Component {
 						overall: `SAVE FAILED`,
 						message: `Unable to add. The list is full`,
 						duration: 3000
-				  })
+				})
 				: this.runToaster({
 						overall: `SAVE FAILED`,
 						message: `This food (${food.name}) is already saved.`,
 						duration: 3000
-				  });
+				});
 		}
 	};
 
@@ -330,75 +330,76 @@ class App extends Component {
 		});
 	};
 
-	render() {
-		return (
-			<Router basename="/">
-				<div className="App">
-					<Route
-						path="/"
-						exact
-						render={() => (
-							<Home
-								foodItems={
-									this.state.type === 'branded'
-										? this.state.brandedFood
-										: this.state.commonFood
-								}
-								userSearch={this.userSearch}
-								foodTypeButtonClick={this.foodTypeButtonClick}
-								type={this.state.type}
-							/>
-						)}
-					/>
-					<Route
-						path="/favourites"
-						render={() => (
-							<Favourites
-								savedFoods={this.state.userFavourites}
-								removeItem={this.removeItem}
-							/>
-						)}
-					/>
-					<Route
-						path="/compare"
-						render={() => (
-							<Compare
-								userCompared={this.state.userCompared}
-								removeItem={this.removeItem}
-							/>
-						)}
-					/>
-					<Route
-						exact
-						path="/food/:type/:id"
-						render={props => (
-							<FoodDetail
-								id={props.match.params.id}
-								type={props.match.params.type}
-								getDetails={this.getDetails}
-								completeFoodNutrients={this.completeFoodNutrients}
-								completeFood={this.completeFood}
-								addToSaved={this.addToSaved}
-							></FoodDetail>
-						)}
-					/>
+	
 
-					<div
-						className={
-							this.state.toaster.hidden
-								? 'toasterContainer hide'
-								: 'toasterContainer show'
-						}
-					>
-						<Toaster
-							overall={this.state.toaster.overall}
-							message={this.state.toaster.message}
-						/>
-					</div>
-				</div>
-			</Router>
-		);
-	}
+  render() {
+    return (
+      <Router basename="/">
+        <div className="App">
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <Home
+                  foodItems={
+                    this.state.type === "branded"
+                      ? this.state.brandedFood
+                      : this.state.commonFood
+                  }
+                  userSearch={this.userSearch}
+                  foodTypeButtonClick={this.foodTypeButtonClick}
+                  type={this.state.type}
+                />
+              )}
+            />
+            <Route
+              path="/favourites"
+              render={() => (
+                <Favourites
+                  savedFoods={this.state.userFavourites}
+                  removeItem={this.removeItem}
+                />
+              )}
+            />
+            <Route
+              path="/compare"
+              render={() => (
+                <Compare
+                  userCompared={this.state.userCompared}
+                  removeItem={this.removeItem}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/food/:type/:id"
+              render={props => (
+                <FoodDetail
+                  id={props.match.params.id}
+                  type={props.match.params.type}
+                  getDetails={this.getDetails}
+                  completeFoodNutrients={this.completeFoodNutrients}
+                  completeFood={this.completeFood}
+                  addToSaved={this.addToSaved}
+                ></FoodDetail>
+              )}
+            />
+          <div
+            className={
+              this.state.toaster.hidden
+                ? "toasterContainer hide"
+                : "toasterContainer show"
+            }
+          >
+            <Toaster
+              overall={this.state.toaster.overall}
+              message={this.state.toaster.message}
+            />
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

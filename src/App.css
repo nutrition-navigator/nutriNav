@@ -536,6 +536,13 @@ li {
 	padding: 5rem 0;
 }
 
+.detailContainer .spinner {
+  font-size: 4rem;
+  transform:rotate(0deg);
+  animation: spinner 3s linear infinite;
+  color: #350482;
+}
+
 .detailContainer .wrapper {
 	flex-direction: column-reverse;
 	align-items: center;
@@ -661,16 +668,21 @@ li {
 }
 
 .comparisonCard {
-	width: 32%;
-	padding: 3rem;
-	background: #f4f2f9;
-	border-radius: 25px;
-	display: flex;
-	flex-direction: column;
+  width: 32%;
+  padding: 3.8rem 3rem 3rem 3rem;
+  background: #f4f2f9;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  position:relative;
 }
 
 .comparisonCard button {
-	text-align: center;
+  text-align: center;
+  font-size: 2.75rem;
+  position: absolute;
+  top:4px;
+  right:14px;
 }
 
 .imageContainer {
@@ -773,6 +785,18 @@ li {
 	}
 }
 
+@keyframes spinner {
+  0% {
+    transform:rotate(0)
+  }
+  50% {
+    transform:rotate(180deg)
+  }
+  100% {
+    transform:rotate(360deg)
+  }
+
+}
 /******************/
 /*** ACCESSIBILTY ***/
 /******************/
@@ -792,7 +816,7 @@ li {
 	outline: none;
 }
 
-color: #b20061;
+	
 .foodCard button:focus .deleteIcon {
 	transform: scale(1.3);
 }
