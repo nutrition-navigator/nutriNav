@@ -51,7 +51,8 @@ class App extends Component {
     this.getAllSaved("userFavourites");
   }
 
-  //Function to access firebase and retrieve userCompared and userFavourites array to store in state.
+ 
+	// listens for changes to firebase and updates state 
   getAllSaved = state => {
     const dbRef = firebase.database().ref(`${state}`);
     dbRef.on("value", response => {
@@ -71,39 +72,17 @@ class App extends Component {
           secondaryNutrients: savedFromDB[key].secondaryNutrients
         });
       }
-    });
-  };
-
-  getAllSaved = state => {
-    const dbRef = firebase.database().ref(`${state}`);
-    dbRef.on("value", response => {
-      const savedFromDB = response.val();
-      const arraySaved = [];
-      for (let key in savedFromDB) {
-        arraySaved.push({
-          key: key,
-          id: savedFromDB[key].id,
-          name: savedFromDB[key].name,
-          brand: savedFromDB[key].brand,
-          serving: savedFromDB[key].serving,
-          servingUnit: savedFromDB[key].servingUnit,
-          servingWeight: savedFromDB[key].servingWeight,
-          imgURL: savedFromDB[key].imgURL,
-          mainNutrients: savedFromDB[key].mainNutrients,
-          secondaryNutrients: savedFromDB[key].secondaryNutrients
-        });
-      }
-
       this.completeSaved(arraySaved, state);
     });
   };
-
+  // saves the incoming firebase data to state
   completeSaved = (data, state) => {
     this.setState({
       [state]: data
     });
   };
 
+	// adds a toaster to the UI
   runToaster = ({ overall, message, duration }) => {
     this.setState(
       {
@@ -115,8 +94,9 @@ class App extends Component {
       },
       () => this.killToaster(duration)
     );
-  };
-
+	};
+	
+	// removes the toaster from the UI
   killToaster = duration => {
     setTimeout(() => {
       this.setState({
@@ -127,6 +107,7 @@ class App extends Component {
     }, duration);
   };
 
+	// adds a food item to saved (checks for duplicates and against max amounts)
   addToSaved = (food, state) => {
     const max =
       state === "userCompared"
@@ -137,25 +118,25 @@ class App extends Component {
       dBCompRef.push(food);
       this.runToaster({
         overall: `SUCCESS`,
-        message: `Your food (${food.name}) has been saved`,
+        message: `Your food (${food.name}) has been saved.`,
         duration: 5000
       });
     } else {
-      console.log("not added");
       this.isNotDuplicate(food.id, state)
         ? this.runToaster({
             overall: `SAVE FAILED`,
-            message: `Your list is full`,
+            message: `Unable to add. The list is full`,
             duration: 3000
           })
         : this.runToaster({
             overall: `SAVE FAILED`,
-            message: `This food (${food.name}) is already saved`,
+            message: `This food (${food.name}) is already saved.`,
             duration: 3000
           });
     }
-  };
-
+	};
+	
+	// checks if food item already exists in saved
   isNotDuplicate = (id, state) => {
     const copySaved =
       state === "userCompared"
@@ -166,6 +147,17 @@ class App extends Component {
       return food.id === id;
     });
     return result.length === 0;
+  };
+
+  // removes a food item from saved
+  removeItem = (key, state) => {
+    const dbRef = firebase.database().ref(state);
+		dbRef.child(key).remove();
+		this.runToaster({
+			overall: `SUCCESS`,
+			message: `The food item has been removed.`,
+			duration: 3000,
+    });
   };
 
   // retrieves the most up to date nutrients from API and their ids, maps the ids to the target nutrient list
@@ -339,18 +331,11 @@ class App extends Component {
     });
   };
 
-  // Function to remove an item in compare or userFavourites
-  removeItem = (key, state) => {
-    const dbRef = firebase.database().ref(state);
-    dbRef.child(key).remove();
-  };
-
   render() {
     return (
       <Router basename="/">
         <div className="App">
           <header className="App-header">
-
             <Route
               path="/"
               exact
