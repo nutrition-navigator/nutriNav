@@ -374,9 +374,6 @@ li {
 	justify-content: space-between;
 }
 
-.detailIngredients {
-}
-
 .detailOtherIngredients,
 .detailMainIngredients,
 .detailDescription {
@@ -469,7 +466,7 @@ li {
 /*** SEARCH ***/
 /***********/
 
-#search {
+#search, #filter {
 	padding: 2rem 4rem;
 	width: 60%;
 	background: #f4f2f9;
@@ -831,7 +828,8 @@ li {
 .foodCardLink:focus .foodCard,
 .favourite.foodCard:focus-within,
 .comparisonCard button:focus,
-.home input#search:focus {
+.home input#search:focus,
+.pageFilter input#filter:focus {
 	border: solid 2px #350482;
 }
 
@@ -902,11 +900,22 @@ li {
 }
 
 @media only screen and (max-width: 425px) {
-	#search {
+	#search, #filter {
 		width: 23rem;
 	}
 
 	.navItem {
 		font-size: 2rem;
 	}
+}
+/* filtering */
+
+.pageFilter {
+  height: 50px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pageFilter input {
+  height: 100%;
 }

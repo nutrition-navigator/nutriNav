@@ -18,10 +18,11 @@ class Favourites extends Component {
           <div className="wrapper">
             <h1 className="pageTitle">Saved Items</h1>
             <div className="pageFilter">
-              <label htmlFor="filter">Filter by Name: </label>
+              <label htmlFor="filter"></label>
               <input
                 type="text"
                 id="filter"
+                placeholder="Filter by Name"
                 onKeyUp={(e) => {
                   this.props.updateFilterString(e.target.value);
                 }}
