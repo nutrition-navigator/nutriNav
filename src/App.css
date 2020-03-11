@@ -392,6 +392,10 @@ li {
 /*** DELETEICON ***/
 /******************/
 
+.detailButtons {
+	display: flex;
+}
+
 .deleteIcon {
 	color: #4a4a4a;
 	transform: scale(1);
