@@ -514,6 +514,12 @@ li {
 	margin: 5rem 0;
 }
 
+.detailContainer .spinner {
+  font-size: 4rem;
+  transform:rotate(0deg);
+  animation: spinner 3s linear infinite;
+}
+
 .detailContainer .wrapper {
   flex-direction: column-reverse;
   align-items: center;
@@ -755,4 +761,15 @@ li {
 	}
 }
 
+@keyframes spinner {
+  0% {
+    transform:rotate(0)
+  }
+  50% {
+    transform:rotate(180deg)
+  }
+  100% {
+    transform:rotate(360deg)
+  }
+}
 

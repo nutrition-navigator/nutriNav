@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import Nav from '../components/Nav';
@@ -186,7 +186,11 @@ class FoodDetail extends Component {
 				<Nav />
 				<div className="detailContainer">
 					<div className="wrapper">
-						
+						<div className="spinner">
+								<FontAwesomeIcon
+									icon={faSpinner}
+								/>
+						</div>
 					</div>
 				</div>
 			</div>

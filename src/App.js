@@ -335,7 +335,6 @@ class App extends Component {
     return (
       <Router basename="/">
         <div className="App">
-          <header className="App-header">
             <Route
               path="/"
               exact
@@ -384,7 +383,6 @@ class App extends Component {
                 ></FoodDetail>
               )}
             />
-          </header>
           <div
             className={
               this.state.toaster.hidden
