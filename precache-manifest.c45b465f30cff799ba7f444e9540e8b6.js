@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f3fa38fc980020fa8a0d78f00f4b3019",
+    "revision": "b7684055219821c20405370027617a8c",
     "url": "/nutriNav/index.html"
   },
   {
-    "revision": "668e6a025405109067fd",
-    "url": "/nutriNav/static/css/main.0575d89b.chunk.css"
+    "revision": "6c5906c1f5f81878c224",
+    "url": "/nutriNav/static/css/main.229ed813.chunk.css"
   },
   {
     "revision": "1033792ac5ccdd4f9189",
@@ -16,15 +16,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/nutriNav/static/js/2.a50248fe.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "668e6a025405109067fd",
-    "url": "/nutriNav/static/js/main.fcece330.chunk.js"
+    "revision": "6c5906c1f5f81878c224",
+    "url": "/nutriNav/static/js/main.ca169097.chunk.js"
   },
   {
     "revision": "48ae16bbc6b7b314b68f",
     "url": "/nutriNav/static/js/runtime-main.b00aee75.js"
   },
   {
-    "revision": "ba2638de246d5c27ede21001d330d327",
-    "url": "/nutriNav/static/media/nutriNavLogo.ba2638de.svg"
+    "revision": "dbd1257986a2040837734bb459dd0a92",
+    "url": "/nutriNav/static/media/nutriNavLogo.dbd12579.svg"
   }
 ]);
