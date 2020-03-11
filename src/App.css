@@ -785,7 +785,7 @@ li {
 
 .toaster.success {
 	background-color: #350482;
-	color: white;
+	color: rgb(138, 131, 131);
 }
 
 .toaster.failed {
