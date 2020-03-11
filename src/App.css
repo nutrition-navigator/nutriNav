@@ -522,6 +522,7 @@ li {
   font-size: 4rem;
   transform:rotate(0deg);
   animation: spinner 3s linear infinite;
+  color: #350482;
 }
 
 .detailContainer .wrapper {
@@ -656,16 +657,20 @@ li {
 
 .comparisonCard {
   width: 32%;
-  padding: 3rem;
+  padding: 3.8rem 3rem 3rem 3rem;
   background: #f4f2f9;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
+  position:relative;
 }
 
 .comparisonCard button {
   text-align: center;
   font-size: 2.75rem;
+  position: absolute;
+  top:4px;
+  right:14px;
 }
 
 .imageContainer {
