@@ -832,3 +832,7 @@ li {
 .comparisonCard button:focus {
   border: solid 2px #350482;
 }
+
+.home input#search:focus {
+  border: solid 2px #350482;
+}

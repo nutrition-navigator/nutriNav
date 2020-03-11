@@ -94,11 +94,6 @@ class FoodDetail extends Component {
 												this.props.addToSaved(this.state.food,'userFavourites');
 												e.target.parentNode.blur()
 											}}
-											onKeyUp={(e) => {
-												if (e.key === 'Enter') {
-													this.props.addToSaved(this.state.food, 'userFavourites');
-												}
-											}}
                     >
                       <FontAwesomeIcon
                         icon={faHeart}
@@ -110,11 +105,6 @@ class FoodDetail extends Component {
 											onClick={(e) => {
 												this.props.addToSaved(this.state.food, 'userCompared');
 												e.target.parentNode.blur()
-											}}
-											onKeyUp={(e) => {
-												if (e.key === 'Enter') {
-													this.props.addToSaved(this.state.food, 'userCompared');
-												}
 											}}
                     >
                       <FontAwesomeIcon
