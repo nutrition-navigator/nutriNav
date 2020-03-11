@@ -46,7 +46,7 @@ class Home extends Component {
               </div>
             </div>
 
-						<FoodResults foodItems={this.props.foodItems} />
+            <FoodResults foodItems={this.props.foodItems} hasUserTyped={this.props.hasUserTyped}/>
 					</div>
 				</div>
 			</div>

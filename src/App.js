@@ -313,8 +313,8 @@ class App extends Component {
     }).then(res => {
       this.setState({
         brandedFood: res.data.branded,
-        commonFood: res.data.common
-        // userFavourites: res.data.common
+        commonFood: res.data.common,
+        hasUserTyped: true,
       });
     });
   };
@@ -329,7 +329,7 @@ class App extends Component {
 	// Function that tracks which letters the user is typing into the search bar
 	userSearch = e => {
 		const query = e.target.value;
-		this.fetchFood(query);
+    this.fetchFood(query);
 	};
 
   // Function to switch between displaying either commmon foods or branded foods to the user.
