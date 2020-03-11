@@ -41,7 +41,7 @@ html {
 	-ms-text-size-adjust: 100%;
 }
 a:focus {
-  outline: dotted;
+	outline: dotted;
 }
 a:active,
 a:hover {
@@ -572,14 +572,11 @@ li {
 
 .introLeft {
 	display: flex;
+	width: 90%;
 }
 
 .detailDesc {
 	margin-left: 3rem;
-}
-
-.introLeft {
-	width: 50%;
 }
 
 .detailImgContainer {
@@ -780,7 +777,6 @@ li {
 /*** ACCESSIBILTY ***/
 /******************/
 .foodCardLink:focus .foodCard {
-
 	border: solid 2px #350482;
 }
 
@@ -796,15 +792,14 @@ li {
 	outline: none;
 }
 
-	color: #b20061;
+color: #b20061;
 .foodCard button:focus .deleteIcon {
 	transform: scale(1.3);
-
 }
 .foodCardLink:focus {
 	outline: none;
 }
 
 .comparisonCard button:focus {
-  border: solid 2px #350482;
+	border: solid 2px #350482;
 }
