@@ -828,11 +828,10 @@ li {
 /******************/
 /*** ACCESSIBILTY ***/
 /******************/
-.foodCardLink:focus .foodCard {
-	border: solid 2px #350482;
-}
-
-.favourite.foodCard:focus-within {
+.foodCardLink:focus .foodCard,
+.favourite.foodCard:focus-within,
+.comparisonCard button:focus,
+.home input#search:focus {
 	border: solid 2px #350482;
 }
 
