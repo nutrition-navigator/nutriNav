@@ -853,12 +853,15 @@ li {
 /* filtering */
 
 .pageFilter {
-	height: 50px;
+  height: 50px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .pageFilter input {
-	height: 100%;
+  height: 100%;
 }
+
 
 @media only screen and (max-width: 800px) {
 	.comparisonContainer {
@@ -908,14 +911,5 @@ li {
 		font-size: 2rem;
 	}
 }
-/* filtering */
 
-.pageFilter {
-  height: 50px;
-  text-align: center;
-  margin-bottom: 40px;
-}
 
-.pageFilter input {
-  height: 100%;
-}
