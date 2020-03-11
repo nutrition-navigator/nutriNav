@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import Nav from '../components/Nav';
@@ -98,7 +98,7 @@ class FoodDetail extends Component {
                             this.state.food,
                             'userFavourites'
                           );
-                          e.target.parentNode.blur()
+													e.target.parentNode.blur()
                         }}
                       />
                     </button>
@@ -110,7 +110,7 @@ class FoodDetail extends Component {
                         icon={faExchangeAlt}
                         onClick={(e) => {
                           this.props.addToSaved(this.state.food, 'userCompared');
-                          e.target.parentNode.blur()
+													e.target.parentNode.blur()
                         }}
                       />
                     </button>
@@ -182,7 +182,18 @@ class FoodDetail extends Component {
 				</div>
 			</div>
 		) : (
-			'future loader'
+			<div className="detailPage">
+				<Nav />
+				<div className="detailContainer">
+					<div className="wrapper">
+						<div className="spinner">
+								<FontAwesomeIcon
+									icon={faSpinner}
+								/>
+						</div>
+					</div>
+				</div>
+			</div>
 		);
 	}
 }
