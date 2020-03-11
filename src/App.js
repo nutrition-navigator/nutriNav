@@ -8,12 +8,12 @@ import Home from "./pages/Home";
 import Toaster from "./components/Toaster";
 import firebase from "./firebaseConfig";
 import "./App.css";
-import creds from "./apiKey";
+// import creds from "./apiKey";
 
-// const creds = {
-//   key: "0d45466c03d80039b01119cd195711a9",
-//   id: "ff87fb2a"
-// };
+const creds = {
+  key: "0d45466c03d80039b01119cd195711a9",
+  id: "ff87fb2a"
+};
 
 class App extends Component {
   constructor() {
@@ -338,7 +338,7 @@ class App extends Component {
   // filters favourites by received keyword
   updateFilterString = string => {
     const filteredData = this.state.userFavourites.filter(food => {
-      return food.name.toLowerCase().includes(string);
+      return food.name.toLowerCase().includes(string.toLowerCase());
     });
     this.setState({
       userFavouritesFilt: filteredData
