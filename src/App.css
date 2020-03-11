@@ -282,7 +282,13 @@ a {
 	padding: 3rem 2rem;
 	align-items: center;
 	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
-	position: relative;
+  position: relative;
+  transform:scale(1);
+  transition: all 1s;
+}
+
+.foodCard:hover {
+  transform:scale(1.2);
 }
 
 .foodCard button {
