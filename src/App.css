@@ -283,11 +283,11 @@ a {
 	align-items: center;
 	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
 	position: relative;
-	transform:scale(1);
+	transform: scale(1);
 	transition: all 1s;
 }
 .foodCard:hover {
-	transform:scale(1.2);
+	transform: scale(1.2);
 }
 
 .foodCard button {
@@ -860,6 +860,42 @@ li {
 	border: solid 2px #350482;
 }
 
+/* filtering */
+
+.pageFilter {
+	height: 50px;
+}
+
+.pageFilter input {
+	height: 100%;
+}
+
+@media only screen and (max-width: 530px) {
+	.introLeft {
+		flex-direction: column;
+	}
+
+	.detailDesc {
+		margin: 0;
+	}
+
+	.detailButtons {
+		flex-direction: column;
+	}
+
+	.detailButtons button:not(:last-child) {
+		margin: 0 0 1rem 0;
+	}
+
+	.detailNutritionFacts {
+		flex-direction: column;
+	}
+
+	.nutrientList {
+		width: 100%;
+	}
+}
+
 @media only screen and (max-width: 425px) {
 	#search {
 		width: 23rem;
@@ -868,13 +904,4 @@ li {
 	.navItem {
 		font-size: 2rem;
 	}
-}
-/* filtering */
-
-.pageFilter {
-  height: 50px;
-}
-
-.pageFilter input {
-  height: 100%;
 }
