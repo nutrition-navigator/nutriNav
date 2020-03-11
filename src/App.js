@@ -126,12 +126,12 @@ class App extends Component {
 						overall: `SAVE FAILED`,
 						message: `Unable to add. The list is full`,
 						duration: 3000
-				  })
+				})
 				: this.runToaster({
 						overall: `SAVE FAILED`,
 						message: `This food (${food.name}) is already saved.`,
 						duration: 3000
-				  });
+				});
 		}
 	};
 
