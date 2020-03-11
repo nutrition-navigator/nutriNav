@@ -787,13 +787,13 @@ li {
 }
 
 .toaster.success {
-	background-color: #cdc2df;
-	color: #350482;
+	background-color: #350482;
+	color: white;
 }
 
 .toaster.failed {
-	background-color: #f6cee4;
-	color: #b20061;
+	background-color: #b20061;
+	color: white;
 }
 /******************/
 /*** KEY FRAMES ***/
