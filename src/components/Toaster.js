@@ -11,16 +11,16 @@ class Toaster extends Component {
 		};
 	}
 
-	render() {
-		const theme = this.state.theme[this.props.overall];
-		return (
-			<div className="hello">
-				<div className={'toaster ' + theme}>
-					<h2>{this.props.overall}</h2>
-					<p> {this.props.message}</p>
-				</div>
-			</div>
-		);
-	}
+  render() {
+    const theme = this.state.theme[this.props.overall];
+    return (
+      <div className={"toasterBox "}>
+        <div className={"toaster " + theme}>
+          <h1>{this.props.overall}</h1>
+          <p> {this.props.message}</p>
+        </div>
+      </div>
+    );
+  }
 }
 export default Toaster;
