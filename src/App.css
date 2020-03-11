@@ -407,7 +407,8 @@ li {
 .deleteIcon:focus,
 .detailButtons button:hover,
 .detailButtons button:focus {
-	animation: deleteIcons 1s ease-in-out infinite;
+	animation: deleteIcons 1s ease-in-out;
+	color: #b20061
 }
 
 /***********/
@@ -807,7 +808,7 @@ li {
 	}
 	100% {
 		transform: scale(1);
-		color: #4a4a4a;
+		color: #b20061;
 	}
 }
 
