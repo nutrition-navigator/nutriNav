@@ -338,7 +338,7 @@ class App extends Component {
   // filters favourites by received keyword
   updateFilterString = string => {
     const filteredData = this.state.userFavourites.filter(food => {
-      return food.name.toLowerCase().includes(string);
+      return food.name.toLowerCase().includes(string.toLowerCase());
     });
     this.setState({
       userFavouritesFilt: filteredData
