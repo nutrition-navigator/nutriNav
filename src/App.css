@@ -683,12 +683,6 @@ li {
 	height: 100%;
 }
 
-/* .comparisonCard .imageContainer {
-  width: 50%;
-  height: 60%;
-  margin: 0 auto;
-} */
-
 .comparisonContainer {
 	display: flex;
 	justify-content: center;

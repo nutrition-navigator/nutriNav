@@ -155,23 +155,6 @@ class FoodDetail extends Component {
                     })}
                   </ul>
                 </div>
-
-                {/* <div className="detailVitsMins">
-									<h2>Vitamins and Minerals</h2>
-									<ul>
-										{this.state.food.mainNutrients.map(nutrient => {
-											return (
-												<li key={nutrient.id}>
-													<span className={nutrient.value ? 'row' : 'row null'}>
-														<span className="col1">{nutrient.name}</span>
-														<span className="col2">{nutrient.value}</span>
-														<span className="col3">{nutrient.unit} </span>
-													</span>
-												</li>
-											);
-										})}
-									</ul>
-								</div> */}
               </div>
             </div>
           </div>

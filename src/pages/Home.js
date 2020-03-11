@@ -16,7 +16,7 @@ class Home extends Component {
                   name="search"
                   id="search"
                   onChange={this.props.userSearch}
-                  placeholder="What food are you looking for?"
+                  placeholder="Search for Food"
                 />
               </div>
 
