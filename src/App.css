@@ -241,7 +241,7 @@ a {
 }
 
 .pageContainer {
-	margin-top: 5rem;
+	padding-top: 5rem;
 }
 
 .pageTitle {
@@ -253,6 +253,10 @@ a {
 	text-align: center;
 }
 
+.App {
+	margin-top: 100px;
+}
+
 /**********************/
 /*** FOOD CONTAINER ***/
 /**********************/
@@ -262,6 +266,7 @@ a {
 	justify-content: space-around;
 	flex-wrap: wrap;
 	width: 100%;
+	padding-top: 5rem;
 }
 
 /****************/
@@ -269,7 +274,7 @@ a {
 /****************/
 
 .foodCard {
-	width: 34rem;
+	width: 31rem;
 	height: 14.5rem;
 	margin-bottom: 3.5rem;
 	display: flex;
@@ -288,7 +293,6 @@ a {
 	margin: 10px 20px 10px 20px;
 	font-size: 2.75rem;
 }
-
 
 .foodCard img {
 	object-fit: cover;
@@ -316,7 +320,7 @@ a {
 
 .favCard {
 	display: flex;
-	align-items:center;
+	align-items: center;
 	justify-content: center;
 }
 
@@ -398,7 +402,7 @@ li {
 .deleteIcon:focus,
 .detailButtons button:hover,
 .detailButtons button:focus {
-  animation: deleteIcons 1s ease-in-out infinite;
+	animation: deleteIcons 1s ease-in-out infinite;
 }
 
 /***********/
@@ -407,6 +411,10 @@ li {
 
 .navigation {
 	background: #f4f2f9;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1;
 }
 
 .activeNav {
@@ -418,8 +426,8 @@ li {
 }
 
 .navItem {
-  list-style: none;
-  color: #748a9d;
+	list-style: none;
+	color: #748a9d;
 	font-size: 2.75rem;
 	transition: all 0.5s;
 }
@@ -606,7 +614,6 @@ li {
 
 .detailButtons button svg {
 	font-size: 2.75rem;
-	
 }
 
 .detailButtons button {
@@ -764,5 +771,3 @@ li {
 		color: #4a4a4a;
 	}
 }
-
-
