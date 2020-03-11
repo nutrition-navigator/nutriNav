@@ -182,7 +182,14 @@ class FoodDetail extends Component {
 				</div>
 			</div>
 		) : (
-			'future loader'
+			<div className="detailPage">
+				<Nav />
+				<div className="detailContainer">
+					<div className="wrapper">
+						
+					</div>
+				</div>
+			</div>
 		);
 	}
 }
