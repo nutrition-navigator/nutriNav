@@ -283,6 +283,11 @@ a {
 	align-items: center;
 	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
 	position: relative;
+	transform:scale(1);
+	transition: all 1s;
+}
+.foodCard:hover {
+	transform:scale(1.2);
 }
 
 .foodCard button {
@@ -511,15 +516,30 @@ li {
 .toggleBranded {
 	border-radius: 0 36px 36px 0;
 	background: #d8d8d8;
+	transition: all 0.5s;
+}
+
+.toggleBranded:hover {
+	background: #350482;
 }
 
 .toggleCommon {
 	border-radius: 36px 0 0 36px;
 	background: #d8d8d8;
+	transition: all 0.5s;
+}
+
+.toggleCommon:hover {
+	background: #350482;
 }
 
 .toggleActive {
 	background: #b20061;
+	transition: all 0.5s;
+}
+
+.toggleActive:hover {
+	background: #350482;
 }
 
 /**************/
@@ -849,7 +869,6 @@ li {
 		font-size: 2rem;
 	}
 }
-
 /* filtering */
 
 .pageFilter {
@@ -859,4 +878,3 @@ li {
 .pageFilter input {
   height: 100%;
 }
-
