@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { faExchangeAlt, faHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink } from 'react-router-dom';
 import Nav from '../components/Nav';
 
 class FoodDetail extends Component {
@@ -41,52 +40,52 @@ class FoodDetail extends Component {
 
 	render() {
 		return this.state.isReady ? (
-			<div className="detailPage">
-				<Nav />
+      <div className="detailPage">
+        <Nav resetFilter={this.props.resetFilter} />
 
-				<div className="detailContainer">
-					<div className="wrapper">
-						<div className="detailContent">
-							<div className="detailIntro">
-								<div className="introLeft">
-									<div className="detailImg">
-										<img
-											src={this.state.food.imgURL}
-											alt={this.state.food.name}
-										></img>
-									</div>
-									<div className="detailDesc">
-										<div className="detailTitle">
-											<h1> {this.state.food.name}</h1>
-										</div>
+        <div className="detailContainer">
+          <div className="wrapper">
+            <div className="detailContent">
+              <div className="detailIntro">
+                <div className="introLeft">
+                  <div className="detailImg">
+                    <img
+                      src={this.state.food.imgURL}
+                      alt={this.state.food.name}
+                    ></img>
+                  </div>
+                  <div className="detailDesc">
+                    <div className="detailTitle">
+                      <h1> {this.state.food.name}</h1>
+                    </div>
 
-										<div className="detailDescription">
-											<h2>Description</h2>
-											<ul>
-												<li>
-													<p>
-														<span className="nutrientName">Serving:</span>{' '}
-														{this.state.food.serving}{' '}
-														{this.state.food.servingUnit} (
-														{this.state.food.servingWeight}
-														g){' '}
-													</p>
-												</li>
+                    <div className="detailDescription">
+                      <h2>Description</h2>
+                      <ul>
+                        <li>
+                          <p>
+                            <span className="nutrientName">Serving:</span>{" "}
+                            {this.state.food.serving}{" "}
+                            {this.state.food.servingUnit} (
+                            {this.state.food.servingWeight}
+                            g){" "}
+                          </p>
+                        </li>
 
-												{this.state.food.brand ? (
-													<li>
-														<p>Brand: {this.state.food.brand}</p>
-													</li>
-												) : (
-													''
-												)}
-											</ul>
-										</div>
-									</div>
-								</div>
+                        {this.state.food.brand ? (
+                          <li>
+                            <p>Brand: {this.state.food.brand}</p>
+                          </li>
+                        ) : (
+                          ""
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
 
-								<div className="introRight">
-									<div className="detailButtons">
+                <div className="introRight">
+                  <div className="detailButtons">
                     <button
                       title="Add to Favourites"
 											aria-label="Add to Favourites"
@@ -111,53 +110,53 @@ class FoodDetail extends Component {
                         icon={faExchangeAlt}
                       />
                     </button>
-									</div>
-								</div>
-							</div>
+                  </div>
+                </div>
+              </div>
 
-							<div className="detailNutrition">
-								<h2>Nutritional Facts</h2>
-								<div className="detailNutritionFacts">
-									<ul className="nutrientList">
-										{this.state.food.secondaryNutrients.map(other => {
-											return (
-												<li key={other.name}>
-													<div className="nutrient">
-														<div className="nutrientName">
-															<p>{other.name}</p>
-														</div>
-														<div className="nutrientUnit">
-															<p>
-																{other.value} {other.unit}
-															</p>
-														</div>
-													</div>
-												</li>
-											);
-										})}
-									</ul>
+              <div className="detailNutrition">
+                <h2>Nutritional Facts</h2>
+                <div className="detailNutritionFacts">
+                  <ul className="nutrientList">
+                    {this.state.food.secondaryNutrients.map(other => {
+                      return (
+                        <li key={other.name}>
+                          <div className="nutrient">
+                            <div className="nutrientName">
+                              <p>{other.name}</p>
+                            </div>
+                            <div className="nutrientUnit">
+                              <p>
+                                {other.value} {other.unit}
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
 
-									<ul className="nutrientList">
-										{this.state.food.mainNutrients.map(nutrient => {
-											return (
-												<li key={nutrient.name}>
-													<div className="nutrient">
-														<div className="nutrientName">
-															<p>{nutrient.name}</p>
-														</div>
-														<div className="nutrientUnit">
-															<p>
-																{nutrient.value} {nutrient.unit}
-															</p>
-														</div>
-													</div>
-												</li>
-											);
-										})}
-									</ul>
-								</div>
+                  <ul className="nutrientList">
+                    {this.state.food.mainNutrients.map(nutrient => {
+                      return (
+                        <li key={nutrient.name}>
+                          <div className="nutrient">
+                            <div className="nutrientName">
+                              <p>{nutrient.name}</p>
+                            </div>
+                            <div className="nutrientUnit">
+                              <p>
+                                {nutrient.value} {nutrient.unit}
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
 
-								{/* <div className="detailVitsMins">
+                {/* <div className="detailVitsMins">
 									<h2>Vitamins and Minerals</h2>
 									<ul>
 										{this.state.food.mainNutrients.map(nutrient => {
@@ -173,25 +172,23 @@ class FoodDetail extends Component {
 										})}
 									</ul>
 								</div> */}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		) : (
-			<div className="detailPage">
-				<Nav />
-				<div className="detailContainer">
-					<div className="wrapper">
-						<div className="spinner">
-								<FontAwesomeIcon
-									icon={faSpinner}
-								/>
-						</div>
-					</div>
-				</div>
-			</div>
-		);
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div className="detailPage">
+        <Nav />
+        <div className="detailContainer">
+          <div className="wrapper">
+            <div className="spinner">
+              <FontAwesomeIcon icon={faSpinner} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 	}
 }
 export default FoodDetail;

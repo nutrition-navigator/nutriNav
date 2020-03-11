@@ -848,3 +848,14 @@ li {
 		font-size: 2rem;
 	}
 }
+
+/* filtering */
+
+.pageFilter {
+  height: 50px;
+}
+
+.pageFilter input {
+  height: 100%;
+}
+
