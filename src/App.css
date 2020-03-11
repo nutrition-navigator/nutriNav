@@ -826,6 +826,7 @@ li {
 
 .foodCard button:focus .deleteIcon {
 	transform: scale(1.3);
+	columns: #b20061;
 }
 .foodCardLink:focus {
 	outline: none;
