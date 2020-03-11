@@ -41,7 +41,7 @@ html {
   -ms-text-size-adjust: 100%;
 }
 a:focus {
-  outline: thin dotted;
+  outline: dotted;
 }
 a:active,
 a:hover {
@@ -785,4 +785,8 @@ li {
 
 .foodCardLink:focus {
 	outline: none;
+}
+
+.comparisonCard button:focus {
+  border: solid 2px #350482;
 }
