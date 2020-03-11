@@ -10,7 +10,6 @@ class FavouriteCard extends Component {
     let id = this.props.foodItem.id
     id=encodeURI(id)
     const type = this.props.foodItem.brand ? "branded" : "common";
-    console.log(type);
     return (
       <div className="foodCard favourite">
           <button

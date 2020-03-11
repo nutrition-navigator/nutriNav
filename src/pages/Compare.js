@@ -3,9 +3,6 @@ import Nav from '../components/Nav';
 import ComparisonCard from '../components/ComparisonCard';
 
 class Compare extends Component {
-	// componentDidMount() {
-	// 	console.log('compare array:', this.state.foodsToCompare);
-	// }
 
 	render() {
 		return (

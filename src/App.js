@@ -83,11 +83,7 @@ class App extends Component {
       {
         [state]: data,
         [state + `Filt`]: data
-      },
-      () => {
-        console.log("userFiltered", this.state.userFavouritesFilt);
-      }
-    );
+      });
   };
 
   // adds a toaster to the UI
@@ -322,7 +318,7 @@ class App extends Component {
 	// Function to random decide some initial search results on page load
 	randomSearch = () => {
 		const randomArray = ['corn', 'spinach', 'burger', 'broccoli'];
-		const randomInteger = Math.floor(Math.random() * 4);
+		const randomInteger = Math.floor(Math.random() * randomArray.length);
 		this.fetchFood(randomArray[randomInteger]);
 	};
 
@@ -341,7 +337,6 @@ class App extends Component {
 
   // filters favourites by received keyword
   updateFilterString = string => {
-    console.log("updateFilterString() ", string);
     const filteredData = this.state.userFavourites.filter(food => {
       return food.name.toLowerCase().includes(string);
     });
@@ -352,7 +347,6 @@ class App extends Component {
 	
 	// brings the saved favourites into an unfiltered state
 	resetFilter = () => {
-		console.log('resetFilter()', this.state.userFavourites);
 		this.setState({
 			filterString: '',
 			userFavouritesFilt: this.state.userFavourites,

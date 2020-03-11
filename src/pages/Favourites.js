@@ -10,10 +10,6 @@ class Favourites extends Component {
     };
   }
 
-  grabValue = e => {
-    console.log("something was typed", e.target.value);
-  };
-
   render() {
     return (
       <div className="favourites">
