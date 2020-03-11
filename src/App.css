@@ -833,6 +833,10 @@ li {
   border: solid 2px #350482;
 }
 
+.home input#search:focus {
+  border: solid 2px #350482;
+}
+
 /* filtering */
 
 .pageFilter {
@@ -842,3 +846,4 @@ li {
 .pageFilter input {
   height: 100%;
 }
+

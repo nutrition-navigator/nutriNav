@@ -88,29 +88,26 @@ class FoodDetail extends Component {
                   <div className="detailButtons">
                     <button
                       title="Add to Favourites"
-                      aria-label="Add to Favourites"
+											aria-label="Add to Favourites"
+											onClick={(e) => {
+												this.props.addToSaved(this.state.food,'userFavourites');
+												e.target.parentNode.blur()
+											}}
                     >
                       <FontAwesomeIcon
                         icon={faHeart}
-                        onClick={e => {
-                          this.props.addToSaved(
-                            this.state.food,
-                            "userFavourites"
-                          );
-                          e.target.parentNode.blur();
-                        }}
                       />
                     </button>
-                    <button title="Add to Compare" aria-label="Add to Compare">
+                    <button
+                      title="Add to Compare"
+											aria-label="Add to Compare"
+											onClick={(e) => {
+												this.props.addToSaved(this.state.food, 'userCompared');
+												e.target.parentNode.blur()
+											}}
+                    >
                       <FontAwesomeIcon
                         icon={faExchangeAlt}
-                        onClick={e => {
-                          this.props.addToSaved(
-                            this.state.food,
-                            "userCompared"
-                          );
-                          e.target.parentNode.blur();
-                        }}
                       />
                     </button>
                   </div>
